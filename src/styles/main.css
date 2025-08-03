@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.main-container {
+  width: 500px;
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px; 
+  box-sizing: border-box;
+}
+
+.welcome-msg {
+  margin: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.service-card-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+}
