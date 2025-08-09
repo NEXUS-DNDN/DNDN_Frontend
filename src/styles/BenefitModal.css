@@ -1,0 +1,84 @@
+/* 전체 배경 */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ✅ 중앙 정렬 */
+  z-index: 999;
+
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* 팝업 내용 박스 */
+.modal-content {
+  background-color: white;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+  /* 기본 표시 애니메이션 */
+  animation: slideUpCenter 0.4s ease forwards;
+  transform: translateY(100%);
+}
+
+.modal-content h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-content button {
+  background-color: black;
+  color: white;
+  padding: 12px 0;
+  width: 100%;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 배경 페이드인 */
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* 등장: 아래 → 중앙 */
+@keyframes slideUpCenter {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+/* 사라짐: 중앙 → 위로 */
+@keyframes slideOutTop {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* 사라질 때 쓸 클래스 */
+.modal-exit {
+  animation: slideOutTop 0.4s ease forwards;
+}

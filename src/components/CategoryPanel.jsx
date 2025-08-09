@@ -13,28 +13,32 @@ const CategoryPanel = ({ isOpen, onClose }) => {
   const [selectedMain, setSelectedMain] = useState('노인');
   const subCategories = categories[selectedMain];
 
+  if (!isOpen) return null;
+
   return (
-    <div className={`category-panel-wrapper ${isOpen ? 'slide-in' : ''}`}>
-      <div className="category-panel">
-        <div className="main-tabs">
-          {Object.keys(categories).map(cat => (
-            <div
-              key={cat}
-              className={`main-tab ${selectedMain === cat ? 'active' : ''}`}
-              onClick={() => setSelectedMain(cat)}
-            >
-              {cat}
-            </div>
-          ))}
+    <div className="category-panel-wrapper" onClick={onClose}>
+      <div className="category-panel-inner">
+        <div className="category-panel" onClick={(e) => e.stopPropagation()}>
+          <div className="main-tabs">
+            {Object.keys(categories).map((cat) => (
+              <div
+                key={cat}
+                className={`main-tab ${selectedMain === cat ? 'active' : ''}`}
+                onClick={() => setSelectedMain(cat)}
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
+          <div className="subcategories">
+            {subCategories.map((item, idx) => (
+              <div key={idx} className="subcategory-item">
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="close-button" onClick={onClose}>닫기</div>
         </div>
-        <div className="subcategories">
-          {subCategories.map((item, idx) => (
-            <div key={idx} className="subcategory-item">
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="close-button" onClick={onClose}>닫기</div>
       </div>
     </div>
   );

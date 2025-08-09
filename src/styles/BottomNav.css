@@ -28,7 +28,16 @@
   flex: 1;
   height: 100%; /* ✅ 버튼이 nav의 전체 높이를 채움 */
 }
-
+/* ✅ 활성화 밑줄 */
+.bottom-nav button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 8px; /* 버튼 하단과의 거리 */
+  width: 18px;
+  height: 2px;
+  background-color: #000;
+  border-radius: 2px;
+}
 .bottom-nav button.active {
   color: #000;
 }

@@ -13,7 +13,7 @@ export const services = [
     id: 2,
     title: '청년 구직 활동 지원',
     category: '일자리',
-    dDay: 12,
+    dDay: 0,
     description: '미취업 청년의 구직활동을 지원하여 취업 기회를 확대하는 제도',
     target: '졸업 또는 중퇴 후 2년 이내의 미취업 청년',
     content: '월 최대 50만 원 × 6개월 지원',

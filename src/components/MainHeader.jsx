@@ -1,12 +1,31 @@
 import React from 'react';
 import { FaBars, FaBell } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import '../styles/MainHeader.css';
 
-const Header = ({ onMenuClick }) => {
+const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="header">
-      <FaBars size={20} onClick={onMenuClick} />
-      <FaBell size={20} />
+      <div className="icon-left">
+        <button
+          className="icon-btn"
+          aria-label="카테고리 열기"
+          onClick={() => navigate('/category')}  // ✅ 카테고리 페이지로
+        >
+          <FaBars />
+        </button>
+      </div>
+      <div className="icon-right">
+        <button
+          className="icon-btn"
+          aria-label="알림"
+          onClick={() => navigate('/alarms')}
+        >
+          <FaBell />
+        </button>
+      </div>
     </div>
   );
 };

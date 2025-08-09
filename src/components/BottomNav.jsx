@@ -3,11 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FaHome, FaHeart, FaCommentDots, FaUser } from 'react-icons/fa';
 import '../styles/BottomNav.css';
 
-const BottomNav = () => {
+const BottomNav = ({ activePath }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => {
+    // activePath가 있으면 그걸 우선 적용
+    if (activePath) return activePath === path;
+    return location.pathname === path;
+  };
 
   return (
     <div className="bottom-nav">

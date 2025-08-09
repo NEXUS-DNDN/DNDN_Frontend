@@ -1,0 +1,53 @@
+.received-page {
+  background-color: #f1f5f9;
+  width: 500px;
+  margin: 0 auto;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  overflow-y: auto;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.page-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.received-content {
+  padding: 0 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.received-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.stat

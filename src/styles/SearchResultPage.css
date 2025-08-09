@@ -1,18 +1,39 @@
 .search-result-page {
-  padding: 16px;
-  padding-bottom: 100px; /* 하단바 공간 확보 */
-  background-color: #f4f6f9;
+  padding-bottom: 100px;
+  background-color: #f4f7fa;
   min-height: 100vh;
-  font-family: 'Pretendard', sans-serif;
-  box-sizing: border-box;
-  width: 500px;  /* ✅ 수정됨 */
-  margin: 0 auto;    /* ✅ 가운데 정렬 */
+  font-family: 'Arial', sans-serif;
+  width: 500px;
+  margin: 0 auto;
 }
 
+/* 상단 아이콘 */
 .search-top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+}
+
+.icon-left,
+.icon-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 검색창 */
+.search-input-row {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
   margin-bottom: 12px;
 }
 
@@ -23,28 +44,23 @@
   border-radius: 12px;
   font-size: 14px;
   background-color: white;
-  margin: 0 8px;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  padding: 4px 6px;
-  cursor: pointer;
-}
-
+/* 검색 결과 타이틀 */
 .search-title {
   font-weight: 600;
   font-size: 16px;
+  margin-left: 20px;
   margin-bottom: 8px;
   color: #333;
 }
 
+/* 결과 리스트 */
 .result-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 0 8px;
 }
 
 .result-card {
@@ -54,6 +70,7 @@
   padding: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   align-items: center;
+  box-sizing: border-box;
 }
 
 .card-thumbnail {
@@ -82,4 +99,19 @@
 .card-category {
   font-size: 13px;
   color: #888;
+}
+
+.no-results {
+  margin-top: 20px;
+  color: #777;
+}
+
+.back-btn {
+  margin-right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }

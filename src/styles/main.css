@@ -13,12 +13,43 @@ body {
 
 .main-container {
   width: 500px;
+  margin: 0 auto;
+  padding-bottom: 80px;
   background-color: #f1f5f9;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden; /* 패널 넘침 방지 */
+}
+
+/* ===== 상단 아이콘 위치를 SearchPage와 동일하게 맞춤 ===== */
+/* SearchPage .search-top: padding 16px 16px 8px */
+.main-top {
   display: flex;
-  flex-direction: column;
-  padding-bottom: 80px; 
-  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px; /* ✅ 동일하게 */
+}
+
+/* SearchPage .icon-left / .icon-right 동일 간격 */
+.main-icon-left,
+.main-icon-right {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ✅ 동일하게 */
+}
+
+/* SearchPage .icon-btn 과 동일 스타일 */
+.main-icon-btn {
+  background: none;
+  border: none;
+  font-size: 20px; /* ✅ 동일하게 */
+  cursor: pointer;
+  /* SearchPage에서는 padding을 따로 주지 않음 */
+}
+
+/* SearchPage의 입력행 좌우 16px 패딩과 정렬감을 맞추기 위한 래퍼 */
+.main-searchbar-wrap {
+  padding: 0 16px;
 }
 
 .welcome-msg {
@@ -32,4 +63,14 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   padding: 0 20px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  z-index: 900;
 }

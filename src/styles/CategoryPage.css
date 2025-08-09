@@ -1,0 +1,138 @@
+.category-page {
+  width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #e9eff4;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.cat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+}
+.cat-title {
+  font-weight: 700;
+  color: #374151;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 8px 16px;
+}
+.chip-selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #111;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.chip-x {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.cat-section {
+  padding: 12px 16px;
+}
+.sec-title {
+  color: #374151;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.divider {
+  height: 1px;
+  background: #cfd8e3;
+  margin: 6px 16px;
+  opacity: 0.8;
+}
+
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+.pill {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pill.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.age-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.age-input {
+  width: 120px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  padding: 0 12px;
+  font-size: 14px;
+  background: #fff;
+}
+.age-suffix {
+  color: #374151;
+  font-weight: 700;
+}
+
+.addr-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.addr-select {
+  flex: 1;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+.cat-footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  padding: 16px;
+  background: transparent;
+}
+.search-btn {
+  width: 100%;
+  height: 56px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+}

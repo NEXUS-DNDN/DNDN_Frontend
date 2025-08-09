@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { services } from '../utils/mockData';
 import { FaArrowLeft, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import BottomNav from '../components/BottomNav';
 import '../styles/ServiceDetailPage.css';
 
-const ServiceDetailPage = ({ favorites, toggleFavorite }) => {
+const ServiceDetailPage = ({ favorites, setFavorites }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const service = services.find((s) => s.id === Number(id));
@@ -13,18 +14,56 @@ const ServiceDetailPage = ({ favorites, toggleFavorite }) => {
 
   const isFavorite = favorites.includes(service.id);
 
+  // ✅ 즐겨찾기 토글
+  const toggleFavorite = () => {
+    let updatedFavorites;
+    if (isFavorite) {
+      updatedFavorites = favorites.filter((fid) => fid !== service.id);
+    } else {
+      updatedFavorites = [...favorites, service.id];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favoriteServices', JSON.stringify(updatedFavorites));
+  };
+
+  // ✅ 공유 기능
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/service/${service.id}`;
+    const shareData = {
+      title: service.title,
+      text: '이 서비스 정보 확인해보세요!',
+      url: shareUrl,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error('공유 실패:', err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        alert('링크가 클립보드에 복사되었습니다!');
+      } catch (err) {
+        alert('공유할 수 없습니다. 브라우저가 지원하지 않아요.');
+      }
+    }
+  };
+
   return (
     <div className="service-detail-page">
       <div className="top-bar">
         <button className="icon-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft />
+          <FaArrowLeft size={20} />
         </button>
+
         <div className="right-icons">
-          <button className="icon-button" onClick={() => toggleFavorite(service.id)}>
-            {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+          <button className="icon-button" onClick={toggleFavorite} aria-label="즐겨찾기">
+            {isFavorite ? <FaHeart color="red" size={20} /> : <FaRegHeart size={20} />}
           </button>
-          <button className="icon-button" onClick={() => alert('공유 기능은 준비 중입니다.')}>  
-            <FaShareAlt />
+          <button className="icon-button" onClick={handleShare} aria-label="공유">
+            <FaShareAlt size={20} />
           </button>
         </div>
       </div>
@@ -58,10 +97,24 @@ const ServiceDetailPage = ({ favorites, toggleFavorite }) => {
 
       <div className="bottom-actions">
         <div className="action-desc">서비스를 신청하고 싶다면 ?</div>
-        <button className="apply-button" onClick={() => navigate(`/apply-date/${service.id}`)}>신청하러 가기</button>
+        <button
+          className="record-button"
+          onClick={() => navigate(`/apply-complete/${service.id}`)}
+        >
+          신청하러 가기
+        </button>
+
         <div className="action-desc">서비스를 이미 신청했다면 ?</div>
-        <button className="record-button" onClick={() => navigate(`/apply-complete/${service.id}`)}>신청 정보 기록하기</button>
+        <button
+          className="apply-button"
+          onClick={() => navigate(`/apply-date/${service.id}`)}
+        >
+          신청 정보 기록하기
+        </button>
       </div>
+
+      {/* ✅ 항상 홈 탭 활성화 */}
+      <BottomNav activePath="/" />
     </div>
   );
 };

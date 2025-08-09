@@ -11,21 +11,32 @@ const MainPage = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
   return (
-    <div className="main-container">
-      <Header onMenuClick={() => setIsCategoryOpen(prev => !prev)} />
-      <SearchBar />
-      <div className="welcome-msg">
-        <span>홍길동님,<br />
-        이런 복지가 있어요!</span>
+    <>
+      <CategoryPanel
+        isOpen={isCategoryOpen}
+        onClose={() => setIsCategoryOpen(false)}
+      />
+      <div className="main-container">
+        <Header onMenuClick={() => setIsCategoryOpen(true)} />
+
+        {/* SearchPage의 입력영역 패딩(좌우 16px)에 맞추기 위한 래퍼 */}
+        <div className="main-searchbar-wrap">
+          <SearchBar />
+        </div>
+
+        <div className="welcome-msg">
+          <span>홍길동님,<br />이런 복지가 있어요!</span>
+        </div>
+
+        <div className="service-card-list">
+          {services.map(service => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
+        </div>
+
+        <BottomNav />
       </div>
-      <div className="service-card-list">
-        {services.map(service => (
-          <ServiceCard key={service.id} service={service} />
-        ))}
-      </div>
-      <BottomNav />
-      <CategoryPanel isOpen={isCategoryOpen} onClose={() => setIsCategoryOpen(false)} />
-    </div>
+    </>
   );
 };
 

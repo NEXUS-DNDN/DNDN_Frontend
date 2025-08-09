@@ -5,8 +5,9 @@
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 10px 16px;
-  width: 100%;
+  width: 90%;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .search-icon {
