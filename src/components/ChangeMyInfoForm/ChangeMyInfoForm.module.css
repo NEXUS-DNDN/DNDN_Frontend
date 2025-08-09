@@ -1,0 +1,304 @@
+.container {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.minititle {
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  color: rgba(57, 63, 72, 1);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.genderText {
+  color: #333;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.genderInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.genderDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.genderText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.genderText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.firstbox {
+    border-radius: 20px 20px 0px 0px;
+}
+
+.lastbox {
+    border-radius: 0px 0px 20px 20px;
+}
+
+.genderItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.genderItem:hover {
+  background-color: #b9b9b9;
+}
+
+.genderItem span {
+  padding: 8px 0;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.familyInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.familyDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.familyText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.familyText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.familyItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.familyItem:hover {
+  background-color: #b9b9b9;
+}
+
+.familyItem span {
+  padding: 8px 0;
+}
+
+.salaryInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.salaryDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.salaryText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.salaryText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.salaryItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.salaryItem:hover {
+  background-color: #b9b9b9;
+}
+
+.salaryItem span {
+  padding: 8px 0;
+}
+
+.hireInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.hireDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.hireText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.hireText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.hireItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.hireItem:hover {
+  background-color: #b9b9b9;
+}
+
+.hireItem span {
+  padding: 8px 0;
+}
+
+.additionalInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.additionalDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.additionalText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.additionalText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.additionalItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.additionalItem:hover {
+  background-color: #b9b9b9;
+}
+
+.additionalItem span {
+  padding: 8px 0;
+}
+
+.submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  margin-top: 50px;
+  width: 70%;
+  height: 60px;
+  font-size: 17px;
+  font-weight: bold;
+}

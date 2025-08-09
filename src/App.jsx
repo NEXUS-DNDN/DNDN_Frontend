@@ -1,7 +1,7 @@
-// App.jsx (수정본)
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+// --- 기존 메인/검색/서비스 흐름 ---
 import MainPage from './pages/MainPage';
 import FavoritePage from './pages/FavoritePage';
 import ChatPage from './pages/ChatPage';
@@ -11,14 +11,35 @@ import SearchResultPage from './pages/SearchResultPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import ApplyDatePage from './pages/ApplyDatePage';
 import ApplyCompletePage from './pages/ApplyCompletePage';
-import { services } from './utils/mockData';
 import ReceivedServicesPage from './pages/ReceivedServicesPage';
 import AppliedServicesPage from './pages/AppliedServicesPage';
 import AlarmListPage from './pages/AlarmListPage';
 import CategoryPage from './pages/CategoryPage';
+import { services } from './utils/mockData';
+
+// --- 로그인/회원가입 플로우 (loginpage_etc) ---
+import JoinPage from './pages/JoinPage';
+import VerifyPage from './pages/VerifyPage';
+import LoginPage from './pages/LoginPage';
+import NameInputPage from './pages/NameInputPage';
+import BirthdayInputPage from './pages/BirthdayInputPage';
+import GenderInputPage from './pages/GenderInputPage';
+import AddressInputPage from './pages/AddressInputPage';
+import FamilyInputPage from './pages/FamilyInputPage';
+import SalaryInputPage from './pages/SalaryInputPage';
+import HireInputPage from './pages/HireInputPage';
+import AdditionalInputPage from './pages/AdditionalInputPage';
+import DisabilityPage from './pages/DisabilityPage';
+import DisabilityGradePage from './pages/DisabilityGradePage';
+import DisabilityTypePage from './pages/DisabilityTypePage';
+import AgedPage from './pages/AgedPage';
+import AgedAlonePage from './pages/AgedAlonePage';
+import AgedAdditionalPage from './pages/AgedAdditionalPage';
+import MyPage from './pages/MyPage';
+import ChangeMyInfoPage from './pages/ChangeMyInfoPage';
 
 function App() {
-  // ✅ 로컬스토리지에서 초기값 불러오기
+  // ✅ 즐겨찾기 로컬스토리지 연동
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem('favoriteServices');
     return stored ? JSON.parse(stored) : [];
@@ -36,6 +57,7 @@ function App() {
     <BrowserRouter>
       <div className="app-wrapper">
         <Routes>
+          {/* --- 메인/검색/서비스 --- */}
           <Route
             path="/"
             element={
@@ -57,28 +79,45 @@ function App() {
           />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search-result" element={<SearchResultPage />} />
-
           <Route
             path="/service/:id"
             element={
               <ServiceDetailPage
                 favorites={favorites}
                 toggleFavorite={toggleFavorite}
-                setFavorites={setFavorites} // 필요하면 유지
+                setFavorites={setFavorites}
               />
             }
           />
-
           <Route path="/apply-date/:id" element={<ApplyDatePage />} />
           <Route path="/apply-complete/:id" element={<ApplyCompletePage />} />
           <Route path="/applied" element={<AppliedServicesPage />} />
           <Route path="/received" element={<ReceivedServicesPage />} />
-
           <Route path="/alarms" element={<AlarmListPage />} />
           <Route path="/category" element={<CategoryPage />} />
+
+          {/* --- 로그인/회원가입 플로우 --- */}
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/verify" element={<VerifyPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/nameinput" element={<NameInputPage />} />
+          <Route path="/birthdayinput" element={<BirthdayInputPage />} />
+          <Route path="/genderinput" element={<GenderInputPage />} />
+          <Route path="/addressinput" element={<AddressInputPage />} />
+          <Route path="/familyinput" element={<FamilyInputPage />} />
+          <Route path="/salaryinput" element={<SalaryInputPage />} />
+          <Route path="/hireinput" element={<HireInputPage />} />
+          <Route path="/additionalinput" element={<AdditionalInputPage />} />
+          <Route path="/disability" element={<DisabilityPage />} />
+          <Route path="/disabilitygrade" element={<DisabilityGradePage />} />
+          <Route path="/disabilitytype" element={<DisabilityTypePage />} />
+          <Route path="/aged" element={<AgedPage />} />
+          <Route path="/agedalone" element={<AgedAlonePage />} />
+          <Route path="/agedadditional" element={<AgedAdditionalPage />} />
+          <Route path="/my" element={<MyPage />} />
+          <Route path="/changemyinfo" element={<ChangeMyInfoPage />} />
         </Routes>
       </div>
     </BrowserRouter>

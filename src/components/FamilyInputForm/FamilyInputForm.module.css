@@ -1,0 +1,149 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+}
+
+.highlight{
+    font-weight: 700;
+}
+
+.inputGroup {
+  margin-top: 70px;
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+}
+
+.genderText {
+  color: #333;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.familyInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.familyDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.familyText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.familyText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.familyItem {
+  display: flex;
+  margin-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  
+}
+
+.familyItem span {
+  padding: 8px 0;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.memberGroup {
+  margin-bottom: 16px;
+  margin-top: 50px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.memberInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.minus {
+    margin-left: 15px;
+}
+
+.plus {
+    margin-right: 15px;
+}
+.authBtn {
+  width: 60%;
+  height: 65px;
+  padding: 12px;
+  background-color: rgba(102, 112, 128, 1);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
