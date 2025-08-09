@@ -1,0 +1,112 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: -300px;
+}
+
+.profileSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 10px;
+
+}
+
+.username{
+    margin-bottom: 3px;
+}
+
+.profileImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.email {
+  font-size: 14px;
+  color: #666;
+}
+
+.menuList {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-radius: 12px;
+  margin-top: 3px;
+  width: 90%
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  height: 35px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.myapply {
+    border-radius: 12px 12px 0px 0px;
+}
+
+.faq {
+    border-radius: 0px 0px 12px 12px;
+}
+
+.myapply:hover{
+    cursor: pointer;
+    background-color: #d8d8d8;
+}
+
+.myinfo:hover{
+    cursor: pointer;
+    background-color: #d8d8d8;
+}
+
+.settings:hover{
+    cursor: pointer;
+    background-color: #d8d8d8;
+}
+
+.faq:hover{
+    cursor: pointer;
+    background-color: #d8d8d8;
+}
+
+.arrow {
+  color: #bbb;
+
+}

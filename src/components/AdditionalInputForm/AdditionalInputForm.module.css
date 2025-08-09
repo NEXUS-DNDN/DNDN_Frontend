@@ -1,0 +1,130 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+}
+
+.highlight{
+    font-weight: 700;
+}
+
+.plural{
+    display: flex;
+    font-size: 20px;
+}
+
+.inputGroup {
+  margin-top: 70px;
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+}
+
+.additionalText {
+  color: #333;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.additionalInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.additionalDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.additionalText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.additionalText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.additionalItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.additionalItem:hover {
+  background-color: #f0f4ff; /* 호버 시 배경색 */
+}
+
+.additionalItem span {
+  padding: 8px 0;
+}
+
+.selectedItem {
+  background-color: #e0e7ff; /* 선택된 항목 배경색 */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.authBtn {
+  width: 60%;
+  height: 65px;
+  padding: 12px;
+  background-color: rgba(102, 112, 128, 1);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

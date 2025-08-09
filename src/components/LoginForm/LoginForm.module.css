@@ -1,0 +1,125 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+  width: 100%;
+  font-weight: 500;
+}
+
+.authBtn {
+  width: 60%;
+  height: 65px;
+  padding: 12px;
+  background-color: rgba(102, 112, 128, 1);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkboxContainer {
+  display: flex;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+  width: 85%;
+  align-items: center;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.line1 {
+  width: 42%;
+  height: 1px;
+  background-color: #ccc;
+  margin-left: 0 auto;
+}
+
+.line2 {
+  width: 42%;
+  height: 1px;
+  background-color: #ccc;
+  margin-right: 0 auto;
+}
+
+.text {
+  font-size: 16px;
+  color: #666;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.socialButtons {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.naver {
+  color: #03c75a;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+}
+
+.kakao {
+  color: #fee500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.google {
+  color: #4285f4;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
