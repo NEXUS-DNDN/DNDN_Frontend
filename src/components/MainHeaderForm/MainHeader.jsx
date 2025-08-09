@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaBars, FaBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import '../styles/MainHeader.css';
+import './MainHeader.css';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Header = () => {
         <button
           className="icon-btn"
           aria-label="카테고리 열기"
-          onClick={() => navigate('/category')}  // ✅ 카테고리 페이지로
+          onClick={() => navigate('/category')} 
         >
           <FaBars />
         </button>

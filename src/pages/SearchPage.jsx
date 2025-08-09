@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaBell, FaArrowLeft } from 'react-icons/fa';
-import BottomNav from '../components/BottomNav';
+import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/SearchPage.css';
 
 const STORAGE_PREFIX = 'recentSearches';

@@ -2,21 +2,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaUser } from 'react-icons/fa';
-import BenefitModal from '../components/BenefitModal';
+import BenefitModal from '../components/BenefitModalForm/BenefitModal';
+import AppliedServiceCard from '../components/AppliedServiceCardForm/AppliedServiceCard';
 import '../styles/AppliedServicesPage.css';
 
 const AppliedServicesPage = () => {
   const navigate = useNavigate();
-  const storedServices = JSON.parse(localStorage.getItem('appliedServices')) || [];
-  const receivedServices = JSON.parse(localStorage.getItem('receivedServices')) || [];
+
+  // ✅ 로컬스토리지 로드
+  const initialApplied = JSON.parse(localStorage.getItem('appliedServices')) || [];
+  const initialReceived = JSON.parse(localStorage.getItem('receivedServices')) || [];
+
+  // ✅ 카드가 즉시 사라지도록 state로 관리
+  const [appliedServices, setAppliedServices] = useState(initialApplied);
+  const [receivedServices] = useState(initialReceived);
 
   const [showModal, setShowModal] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
 
-  // 혜택 수령 버튼 눌렀을 때
+  // 혜택 수령 버튼
   const openModal = (service) => {
     const isAlreadyReceived = receivedServices.some((s) => s.id === service.id);
-
     if (!isAlreadyReceived) {
       setSelectedService(service);
       setShowModal(true);
@@ -25,12 +31,23 @@ const AppliedServicesPage = () => {
     }
   };
 
-  // 모달에서 완료 눌렀을 때
+  // ✅ 모달 완료: 받은 목록으로 이동 + 신청 목록에서 제거
   const handleConfirm = () => {
-    const updated = [...receivedServices, selectedService];
-    localStorage.setItem('receivedServices', JSON.stringify(updated));
+    if (!selectedService) return;
+
+    // 1) 받은 목록 업데이트
+    const updatedReceived = [...(JSON.parse(localStorage.getItem('receivedServices')) || []), selectedService];
+    localStorage.setItem('receivedServices', JSON.stringify(updatedReceived));
+
+    // 2) 신청 목록에서 제거
+    const updatedApplied = appliedServices.filter((s) => s.id !== selectedService.id);
+    setAppliedServices(updatedApplied);
+    localStorage.setItem('appliedServices', JSON.stringify(updatedApplied));
+
+    // 3) 모달 종료 후 이동
     setShowModal(false);
-    navigate('/received'); // 수령 완료 페이지로 이동
+    setSelectedService(null);
+    navigate('/received');
   };
 
   return (
@@ -51,39 +68,17 @@ const AppliedServicesPage = () => {
       </div>
 
       <div className="services-list">
-        {storedServices.length === 0 ? (
+        {appliedServices.length === 0 ? (
           <p className="no-data-text">신청 완료된 서비스가 없습니다.</p>
         ) : (
-          storedServices.map((service, i) => (
-            <div
-              className="service-box"
+          appliedServices.map((service, i) => (
+            <AppliedServiceCard
               key={i}
-              onClick={() => navigate(`/service/${service.id}`)} // 카드 클릭시 상세 페이지 이동
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="service-title">{service.title}</div>
-              <div className="service-date">신청 일자: {service.date}</div>
-
-              <button
-                className="benefit-btn"
-                onClick={(e) => {
-                  e.stopPropagation(); // 카드 클릭 막기
-                  openModal(service);
-                }}
-              >
-                혜택 수령 여부
-              </button>
-
-              <button
-                className="status-btn"
-                onClick={(e) => {
-                  e.stopPropagation(); // 카드 클릭 막기
-                  alert('신청 현황 보기 기능은 준비 중입니다.');
-                }}
-              >
-                신청 현황 보기
-              </button>
-            </div>
+              service={service}
+              onClickCard={(svc) => navigate(`/service/${svc.id}`)}
+              onClickBenefit={(svc) => openModal(svc)}
+              onClickStatus={() => alert('신청 현황 보기 기능은 준비 중입니다.')}
+            />
           ))
         )}
       </div>

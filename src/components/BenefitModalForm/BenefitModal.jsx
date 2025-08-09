@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/BenefitModal.css';
+import './BenefitModal.css';
 
 const BenefitModal = ({ onConfirm }) => {
   return (

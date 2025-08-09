@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
-import '../styles/searchBar.css';
+import './searchBar.css';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -15,7 +15,6 @@ const SearchBar = () => {
   };
 
   const handleClick = () => {
-    // 검색창에서만 입력 가능하게
     if (location.pathname !== '/search') {
       navigate('/search');
     }

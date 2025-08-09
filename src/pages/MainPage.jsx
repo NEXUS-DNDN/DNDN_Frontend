@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Header from '../components/MainHeader';
-import SearchBar from '../components/SearchBar';
-import ServiceCard from '../components/ServiceCard';
-import BottomNav from '../components/BottomNav';
-import CategoryPanel from '../components/CategoryPanel';
+import Header from '../components/MainHeaderForm/MainHeader';
+import SearchBar from '../components/SearchBarForm/SearchBar';
+import BottomNav from '../components/BottomNavForm/BottomNav';
+import CategoryPanel from '../components/CategoryPanelForm/CategoryPanel';
+import HomeServiceGrid from '../components/HomeServiceForm/HomeServiceGrid'; // ✅ 새 그리드
 import { services } from '../utils/mockData';
 import '../styles/main.css';
 
@@ -19,7 +19,6 @@ const MainPage = () => {
       <div className="main-container">
         <Header onMenuClick={() => setIsCategoryOpen(true)} />
 
-        {/* SearchPage의 입력영역 패딩(좌우 16px)에 맞추기 위한 래퍼 */}
         <div className="main-searchbar-wrap">
           <SearchBar />
         </div>
@@ -28,11 +27,8 @@ const MainPage = () => {
           <span>홍길동님,<br />이런 복지가 있어요!</span>
         </div>
 
-        <div className="service-card-list">
-          {services.map(service => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
+        {/* ✅ 홈 전용 카드 컴포넌트로 렌더링 */}
+        <HomeServiceGrid services={services} />
 
         <BottomNav />
       </div>

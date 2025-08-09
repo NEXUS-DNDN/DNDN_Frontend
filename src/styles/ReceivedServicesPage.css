@@ -26,28 +26,7 @@
   gap: 24px;
 }
 
-.received-card {
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+.no-data-text {
+  color: #6b7280;
+  text-align: center;
 }
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 16px;
-  color: #374151;
-  margin-bottom: 8px;
-}
-
-.card-body {
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-
-.stat

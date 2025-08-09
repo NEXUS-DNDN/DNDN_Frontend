@@ -1,0 +1,58 @@
+/* 카드 — 더 크게, 둥글게, 그림자 강화 */
+.favorite-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+/* 제목(“서비스 이름”) */
+.favorite-title {
+  font-weight: 800;
+  font-size: 18px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+/* D-Day 표시 — 타이포 굵고 크게 */
+.favorite-dday {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* D-Day 색상 규칙 */
+.d-gray {   color: #475569; }   /* D-8 이상 회색 */
+.d-yellow { color: #f59e0b; }   /* D-1 ~ D-7 노란색 */
+.d-red {    color: #dc2626; }   /* D-DAY 빨간색 */
+
+/* 카드 내부 구분선 */
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 12px 0 16px;
+}
+
+/* 버튼 영역 — 2개 버튼 균등 */
+.favorite-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-outline {
+  flex: 1;
+  height: 44px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}

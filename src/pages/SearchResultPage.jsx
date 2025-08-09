@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaBars, FaBell, FaArrowLeft } from 'react-icons/fa';
-import BottomNav from '../components/BottomNav';
+import BottomNav from '../components/BottomNavForm/BottomNav';
 import { services } from '../utils/mockData';
+import SearchResultCard from '../components/SearchResultCardForm/SearchResultCard'; // ✅ 추가
 import '../styles/SearchResultPage.css';
 
 const parseList = (sp, key) => {
@@ -19,7 +20,7 @@ const SearchResultPage = () => {
   const keywordFromURL = sp.get('query') || '';
   const [query, setQuery] = useState(keywordFromURL);
 
-  // ✅ 카테고리 파라미터도 지원
+  // ✅ 카테고리 파라미터도 지원 (기존 로직 그대로)
   const lifecycle = parseList(sp, 'lifecycle');
   const household = parseList(sp, 'household');
   const topics = parseList(sp, 'topics');
@@ -27,15 +28,11 @@ const SearchResultPage = () => {
   const sido = sp.get('sido') || '';
   const sigungu = sp.get('sigungu') || '';
 
-  // ✅ 필터링 (텍스트/카테고리 둘 다 지원)
   const filteredResults = services.filter((svc) => {
-    // 텍스트 검색
     if (keywordFromURL) {
       const hay = (svc.title || '') + ' ' + (svc.description || '') + ' ' + (svc.category || '');
       if (!hay.includes(keywordFromURL)) return false;
     }
-
-    // 배열 교집합 있으면 통과
     const hasAny = (need, actual) =>
       need.length === 0 || (Array.isArray(actual) && need.some(n => actual.includes(n)));
 
@@ -43,13 +40,11 @@ const SearchResultPage = () => {
     if (!hasAny(household, svc.household)) return false;
     if (!hasAny(topics, svc.topics)) return false;
 
-    // 나이 범위 (서비스에 있을 때만 체크)
     if (age != null && (svc.minAge != null || svc.maxAge != null)) {
       if (svc.minAge != null && age < svc.minAge) return false;
       if (svc.maxAge != null && age > svc.maxAge) return false;
     }
 
-    // 지역 (서비스에 있을 때만 체크)
     if (sido && svc.region?.sido && svc.region.sido !== sido) return false;
     if (sigungu && svc.region?.sigungu && svc.region.sigungu !== sigungu) return false;
 
@@ -73,13 +68,11 @@ const SearchResultPage = () => {
     <div className="search-result-page">
       <div className="search-top">
         <div className="icon-left">
-          {/* ✅ 카테고리 페이지로 이동 */}
           <button className="icon-btn" onClick={() => navigate('/category')}>
             <FaBars />
           </button>
         </div>
         <div className="icon-right">
-          {/* ✅ 알림 버튼 → /alarms */}
           <button className="icon-btn" onClick={() => navigate('/alarms')}>
             <FaBell />
           </button>
@@ -105,18 +98,7 @@ const SearchResultPage = () => {
       <div className="result-list">
         {filteredResults.length > 0 ? (
           filteredResults.map((item) => (
-            <div
-              key={item.id}
-              className="result-card"
-              onClick={() => navigate(`/service/${item.id}`)}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="card-thumbnail">🖼️</div>
-              <div className="card-content">
-                <div className="card-title">{item.title}</div>
-                <div className="card-category">{item.category}</div>
-              </div>
-            </div>
+            <SearchResultCard key={item.id} item={item} />
           ))
         ) : (
           <div className="no-results">
@@ -127,7 +109,6 @@ const SearchResultPage = () => {
         )}
       </div>
 
-      {/* ✅ 항상 홈 탭 활성화 */}
       <BottomNav activePath="/" />
     </div>
   );

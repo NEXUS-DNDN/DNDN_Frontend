@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// --- 기존 메인/검색/서비스 흐름 ---
+// --- 메인/검색/서비스 흐름 ---
 import MainPage from './pages/MainPage';
 import FavoritePage from './pages/FavoritePage';
 import ChatPage from './pages/ChatPage';
@@ -57,9 +57,12 @@ function App() {
     <BrowserRouter>
       <div className="app-wrapper">
         <Routes>
-          {/* --- 메인/검색/서비스 --- */}
+          {/* --- /는 빈 화면 --- */}
+          <Route path="/" element={<div></div>} />
+
+          {/* --- /mainpage 에서만 MainPage 렌더링 --- */}
           <Route
-            path="/"
+            path="/mainpage"
             element={
               <MainPage
                 favorites={favorites}
@@ -67,6 +70,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/favorite"
             element={

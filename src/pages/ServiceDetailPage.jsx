@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { services } from '../utils/mockData';
 import { FaArrowLeft, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
-import BottomNav from '../components/BottomNav';
+import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/ServiceDetailPage.css';
 
 const ServiceDetailPage = ({ favorites, setFavorites }) => {

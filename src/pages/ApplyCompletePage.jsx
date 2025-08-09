@@ -38,7 +38,7 @@ const ApplyCompletePage = () => {
         <h3 className="complete-title">신청 정보 저장 완료</h3>
         <p className="complete-date">{state.date}</p>
         <p className="complete-service">{service?.title}</p>
-        <button className="complete-btn" onClick={() => navigate('/')}>완료</button>
+        <button className="complete-btn" onClick={() => navigate('/mainpage')}>완료</button>
       </div>
     </div>
   );

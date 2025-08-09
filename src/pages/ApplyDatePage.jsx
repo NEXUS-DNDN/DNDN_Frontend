@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaArrowLeft, FaBell } from 'react-icons/fa';
-import BottomNav from '../components/BottomNav';
+import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/ApplyDatePage.css';
 
 const ApplyDatePage = () => {

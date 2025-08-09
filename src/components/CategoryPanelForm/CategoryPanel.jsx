@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/CategoryPanel.css';
+import './CategoryPanel.css';
 
 const categories = {
   '노인': ['생활 지원', '건강 관리', '여가·교육', '일자리·활동', '주거·시설', '교통·이동'],

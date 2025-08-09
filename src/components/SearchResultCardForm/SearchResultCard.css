@@ -1,0 +1,37 @@
+.result-card {
+  display: flex;
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.card-thumbnail {
+  width: 48px;
+  height: 48px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.card-category {
+  font-size: 13px;
+  color: #888;
+}
