@@ -1,12 +1,14 @@
 /* 최상위 컨테이너 */
 .service-detail-page {
   width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: #f1f5f9; /* 메인 페이지와 동일한 배경색 */
+  min-height: 100vh;
+  background-color: #ffffff;
   position: relative;
   font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
 }
 
 /* 상단바 */
@@ -17,76 +19,67 @@
   padding: 16px;
   font-size: 20px;
 }
-
 .icon-button {
   background: none;
   border: none;
-  padding: 8px; /* ApplyDatePage와 동일 */
+  padding: 8px;
   cursor: pointer;
   color: #333;
   font-size: 20px;
-  display: flex; /* 동일한 정렬 */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
 .right-icons {
   display: flex;
   gap: 16px;
 }
 
-/* 썸네일 영역 */
+/* 썸네일 */
 .thumbnail-placeholder {
   height: 160px;
   margin: 16px;
   border-radius: 16px;
-  background-color: #e2e8f0; /* 메인과 어울리는 색상 */
+  background-color: #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 제목 및 설명 */
+/* 타이틀/설명 */
 .service-header {
   padding: 0 16px 16px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e5e7eb;
 }
-
 .service-title {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 800;
   color: #111827;
   margin-bottom: 4px;
 }
-
 .service-description {
   font-size: 14px;
   color: #4b5563;
 }
 
-/* 스크롤 가능한 정보 영역 */
+/* 본문 */
 .scrollable-content {
   flex: 1;
   overflow-y: auto;
   padding: 0 16px;
 }
-
-/* 상세 정보 섹션 */
 .service-info {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-bottom: 120px;
+  padding-bottom: 160px;
 }
-
 .service-info h3 {
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 800;
   color: #111827;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
-
 .service-info p,
 .service-info ul {
   font-size: 14px;
@@ -94,90 +87,121 @@
   line-height: 1.6;
 }
 
+/* 제출 서류 카드 */
 .service-info ul {
   list-style: disc;
   padding-left: 20px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px 14px 32px;
 }
 
-/* 하단 버튼 고정 */
+/* ✅ 하단 고정 버튼: 중앙 (재수정) */
 .bottom-actions {
   position: fixed;
-  bottom: 64px;
-  left: 0;
-  right: 0;
-  width: 470px;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  width: 500px;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 16px;
-  background-color: white;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
-  z-index: 100;
+  background-color: #ffffff;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
+  z-index: 120;
   border-radius: 16px;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+.bottom-actions.slide-up {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
 
 .action-desc {
   font-size: 13px;
   color: #6b7280;
-  margin-bottom: 4px;
+  margin: 6px 0 8px;
 }
 
+/* 버튼 공통 */
 .apply-button,
 .record-button {
   width: 100%;
   height: 48px;
   border-radius: 12px;
-  font-weight: bold;
+  font-weight: 800;
   font-size: 16px;
   cursor: pointer;
   border: none;
 }
-
-.apply-button {
-  background-color: black;
-  color: white;
+.record-button {
+  background: #6d28d9;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(109, 40, 217, 0.25);
   margin-bottom: 12px;
 }
-
-.record-button {
-  background-color: #e5e7eb;
-  color: black;
+.apply-button {
+  background: #a78bfa;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(167, 139, 250, 0.25);
 }
 
-/* 모달 애니메이션 효과 */
-.slide-up-modal {
-  animation: slideUp 0.4s ease-out forwards;
-  transform: translateY(100%);
+/* ===== 모달 (오버레이/위치/애니메이션) (재수정) ===== */
+.record-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end; /* 모달을 하단에 정렬 */
+  justify-content: center;
+  z-index: 1300;
+  animation: fadeIn 0.25s ease-out;
+}
+.record-modal {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 20px 16px 24px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  margin: 0 auto;
+}
+.record-modal.date-sheet {
+  margin-bottom: 0;
+  box-sizing: border-box;
 }
 
+/* 애니메이션 */
 @keyframes slideUp {
   from {
     transform: translateY(100%);
   }
   to {
-    transform: translateY(0%);
+    transform: translateY(0);
   }
 }
-
-.record-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: flex;
-  align-items: flex-end;  /* 아래에서 올라오게 */
-  justify-content: center;
-  z-index: 1300;
-  animation: fadeIn 0.25s ease-out;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.slide-up {
+  animation: slideUp 0.28s ease-out;
+}
+.slide-up-modal,
+.record-modal.slide-up,
+.record-modal.slide-up-modal {
+  animation: slideUp 0.28s ease-out forwards;
 }
 
-.record-modal {
-  width: 500px;
-  max-width: 100vw;
-  background: #fff;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  padding: 20px 16px 24px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
-}
-
+/* 모달 내부 버튼/텍스트 */
 .record-title {
   font-size: 18px;
   font-weight: 800;
@@ -185,20 +209,11 @@
   margin-bottom: 8px;
   color: #111827;
 }
-
-.record-desc {
-  text-align: center;
-  color: #4b5563;
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
 .record-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-
 .btn-cancel {
   height: 48px;
   border-radius: 12px;
@@ -208,29 +223,147 @@
   color: #374151;
   cursor: pointer;
 }
-
 .btn-primary {
   height: 48px;
   border-radius: 12px;
   border: none;
-  background: #111827;
+  background: #6d28d9;
   color: #fff;
   font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 6px 14px rgba(109, 40, 217, 0.25);
 }
 
-/* === 애니메이션 === */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0%); }
+/* ===== 달력(가운데 정렬 + 회색 카드) ===== */
+.calendar-wrapper {
+  width: 100%;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0 10px;
+  display: flex;
+  justify-content: center;
+}
+.calendar-wrapper .react-datepicker {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  background: #edf2f7;
+  border-radius: 12px;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* 중앙 정렬을 위한 핵심 수정 부분 */
+.service-detail-page .react-datepicker__month-container {
+  float: none;
+  margin: 0 auto;
+}
+.service-detail-page .react-datepicker__month {
+  float: none;
+}
+.service-detail-page .react-datepicker__header {
+  text-align: center;
+  padding-top: 0;
+}
+.service-detail-page .react-datepicker__current-month {
+  text-align: center;
+}
+.service-detail-page .react-datepicker__navigation--previous,
+.service-detail-page .react-datepicker__navigation--next {
+  top: 15px;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+}
+.service-detail-page .react-datepicker__day-names {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 5px;
+}
+.service-detail-page .react-datepicker__day-name {
+  float: none;
+  width: 2.2rem;
+}
+.service-detail-page .react-datepicker__week {
+  display: flex;
+  justify-content: center;
+}
+.service-detail-page .react-datepicker__day {
+  float: none;
+  margin: 0.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+}
+.service-detail-page .react-datepicker__day--selected,
+.service-detail-page .react-datepicker__day--keyboard-selected {
+  background: #7f42e1;
+  color: #fff;
+  border-radius: 8px;
+}
+.k-date-value {
+  width: 100%;
+  background: #ede9fe;
+  color: #4c1d95;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-weight: 800;
+  text-align: center;
+  margin: 8px 0 12px;
+  box-sizing: border-box;
 }
 
-.slide-up {
-  animation: slideUp 0.28s ease-out;
+/* ✅ 신청 완료 모달 스타일 (재수정) */
+.complete-modal {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 32px 16px 40px;
+  text-align: center;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.4s ease-out;
 }
 
+.complete-modal.active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.complete-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+.complete-date {
+  font-size: 16px;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 4px;
+}
+.complete-service {
+  font-size: 15px;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 24px;
+}
+.complete-btn {
+  width: 100%;
+  height: 48px;
+  background-color: #6d28d9;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(109, 40, 217, 0.25);
+}

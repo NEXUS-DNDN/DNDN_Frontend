@@ -11,7 +11,6 @@ import SearchResultPage from './pages/SearchResultPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import ApplyDatePage from './pages/ApplyDatePage';
 import ApplyCompletePage from './pages/ApplyCompletePage';
-import ReceivedServicesPage from './pages/ReceivedServicesPage';
 import AppliedServicesPage from './pages/AppliedServicesPage';
 import AlarmListPage from './pages/AlarmListPage';
 import CategoryPage from './pages/CategoryPage';
@@ -95,10 +94,10 @@ function App() {
               />
             }
           />
-          <Route path="/apply-date/:id" element={<ApplyDatePage />} />
+           <Route path="/apply-date/:id" element={<ApplyDatePage />} />
           <Route path="/apply-complete/:id" element={<ApplyCompletePage />} />
           <Route path="/applied" element={<AppliedServicesPage />} />
-          <Route path="/received" element={<ReceivedServicesPage />} />
+          {/* <Route path="/received" element={<ReceivedServicesPage />} /> */}
           <Route path="/alarms" element={<AlarmListPage />} />
           <Route path="/category" element={<CategoryPage />} />
 

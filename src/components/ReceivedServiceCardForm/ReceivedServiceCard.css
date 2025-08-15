@@ -9,10 +9,50 @@
 .card-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: bold;
   font-size: 16px;
   color: #374151;
   margin-bottom: 8px;
+}
+
+.service-info-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-category {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.category-label {
+  font-size: 12px;
+  font-weight: normal;
+  color: #4b5563;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+
+.status-in-use {
+  background-color: #6366f1; /* 파란색 */
+}
+
+.status-received {
+  background-color: #6d28d9; /* 보라색 */
+}
+
+.status-expired {
+  background-color: #94a3b8; /* 회색 */
 }
 
 .card-body {
@@ -20,6 +60,10 @@
   color: #4b5563;
   line-height: 1.5;
   margin-bottom: 16px;
+}
+.card-body p {
+  margin: 0;
+  padding: 0;
 }
 
 .status-btn {

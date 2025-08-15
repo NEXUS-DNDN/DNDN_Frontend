@@ -1,123 +1,188 @@
-.search-page {
-  padding-bottom: 100px;
-  background-color: #f4f7fa;
+/* ===== 공통 레이아웃 ===== */
+body {
+  background: #fff;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  background: #fff;
   min-height: 100vh;
-  font-family: 'Arial', sans-serif;
+}
+.search-page {
   width: 500px;
   margin: 0 auto;
+  min-height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+  font-family: 'Arial', sans-serif;
+  padding-bottom: 80px; /* BottomNav 여백 */
 }
 
-/* 상단 아이콘 */
-.search-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 16px 8px;
-}
-
-.icon-left,
-.icon-right {
+/* ===== 헤더 (뒤로가기, 검색창) ===== */
+.search-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  padding: 16px;
+  gap: 12px;
 }
 
-.icon-btn {
+.back-btn {
   background: none;
   border: none;
   font-size: 20px;
   cursor: pointer;
 }
 
-/* 검색창 (← 아이콘 + input) */
-.search-input-row {
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  margin-bottom: 12px;
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
 }
 
 .search-input {
-  flex: 1;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 12px 40px 12px 16px; /* 위아래 패딩 및 X 아이콘 공간 확보 */
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   font-size: 14px;
-  background-color: white;
+  background-color: #f8fafc;
 }
 
-/* 최근, 인기 검색어 */
-.recent-section,
-.popular-section {
-  padding: 0 16px;
-  margin-top: 24px;
-}
-
-.recent-section strong,
-.popular-section strong {
-  display: block;
-  margin-bottom: 12px;
+.clear-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  cursor: pointer;
   font-size: 16px;
 }
 
-/* pill 버튼 */
+/* ===== 추천 검색어 (아이콘) 섹션 ===== */
+.recommend-section {
+  padding: 24px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.recommend-keywords {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.keyword-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  width: 25%;
+}
+
+.keyword-icon-bg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.keyword-item span {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ===== 추천 검색 (태그) 섹션 ===== */
+.recent-section {
+  padding: 24px 16px;
+}
+.recent-section:first-of-type {
+  border-bottom: 1px solid #e2e8f0;
+}
+.recent-section strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-
 .tags button {
   padding: 6px 14px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
 }
 
-.tags button:hover {
-  border-color: #999;
-}
-
-/* 빈 상태 힌트 */
-.empty-hint {
-  color: #888;
-  font-size: 14px;
-}
-
-/* 이모지 키워드 */
-.popular-keywords {
+/* ===== 최근 검색 (리스트) 섹션 ===== */
+.section-header {
   display: flex;
-  gap: 24px;
-  padding: 10px 0;
-}
-
-.keyword-icon {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  width: 60px;
+  margin-bottom: 16px;
 }
-
-.keyword-icon .emoji {
-  font-size: 26px;
-  margin-bottom: 6px;
+.section-header strong {
+  font-size: 16px;
+  font-weight: 800;
 }
-
-.keyword-icon span {
-  font-size: 13px;
-  color: #333;
-  text-align: center;
-}
-
-.back-btn {
-  margin-right: 8px; /* 검색창과 약간의 간격 */
+.clear-btn {
   background: none;
   border: none;
-  font-size: 20px;
+  color: #94a3b8;
+  font-size: 13px;
   cursor: pointer;
+  font-weight: 500;
+}
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+.recent-text-wrapper {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  flex: 1;
+}
+.recent-icon {
+  color: #94a3b8;
+  margin-right: 12px;
+  font-size: 14px;
+}
+.recent-text {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+  font-weight: 500;
+}
+.recent-remove-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+.recent-empty {
+  color: #94a3b8;
+  font-size: 15px;
+  text-align: center;
+  padding: 20px 0;
 }
