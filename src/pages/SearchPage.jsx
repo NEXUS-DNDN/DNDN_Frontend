@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaTimes, FaRegClock } from 'react-icons/fa';
+
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/SearchPage.css';
 
@@ -19,7 +20,6 @@ const SearchPage = () => {
     { title: '청년 일자리', icon: '💼' },
   ];
 
-  // (선택) 사용자별 저장 분리용 userId
   const userId = useMemo(() => {
     try {
       return localStorage.getItem('currentUserId') || '';
@@ -33,7 +33,6 @@ const SearchPage = () => {
     [userId]
   );
 
-  // 초기 로드
   useEffect(() => {
     try {
       const raw = localStorage.getItem(storageKey);
@@ -68,23 +67,25 @@ const SearchPage = () => {
     });
   };
 
-  const handleSearch = (kw) => {
+  const clearAllRecent = () => {
+    setRecentKeywords([]);
+    saveRecent([]);
+  };
+
+  const handleSearch = useCallback((kw) => {
     const cleaned = kw.trim();
     if (!cleaned) return;
     addRecent(cleaned);
-    navigate(`/search-result?query=${encodeURIComponent(cleaned)}`);
-  };
+    const params = new URLSearchParams();
+    params.append('query', cleaned);
+    navigate(`/search-result?${params.toString()}`);
+  }, [addRecent, navigate]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSearch(keyword);
       setKeyword('');
     }
-  };
-
-  const clearAllRecent = () => {
-    setRecentKeywords([]);
-    saveRecent([]);
   };
 
   return (
@@ -110,7 +111,6 @@ const SearchPage = () => {
         </div>
       </div>
 
-      {/* 추천 검색어 - 이미지에 나온 아이콘 및 키워드 */}
       <div className="recommend-section">
         <div className="recommend-keywords">
           {popularKeywords.map((item, i) => (
@@ -124,9 +124,8 @@ const SearchPage = () => {
         </div>
       </div>
 
-      {/* 최근 검색어 - 세로 리스트 */}
       <div className="recent-section">
-        <strong>추천 검색</strong> {/* 이미지에 '추천 검색'으로 되어 있음 */}
+        <strong>추천 검색</strong>
         <div className="tags">
           {['키워드1', '노인 키워드2', '키워드3', '키워드4'].map((kw, i) => (
             <button key={i} onClick={() => handleSearch(kw)}>
@@ -135,7 +134,7 @@ const SearchPage = () => {
           ))}
         </div>
       </div>
-      
+
       <div className="recent-section">
         <div className="section-header">
           <strong>최근 검색</strong>

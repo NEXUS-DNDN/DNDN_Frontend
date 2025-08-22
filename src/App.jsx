@@ -10,7 +10,6 @@ import SearchPage from './pages/SearchPage';
 import SearchResultPage from './pages/SearchResultPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import ApplyDatePage from './pages/ApplyDatePage';
-import ApplyCompletePage from './pages/ApplyCompletePage';
 import AppliedServicesPage from './pages/AppliedServicesPage';
 import AlarmListPage from './pages/AlarmListPage';
 import CategoryPage from './pages/CategoryPage';
@@ -38,7 +37,6 @@ import MyPage from './pages/MyPage';
 import ChangeMyInfoPage from './pages/ChangeMyInfoPage';
 
 function App() {
-  // ✅ 즐겨찾기 로컬스토리지 연동
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem('favoriteServices');
     return stored ? JSON.parse(stored) : [];
@@ -56,36 +54,15 @@ function App() {
     <BrowserRouter>
       <div className="app-wrapper">
         <Routes>
-          {/* --- /는 빈 화면 --- */}
           <Route path="/" element={<div></div>} />
-
-          {/* --- /mainpage 에서만 MainPage 렌더링 --- */}
-          <Route
-            path="/mainpage"
-            element={
-              <MainPage
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-
-          <Route
-            path="/favorite"
-            element={
-              <FavoritePage
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-                services={services}
-              />
-            }
-          />
+          <Route path="/mainpage" element={<MainPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
+          <Route path="/favorite" element={<FavoritePage favorites={favorites} toggleFavorite={toggleFavorite} services={services} />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search-result" element={<SearchResultPage />} />
           <Route
-            path="/service/:id"
+            path="/service-detail/:id" // ✅ 이 부분을 수정했습니다.
             element={
               <ServiceDetailPage
                 favorites={favorites}
@@ -94,14 +71,10 @@ function App() {
               />
             }
           />
-           <Route path="/apply-date/:id" element={<ApplyDatePage />} />
-          <Route path="/apply-complete/:id" element={<ApplyCompletePage />} />
+          <Route path="/apply-date/:id" element={<ApplyDatePage />} />
           <Route path="/applied" element={<AppliedServicesPage />} />
-          {/* <Route path="/received" element={<ReceivedServicesPage />} /> */}
           <Route path="/alarms" element={<AlarmListPage />} />
           <Route path="/category" element={<CategoryPage />} />
-
-          {/* --- 로그인/회원가입 플로우 --- */}
           <Route path="/join" element={<JoinPage />} />
           <Route path="/verify" element={<VerifyPage />} />
           <Route path="/login" element={<LoginPage />} />

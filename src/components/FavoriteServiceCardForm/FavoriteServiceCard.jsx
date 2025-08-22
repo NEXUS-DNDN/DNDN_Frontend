@@ -1,52 +1,34 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './FavoriteServiceCard.css'; // ✅ 카드 전용 스타일
+import './FavoriteServiceCard.css';
 
 const FavoriteServiceCard = ({ service }) => {
   const navigate = useNavigate();
 
-  // ✅ service.endDate를 사용하여 dDay 계산
-  const today = new Date();
-  const endDate = new Date(service.endDate);
-  const diffTime = endDate.getTime() - today.getTime();
-  const dDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 밀리초를 일로 변환
-
-  // dDay에 따른 클래스 및 텍스트 함수
-  const formatDDay = (d) => {
-    if (d === 0) return 'D - DAY';
-    if (d > 0) return `D - ${d}`;
-    return '마감'; // 이미 지난 날짜의 경우 '마감'으로 표시
+  // ✅ 카드를 클릭하면 ServiceDetailPage로 이동하는 함수
+  const handleCardClick = () => {
+    // welfareId를 사용하여 라우팅
+    navigate(`/service-detail/${service.welfareId}`); 
   };
 
-  const getDDayClass = (d) => {
-    if (d <= 0) return 'd-red'; // 0일 이하(마감 포함)는 빨간색
-    if (d >= 1 && d <= 7) return 'd-yellow'; // 1~7일은 노란색
-    return 'd-gray'; // 그 외는 회색
-  };
+  const imageUrl = service.imageUrl || 'https://via.placeholder.com/200x150.png?text=Service+Image';
 
   return (
-    <div className="favorite-card">
-      <div className="favorite-title">{service.title}</div>
-
-      <div className={`favorite-dday ${getDDayClass(dDay)}`}>
-        {formatDDay(dDay)}
+    <div className="favorite-card" onClick={handleCardClick}>
+      <div className="card-image-wrapper">
+        <img className="card-image" src={imageUrl} alt={service.title} />
       </div>
-
-      <div className="divider" />
-
-      <div className="favorite-buttons">
-        <button
-          className="btn-outline"
-          onClick={() => navigate(`/service/${service.id}`)}
-        >
-          상세 화면
-        </button>
-        <button
-          className="btn-outline"
-          onClick={() => alert('신청하러 가기 연결 예정')} // ✅ alert 대신 모달 사용 권장
-        >
-          신청하러 가기
-        </button>
+      <div className="card-info">
+        <div className="card-header">
+          {/* api에 ctpvNm이 없으므로 임시로 빈 값으로 둡니다. */}
+          <span className="card-type">{service.ctpvNm || '주거'}</span>
+        </div>
+        <h3 className="card-title">{service.title}</h3>
+        {/* API 응답에 summary가 있으므로 description 대신 summary를 사용합니다. */}
+        <p className="card-summary">{service.content || '설명 없음'}</p>
+        <div className="card-meta">
+          <span className="card-department">{service.department || '담당부처 정보 없음'}</span>
+        </div>
       </div>
     </div>
   );

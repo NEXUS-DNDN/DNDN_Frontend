@@ -1,77 +1,73 @@
-.received-card {
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+/* src/components/ReceivedServiceCardForm/ReceivedServiceCard.css */
+
+.received-service-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  cursor: pointer;
 }
 
-.card-header {
+.received-service-card .service-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.received-service-card .service-category {
+  color: #8b5cf6;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.received-service-card .service-title {
+  font-size: 18px;
   font-weight: bold;
-  font-size: 16px;
-  color: #374151;
+  margin-top: 4px;
   margin-bottom: 8px;
 }
 
-.service-info-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.received-service-card .service-info {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
 }
 
-.service-category {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.category-label {
-  font-size: 12px;
-  font-weight: normal;
-  color: #4b5563;
-}
-
-.status {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
-  white-space: nowrap;
-}
-
-.status-in-use {
-  background-color: #6366f1; /* 파란색 */
-}
-
-.status-received {
-  background-color: #6d28d9; /* 보라색 */
-}
-
-.status-expired {
-  background-color: #94a3b8; /* 회색 */
-}
-
-.card-body {
+.received-service-card .service-content {
   font-size: 14px;
   color: #4b5563;
-  line-height: 1.5;
   margin-bottom: 16px;
 }
-.card-body p {
-  margin: 0;
-  padding: 0;
+
+.received-service-card .button-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
 }
 
-.status-btn {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #000;
-  border-radius: 20px;
-  background: white;
+.received-service-card .status-button {
+  flex: 9;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  border: none;
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.received-service-card .option-button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: #e5e7eb;
+  color: #6b7280;
 }

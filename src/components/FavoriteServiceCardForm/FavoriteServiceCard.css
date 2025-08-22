@@ -1,58 +1,90 @@
-/* 카드 — 더 크게, 둥글게, 그림자 강화 */
+/* src/components/FavoriteServiceCardForm/FavoriteServiceCard.css */
+
 .favorite-card {
   background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-}
-
-/* 제목(“서비스 이름”) */
-.favorite-title {
-  font-weight: 800;
-  font-size: 18px;
-  color: #1f2937;
-  margin-bottom: 8px;
-}
-
-/* D-Day 표시 — 타이포 굵고 크게 */
-.favorite-dday {
-  font-weight: 900;
-  font-size: 22px;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-}
-
-/* D-Day 색상 규칙 */
-.d-gray {   color: #475569; }   /* D-8 이상 회색 */
-.d-yellow { color: #f59e0b; }   /* D-1 ~ D-7 노란색 */
-.d-red {    color: #dc2626; }   /* D-DAY 빨간색 */
-
-/* 카드 내부 구분선 */
-.divider {
-  height: 1px;
-  background: #e5e7eb;
-  margin: 12px 0 16px;
-}
-
-/* 버튼 영역 — 2개 버튼 균등 */
-.favorite-buttons {
-  display: flex;
-  gap: 16px;
-}
-
-.btn-outline {
-  flex: 1;
-  height: 44px;
   border-radius: 12px;
-  background: #ffffff;
-  border: 1.5px solid #cbd5e1;
-  font-weight: 700;
-  font-size: 14px;
-  color: #374151;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  display: flex;
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-.btn-outline:hover {
-  border-color: #94a3b8;
-  background: #f8fafc;
+.favorite-card:hover {
+  transform: translateY(-4px);
 }
+
+.card-image-wrapper {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 12px 0 0 12px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.card-type {
+  font-size: 12px;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 4px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.card-summary {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+}
+
+.card-department {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 아래는 D-day 기능이 삭제되어 필요하지 않은 스타일입니다. */
+/* .right-section, .favorite-dday, .d-gray, .d-yellow, .d-red { display: none; } */

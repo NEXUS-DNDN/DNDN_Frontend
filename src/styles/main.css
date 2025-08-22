@@ -235,3 +235,31 @@ body {
   font-size: 12px;
   color: #718096;
 }
+
+/* ===== 로딩 스피너 추가 ===== */
+.main-container.loading-container {
+  padding-bottom: 0; /* 로딩 페이지에서는 하단 여백 제거 */
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #1c87c9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

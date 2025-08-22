@@ -2,66 +2,180 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaUser } from 'react-icons/fa';
 import BenefitModal from '../components/BenefitModalForm/BenefitModal';
+import DeleteConfirmModal from '../components/DeleteConfirmModalForm/DeleteConfirmModal';
 import AppliedServiceCard from '../components/AppliedServiceCardForm/AppliedServiceCard';
-import ReceivedServiceCard from '../components/ReceivedServiceCardForm/ReceivedServiceCard'; // 혜택 수령 완료 카드 컴포넌트 임포트
+import ReceivedServiceCard from '../components/ReceivedServiceCardForm/ReceivedServiceCard';
 import '../styles/AppliedServicesPage.css';
 
 const AppliedServicesPage = () => {
   const navigate = useNavigate();
 
-  // ✅ 탭 상태 관리
   const [activeTab, setActiveTab] = useState('applied');
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // ✅ 로컬스토리지 데이터 상태 관리
-  const [appliedServices, setAppliedServices] = useState([]);
-  const [receivedServices, setReceivedServices] = useState([]);
-
-  // ✅ 데이터 로드
-  useEffect(() => {
-    const storedApplied = JSON.parse(localStorage.getItem('appliedServices')) || [];
-    const storedReceived = JSON.parse(localStorage.getItem('receivedServices')) || [];
-    setAppliedServices(storedApplied);
-    setReceivedServices(storedReceived);
-  }, []);
-
-  const [showModal, setShowModal] = useState(false);
+  const [showBenefitModal, setShowBenefitModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
 
-  // 혜택 수령 버튼
-  const openModal = (service) => {
-    const isAlreadyReceived = receivedServices.some((s) => s.id === service.id);
-    if (!isAlreadyReceived) {
-      setSelectedService(service);
-      setShowModal(true);
-    } else {
-      alert('이미 혜택을 수령한 서비스입니다.');
+  useEffect(() => {
+    const fetchServicesByTab = async () => {
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) {
+        setLoading(false);
+        setError("로그인이 필요합니다.");
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      let url = 'https://nexusdndn.duckdns.org/application/list';
+      if (activeTab === 'received') {
+        url += '?tab=received';
+      }
+      
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'accept': '*/*',
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('신청 내역을 불러오는 데 실패했습니다.');
+        }
+
+        const data = await response.json();
+        const results = data.result.applicationList;
+
+        setServices(results);
+
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServicesByTab();
+  }, [activeTab]);
+
+  const openBenefitModal = (service) => {
+    setSelectedService(service);
+    setShowBenefitModal(true);
+  };
+
+  const closeBenefitModal = () => {
+    setShowBenefitModal(false);
+    setSelectedService(null);
+  };
+  
+  const openDeleteModal = (service) => {
+    setSelectedService(service);
+    setShowDeleteModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setShowDeleteModal(false);
+    setSelectedService(null);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!selectedService) return;
+
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) return alert("로그인이 필요합니다.");
+
+    try {
+      const response = await fetch(`https://nexusdndn.duckdns.org/application/${selectedService.applicationId}`, {
+        method: 'DELETE',
+        headers: {
+          'accept': '*/*',
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('신청 내역 삭제 실패');
+      }
+      
+      setServices(services.filter(s => s.applicationId !== selectedService.applicationId));
+      closeDeleteModal();
+      
+    } catch (error) {
+      console.error('삭제 처리 실패:', error);
+      alert('신청 내역 삭제 중 오류가 발생했습니다.');
     }
   };
 
-  // ✅ 모달 완료: 받은 목록으로 이동 + 신청 목록에서 제거
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!selectedService) return;
 
-    // 1) 받은 목록 업데이트
-    const updatedReceived = [...receivedServices, selectedService];
-    setReceivedServices(updatedReceived);
-    localStorage.setItem('receivedServices', JSON.stringify(updatedReceived));
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) return alert("로그인이 필요합니다.");
 
-    // 2) 신청 목록에서 제거
-    const updatedApplied = appliedServices.filter((s) => s.id !== selectedService.id);
-    setAppliedServices(updatedApplied);
-    localStorage.setItem('appliedServices', JSON.stringify(updatedApplied));
+    try {
+      const response = await fetch(`https://nexusdndn.duckdns.org/application/applications/${selectedService.applicationId}/receive`, {
+        method: 'PATCH',
+        headers: {
+          'accept': '*/*',
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('혜택 수령 완료 처리 중 오류가 발생했습니다.');
+      }
+      
+      closeBenefitModal();
+      setActiveTab('received');
 
-    // 3) 모달 종료 후 탭 변경
-    setShowModal(false);
-    setSelectedService(null);
-    setActiveTab('received');
+    } catch (error) {
+      console.error('혜택 수령 처리 실패:', error);
+      alert('혜택 수령 처리 중 오류가 발생했습니다.');
+    }
   };
   
-  // 카드 클릭 시 상세 페이지로 이동
   const handleCardClick = (service) => {
-    navigate(`/service/${service.id}`);
+    navigate(`/service-detail/${service.welfareId}`);
   };
+
+  const handleStatusClick = async (service) => {
+    try {
+      const response = await fetch(`https://nexusdndn.duckdns.org/welfare/${service.welfareId}`);
+      if (!response.ok) {
+        throw new Error('서비스 정보를 불러오는 데 실패했습니다.');
+      }
+      const data = await response.json();
+      
+      if (data.result.servLink) {
+        window.open(data.result.servLink, '_blank');
+      } else {
+        alert('해당 서비스의 신청 링크가 없습니다.');
+      }
+    } catch (error) {
+      console.error('Fetching service details failed:', error);
+      alert('서비스 정보를 불러오는 중 오류가 발생했습니다.');
+    }
+  };
+  
+  // ✅ 로딩 중일 때 스피너를 보여주는 JSX 추가
+  if (loading) {
+    return (
+      <div className="applied-services-page">
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>내역을 불러오는 중입니다...</p>
+        </div>
+      </div>
+    );
+  }
+ 
+  if (error) return <div className="applied-services-page"><p>오류가 발생했습니다: {error}</p></div>;
 
   return (
     <div className="applied-services-page">
@@ -75,7 +189,6 @@ const AppliedServicesPage = () => {
         </button>
       </div>
 
-      {/* ⭐⭐ 탭 컨테이너 추가 ⭐⭐ */}
       <div className="tab-container">
         <button
           className={`tab-button ${activeTab === 'applied' ? 'active' : ''}`}
@@ -97,38 +210,33 @@ const AppliedServicesPage = () => {
       </div>
 
       <div className="services-list">
-        {/* ⭐⭐ activeTab 상태에 따라 다른 컴포넌트 렌더링 ⭐⭐ */}
-        {activeTab === 'applied' ? (
-          appliedServices.length === 0 ? (
-            <p className="no-data-text">신청 완료된 서비스가 없습니다.</p>
-          ) : (
-            appliedServices.map((service) => (
-              <AppliedServiceCard
-                key={service.id}
-                service={service}
-                onClickCard={handleCardClick}
-                onClickBenefit={openModal}
-                onClickStatus={() => alert('신청 현황 보기 기능은 준비 중입니다.')}
-              />
-            ))
-          )
+        {services.length === 0 ? (
+          <p className="no-data-text">{activeTab === 'applied' ? '신청 완료된 서비스가 없습니다.' : '수령 완료된 서비스가 없습니다.'}</p>
         ) : (
-          receivedServices.length === 0 ? (
-            <p className="no-data-text">수령 완료된 서비스가 없습니다.</p>
-          ) : (
-            receivedServices.map((service) => (
-              <ReceivedServiceCard
-                key={service.id}
+          services.map((service) => (
+            activeTab === 'applied' ? (
+              <AppliedServiceCard
+                key={service.applicationId}
                 service={service}
                 onClickCard={handleCardClick}
-                onClickStatus={() => alert('신청 현황 보기 기능은 준비 중입니다.')}
+                onClickBenefit={openBenefitModal}
+                onClickStatus={() => handleStatusClick(service)}
               />
-            ))
-          )
+            ) : (
+              <ReceivedServiceCard
+                key={service.applicationId}
+                service={service}
+                onClickCard={handleCardClick}
+                onClickStatus={() => handleStatusClick(service)}
+                onClickPlus={openDeleteModal}
+              />
+            )
+          ))
         )}
       </div>
 
-      {showModal && <BenefitModal onConfirm={handleConfirm} />}
+      {showBenefitModal && <BenefitModal onConfirm={handleConfirm} onClose={closeBenefitModal} />}
+      {showDeleteModal && <DeleteConfirmModal onConfirm={handleDeleteConfirm} onCancel={closeDeleteModal} />}
     </div>
   );
 };

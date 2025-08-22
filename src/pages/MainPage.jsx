@@ -1,175 +1,147 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { FaBell, FaBars, FaTimes } from 'react-icons/fa';
 
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import HomeServiceGrid from '../components/HomeServiceForm/HomeServiceGrid';
-import CategoryPage from './CategoryPage'; // CategoryPage 모달로 사용
-import { services } from '../utils/mockData';
+import CategoryPage from './CategoryPage';
 import '../styles/main.css';
 
-// 상단 탭 라벨
-const CATEGORY_TABS = ['노인', '의료비', '임산부', '청년', '기타'];
+const CATEGORY_TABS = {
+  '영유아': 'INFANT', '아동': 'CHILD', '청소년': 'TEENAGER',
+  '청년': 'YOUTH', '중장년': 'MIDDLE', '노년': 'SENIOR', '임신/출산': 'PREGNANT',
+};
 
 const MainPage = () => {
   const navigate = useNavigate();
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [filterState, setFilterState] = useState({
-    lifecycle: [],
-    household: [],
-    topics: [],
-    age: '',
-    sido: '',
-    sigungu: '',
+    lifecycle: '', household: [], topics: [],
   });
 
-  const tabLabel = CATEGORY_TABS[activeTab];
-
-  // 탭에 따른 서비스 필터링
-  const tabFiltered = useMemo(() => {
-    switch (tabLabel) {
-      case '노인':
-        return services.filter((s) => s.lifeArray === '006');
-      case '임산부':
-        return services.filter((s) => s.lifeArray === '007');
-      case '청년':
-        return services.filter((s) => s.lifeArray === '004');
-      case '의료비':
-        return services.filter(
-          (s) =>
-            s.category === '보건' ||
-            s.intrsThemaArray === '010' ||
-            s.intrsThemaArray === '020'
-        );
-      case '기타':
-      default:
-        return services.filter(
-          (s) =>
-            s.lifeArray !== '006' &&
-            s.lifeArray !== '007' &&
-            s.lifeArray !== '004' &&
-            !(s.category === '보건' || s.intrsThemaArray === '010' || s.intrsThemaArray === '020')
-        );
+  const fetchServices = useCallback(async (params) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const queryParams = new URLSearchParams();
+      queryParams.append('lifeCycle', params.lifeCycle);
+      if (params.householdTypes && params.householdTypes.length > 0) {
+        params.householdTypes.forEach(type => queryParams.append('householdTypes', type));
+      }
+      if (params.interestTopics && params.interestTopics.length > 0) {
+        params.interestTopics.forEach(topic => queryParams.append('interestTopics', topic));
+      }
+      const url = `/api/welfare/category?${queryParams.toString()}`;
+      const response = await fetch(url, { method: 'GET', headers: { 'accept': '*/*' } });
+      if (!response.ok) throw new Error('네트워크 응답이 올바르지 않습니다.');
+      const apiResponse = await response.json();
+      if (apiResponse && apiResponse.welfareList) {
+        setServices(apiResponse.welfareList);
+      } else {
+        setServices([]);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-  }, [tabLabel]);
+  }, []);
 
-  // 필터 상태에 따른 최종 서비스 필터링
-  const filteredServices = useMemo(() => {
-    const { lifecycle, household, topics, age, sido, sigungu } = filterState;
-    if (
-      lifecycle.length === 0 &&
-      household.length === 0 &&
-      topics.length === 0 &&
-      !age &&
-      !sido &&
-      !sigungu
-    ) {
-      return tabFiltered;
-    }
+  useEffect(() => {
+    const activeTabLabel = Object.keys(CATEGORY_TABS)[activeTab];
+    const lifeCycleValue = CATEGORY_TABS[activeTabLabel];
+    setFilterState(prev => ({
+      ...prev, lifecycle: lifeCycleValue, household: [], topics: [],
+    }));
+    fetchServices({ lifeCycle: lifeCycleValue });
+  }, [activeTab, fetchServices]);
 
-    return tabFiltered.filter((service) => {
-      // 생애주기 필터
-      const lifeCode = service.lifeArray;
-      const isLifeMatch =
-        !lifecycle.length ||
-        lifecycle.some((l) => {
-          // '영유아' -> 001, '아동' -> 002, '청소년' -> 003, '청년' -> 004, '중장년' -> 005, '노년' -> 006, '임신·출산' -> 007
-          const lifeMap = {'영유아':'001','아동':'002','청소년':'003','청년':'004','중장년':'005','노년':'006','임신·출산':'007'};
-          return lifeMap[l] === lifeCode;
-        });
+  const handleFilterApply = useCallback((newFilters) => {
+    setFilterState(prev => ({
+      ...prev, household: newFilters.household, topics: newFilters.topics,
+    }));
+    setShowFilterModal(false);
+    const params = {
+      lifeCycle: filterState.lifecycle,
+      householdTypes: newFilters.household,
+      interestTopics: newFilters.topics,
+    };
+    fetchServices(params);
+  }, [filterState.lifecycle, fetchServices]);
 
-      // 가구 상황 필터
-      const isHouseholdMatch =
-        !household.length ||
-        household.every((h) => {
-          // mockData에 housArray가 없으므로 임시로 텍스트 매칭
-          return service.description.includes(h);
-        });
-
-      // 관심 주제 필터
-      const isTopicsMatch =
-        !topics.length ||
-        topics.every((t) => {
-          // mockData에 intrsThemaArray 없으므로 임시로 텍스트 매칭
-          return service.title.includes(t);
-        });
-      
-      // 나이 필터 (나이 값만 있을 경우)
-      const isAgeMatch = !age || service.ageMin <= age && age <= service.ageMax;
-
-      // 거주지 필터
-      const isLocationMatch =
-        (!sido && !sigungu) ||
-        (sido && service.address.startsWith(sido)) ||
-        (sigungu && service.address.includes(sigungu));
-
-      return isLifeMatch && isHouseholdMatch && isTopicsMatch && isAgeMatch && isLocationMatch;
-    });
-  }, [tabFiltered, filterState]);
-
-  // 필터 칩 렌더링을 위한 배열 생성
   const filterChips = useMemo(() => {
-    const { lifecycle, household, topics } = filterState;
+    const { household, topics } = filterState;
+    const HOUSEHOLD_MAPPING = {
+      'MULTICULTURAL': '다문화/탈북민', 'MULTI_CHILD': '다자녀', 'PATRIOT': '보훈 대상자',
+      'DISABLED': '장애인', 'LOW_INCOME': '저소득', 'SINGLE_PARENT': '한부모/조손',
+    };
+    const TOPICS_MAPPING = {
+      'PHYSICAL_HEALTH': '신체건강', 'MENTAL_HEALTH': '정신건강', 'LIVING_SUPPORT': '생활지원',
+      'HOUSING': '주거', 'JOB': '일자리', 'CULTURE': '문화/여가', 'SAFETY': '안전/위기',
+      'PREGNANT': '임신/출산', 'CHILD_CARE': '보육', 'EDUCATION': '교육',
+      'FOSTER_CARE': '입양/위탁', 'CARE': '보호/돌봄', 'FINANCE': '서민금융',
+      'LAW': '법률', 'ENERGY': '에너지',
+    };
     const chips = [];
-    chips.push(...lifecycle.map(v => ({ group: 'lifecycle', label: v })));
-    chips.push(...household.map(v => ({ group: 'household', label: v })));
-    chips.push(...topics.map(v => ({ group: 'topics', label: v })));
+    chips.push(...household.map(v => ({ group: 'household', label: HOUSEHOLD_MAPPING[v] || v })));
+    chips.push(...topics.map(v => ({ group: 'topics', label: TOPICS_MAPPING[v] || v })));
     return chips;
   }, [filterState]);
 
   const removeChip = useCallback((group, label) => {
-    setFilterState(prev => ({
-      ...prev,
-      [group]: prev[group].filter(v => v !== label),
-    }));
-  }, []);
+    const KOREAN_TO_API_KEY = {
+      '다문화/탈북민': 'MULTICULTURAL', '다자녀': 'MULTI_CHILD', '보훈 대상자': 'PATRIOT',
+      '장애인': 'DISABLED', '저소득': 'LOW_INCOME', '한부모/조손': 'SINGLE_PARENT',
+      '신체건강': 'PHYSICAL_HEALTH', '정신건강': 'MENTAL_HEALTH', '생활지원': 'LIVING_SUPPORT',
+      '주거': 'HOUSING', '일자리': 'JOB', '문화/여가': 'CULTURE', '안전/위기': 'SAFETY',
+      '임신/출산': 'PREGNANT', '보육': 'CHILD_CARE', '교육': 'EDUCATION',
+      '입양/위탁': 'FOSTER_CARE', '보호/돌봄': 'CARE', '서민금융': 'FINANCE',
+      '법률': 'LAW', '에너지': 'ENERGY',
+    };
+    const keyToRemove = KOREAN_TO_API_KEY[label];
+    setFilterState(prev => {
+      const newItems = prev[group].filter(v => v !== keyToRemove);
+      const params = {
+        lifeCycle: prev.lifecycle,
+        householdTypes: group === 'household' ? newItems : prev.household,
+        interestTopics: group === 'topics' ? newItems : prev.topics,
+      };
+      fetchServices(params);
+      return { ...prev, [group]: newItems };
+    });
+  }, [fetchServices]);
+  
+  // ✅ 로딩 상태에 따라 로딩 스피너를 렌더링합니다.
+  if (loading) {
+    return (
+      <div className="main-container loading-container">
+        <div className="loading-spinner"></div>
+        <p>서비스를 불러오는 중입니다...</p>
+        <BottomNav />
+      </div>
+    );
+  }
 
-  const handleFilterApply = useCallback((newFilters) => {
-    setFilterState(newFilters);
-    setShowFilterModal(false);
-  }, []);
+  if (error) return (<div className="main-container"><p>데이터를 가져오는 데 실패했습니다: {error}</p><BottomNav /></div>);
 
   return (
     <div className="main-container">
-      {/* ===== 상단 바(로고 + 우측 아이콘) ===== */}
       <div className="top-bar">
         <div className="brand-logo">든든</div>
         <div className="top-right-actions">
-          <button
-            type="button"
-            className="icon-circle"
-            aria-label="검색"
-            onClick={() => navigate('/search')}
-          >
-            <FiSearch />
-          </button>
-          <button
-            type="button"
-            className="icon-circle bell"
-            aria-label="알림"
-            onClick={() => navigate('/alarm-list')}
-          >
-            <FaBell />
-          </button>
-          <button
-            type="button"
-            className="icon-circle"
-            aria-label="카테고리"
-            onClick={() => navigate('/category')}
-          >
-            <FaBars />
-          </button>
+          <button type="button" className="icon-circle" aria-label="검색" onClick={() => navigate('/search')}><FiSearch /></button>
+          <button type="button" className="icon-circle bell" aria-label="알림" onClick={() => navigate('/alarms')}><FaBell /></button>
+          <button type="button" className="icon-circle" aria-label="카테고리" onClick={() => setShowFilterModal(true)}><FaBars /></button>
         </div>
       </div>
-
-      {/* ===== 히어로 카드 ===== */}
       <section className="hero-card">
         <div className="hero-left">
-          <h2 className="hero-title">
-            홍길동님,<br />이런 복지가 있어요 !
-          </h2>
+          <h2 className="hero-title">홍길동님,<br />이런 복지가 있어요 !</h2>
           <ol className="hero-bullets">
             <li><span className="num">1</span> 청년지원</li>
             <li><span className="num">2</span> 월세지원서비스</li>
@@ -179,60 +151,28 @@ const MainPage = () => {
         </div>
         <div className="hero-illus" aria-hidden />
       </section>
-
-      {/* ===== 카테고리 탭 ===== */}
       <nav className="category-tabs">
-        {CATEGORY_TABS.map((t, i) => (
-          <button
-            key={t}
-            type="button"
-            className={`category-tab ${i === activeTab ? 'active' : ''}`}
-            onClick={() => setActiveTab(i)}
-          >
-            {t}
-          </button>
+        {Object.keys(CATEGORY_TABS).map((t, i) => (
+          <button key={t} type="button" className={`category-tab ${i === activeTab ? 'active' : ''}`} onClick={() => setActiveTab(i)}>{t}</button>
         ))}
       </nav>
-
-      {/* ===== 필터 칩 + 정렬 줄 ===== */}
       <div className="chip-row">
         <div className="chip-wrap">
           {filterChips.map((c, idx) => (
-            <span key={idx} className="filter-chip">
-              {c.label}
-              <button
-                className="chip-x"
-                onClick={() => removeChip(c.group, c.label)}
-                aria-label="삭제"
-              >
-                <FaTimes size={10} />
-              </button>
-            </span>
+            <span key={idx} className="filter-chip">{c.label}<button className="chip-x" onClick={() => removeChip(c.group, c.label)} aria-label="삭제"><FaTimes size={10} /></button></span>
           ))}
-          <button
-            type="button"
-            className="filter-btn"
-            onClick={() => setShowFilterModal(true)}
-          >
-            필터+
-          </button>
+          <button type="button" className="filter-btn" onClick={() => setShowFilterModal(true)}>필터+</button>
         </div>
         <button type="button" className="sort-btn">인기순 ↕</button>
       </div>
-
-      {/* ===== 필터링된 서비스 그리드 ===== */}
-      <HomeServiceGrid services={filteredServices} />
-
-      {/* ===== 필터 모달 ===== */}
+      <HomeServiceGrid services={services} onCardClick={(id) => navigate(`/service-detail/${id}`)} />
       {showFilterModal && (
         <CategoryPage
           onClose={() => setShowFilterModal(false)}
           onApply={handleFilterApply}
-          initialFilters={filterState}
+          initialFilters={{ household: filterState.household, topics: filterState.topics }}
         />
       )}
-
-      {/* ===== 하단 내비게이션 ===== */}
       <BottomNav />
     </div>
   );
