@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './DisabilityForm.module.css';
 import Backicon from '../../assets/back.svg';
 
 const DisabilityForm = () => {
   const handleBackClick = () => {
+    navigate('/additionaltypeinput');
     console.log('뒤로가기 클릭');
   };
 
@@ -17,20 +18,30 @@ const DisabilityForm = () => {
 
   const handleYesClick = () => {
     setIsRegistered(true);
+    localStorage.setItem('disabilityRegistered', 'true');
   };
 
   const handleNoClick = () => {
     setIsRegistered(false);
+    localStorage.setItem('disabilityRegistered', 'false');
   };
 
   const handleSkipClick = () => {
     console.log('건너뛰기 클릭');
     setIsRegistered(null);
+    localStorage.removeItem('disabilityRegistered');
+    navigate('/disabilitygrade');
   };
-  
+
+  useEffect(() => {
+    const savedDisabilityRegistered = localStorage.getItem('disabilityRegistered');
+    if (savedDisabilityRegistered === 'true') setIsRegistered(true);
+    else if (savedDisabilityRegistered === 'false') setIsRegistered(false);
+  }, []);
+
   return (
     <>
-      <div className={styles.backbutton}>
+      <div className={styles.backbutton} onClick={handleBackClick}>
         <img src={Backicon} alt="뒤로가기" />
       </div>
       <div className={styles.container}>

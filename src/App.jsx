@@ -11,6 +11,7 @@ import FamilyInputPage from './pages/FamilyInputPage';
 import SalaryInputPage from './pages/SalaryInputPage';
 import HireInputPage from './pages/HireInputPage';
 import AdditionalInputPage from './pages/AdditionalInputPage';
+import AdditionalTypeInputPage from './pages/AdditionalTypeInputPage';
 import DisabilityPage from './pages/DisabilityPage';
 import DisabilityGradePage from './pages/DisabilityGradePage';
 import DisabilityTypePage from './pages/DisabilityTypePage';
@@ -19,10 +20,14 @@ import AgedAlonePage from './pages/AgedAlonePage';
 import AgedAdditionalPage from './pages/AgedAdditionalPage';
 import MyPage from './pages/MyPage';
 import ChangeMyInfoPage from './pages/ChangeMyInfoPage';
+import { AdditionalProvider } from './context/AdditionalContext';
+import FindPage from './pages/FindPage';
+import SettingPage from './pages/SettingPage';
 
 function App() {
   return (
     <Router>
+      <AdditionalProvider>
       <Routes>
         <Route path="/join" element={<JoinPage />} />
         <Route path="/verify" element={<VerifyPage />} />
@@ -35,6 +40,7 @@ function App() {
         <Route path="/salaryinput" element={<SalaryInputPage />} />
         <Route path="/hireinput" element={<HireInputPage />} />
         <Route path="/additionalinput" element={<AdditionalInputPage />} />
+        <Route path="/additionaltypeinput" element={<AdditionalTypeInputPage />} />
         <Route path="/disability" element={<DisabilityPage />} />
         <Route path="/disabilitygrade" element={<DisabilityGradePage />} />
         <Route path="/disabilitytype" element={<DisabilityTypePage />} />
@@ -43,7 +49,10 @@ function App() {
         <Route path="/agedadditional" element={<AgedAdditionalPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/changemyinfo" element={<ChangeMyInfoPage />} />
+        <Route path="/find" element={<FindPage />} />
+        <Route path="/setting" element={<SettingPage />} />
       </Routes>
+      </AdditionalProvider>
     </Router>
   );
 }

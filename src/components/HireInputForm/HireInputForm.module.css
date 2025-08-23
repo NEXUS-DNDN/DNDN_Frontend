@@ -82,10 +82,14 @@
 
 .hireItem {
   display: flex;
-  margin-left: 12px;
   height: 45px;
+  padding-left: 12px;
   cursor: pointer;
-  
+  align-items: center;
+}
+
+.hireItem:hover {
+  background-color: #b9b9b9;
 }
 
 .hireItem span {

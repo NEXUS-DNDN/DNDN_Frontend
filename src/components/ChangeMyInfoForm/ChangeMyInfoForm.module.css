@@ -3,6 +3,14 @@
   margin-top: 80px;
 }
 
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
 .minititle {
   width: 85%;
   display: block;
@@ -286,6 +294,198 @@
 }
 
 .additionalItem span {
+  padding: 8px 0;
+}
+
+.additionalTypeInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.additionalTypeDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.additionalTypeText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.additionalTypeText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.additionalTypeItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.additionalTypeItem:hover {
+  background-color: #b9b9b9;
+}
+
+.additionalTypeItem span {
+  padding: 8px 0;
+}
+
+.disabilityRegisteredInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.disabilityRegisteredDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.disabilityRegisteredText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.disabilityRegisteredText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.disabilityRegisteredItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.disabilityRegisteredItem:hover {
+  background-color: #b9b9b9;
+}
+
+.disabilityRegisteredItem span {
+  padding: 8px 0;
+}
+
+.disabilityGradeInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.disabilityGradeDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.disabilityGradeText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.disabilityGradeText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.disabilityGradeItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.disabilityGradeItem:hover {
+  background-color: #b9b9b9;
+}
+
+.disabilityGradeItem span {
+  padding: 8px 0;
+}
+
+.disabilityTypeInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.disabilityTypeDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 84.85%;
+  z-index: 1;
+}
+
+.disabilityTypeText {
+  font-size: 18px;
+  color: #999999; /* 기본 회색 */
+}
+
+.disabilityTypeText.selected {
+  color: #000000; /* 선택되었을 때 검정 */
+}
+
+.disabilityTypeItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.disabilityTypeItem:hover {
+  background-color: #b9b9b9;
+}
+
+.disabilityTypeItem span {
   padding: 8px 0;
 }
 
