@@ -3,6 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0; 
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -24,7 +25,9 @@
 
 /* 페이지 컨테이너 */
 .category-page {
+  /* 기존 설정 유지 */
   width: 500px;
+  max-width: 100%;
   height: 90%;
   background: white;
   border-top-left-radius: 20px;
@@ -32,6 +35,8 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+
 }
 
 /* 상단바 */
@@ -56,35 +61,16 @@
   font-weight: bold;
 }
 
-/* 선택된 칩 */
-.chip-row {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  gap: 8px;
-  padding: 16px;
-  -webkit-overflow-scrolling: touch;
-  border-bottom: 1px solid #eee;
-}
-
-.chip-selected {
+.reset-btn {
   display: flex;
   align-items: center;
-  padding: 6px 12px;
-  background-color: #e2f0ff;
-  border-radius: 20px;
-  font-size: 14px;
-  color: #007bff;
-  white-space: nowrap;
-}
-
-.chip-x {
+  gap: 4px;
   background: none;
   border: none;
-  color: #007bff;
+  color: #8c8c8c;
+  font-size: 14px;
   cursor: pointer;
-  margin-left: 8px;
-  padding: 0;
+  font-weight: 500;
 }
 
 /* 콘텐츠 스크롤 영역 */
@@ -122,9 +108,9 @@
 }
 
 .pill.active {
-  background-color: #007bff;
+  background-color: #6a0dad;
   color: white;
-  border-color: #007bff;
+  border-color: #6a0dad;
 }
 
 /* 구분선 */
@@ -180,7 +166,7 @@
 .search-btn {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #6a0dad;
   color: white;
   font-size: 16px;
   font-weight: bold;

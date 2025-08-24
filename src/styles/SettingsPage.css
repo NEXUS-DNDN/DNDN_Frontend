@@ -1,0 +1,121 @@
+/* src/styles/SettingsPage.css */
+.settings-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 16px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.settings-back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.settings-header h2 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ✅ 설정 섹션 컨테이너 */
+.setting-section {
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 16px; /* ✅ 내부 패딩 추가 */
+}
+
+/* ✅ 섹션 헤더 스타일 */
+.settings-item-header h3 {
+  margin: 0 0 16px; /* 아래 여백 추가 */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 설정 항목 */
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0; /* ✅ 상하 여백 조정 */
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.settings-arrow-icon {
+  font-size: 20px;
+  color: #94a3b8;
+}
+
+/* 토글 스위치 스타일 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #6a40da;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.slider.round {
+  border-radius: 28px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

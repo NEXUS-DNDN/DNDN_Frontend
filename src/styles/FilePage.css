@@ -1,0 +1,165 @@
+/* src/styles/FilePage.css */
+
+/* ===== 공통 레이아웃 ===== */
+.file-page {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  font-family: 'Arial', sans-serif;
+  padding-bottom: 80px; /* 하단 내비게이션 바 공간 확보 */
+}
+
+/* ===== 헤더 ===== */
+.file-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.file-header h2 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ===== 파일 목록 컨테이너 ===== */
+.file-list-container {
+  padding: 24px 16px;
+}
+
+.file-list-container p {
+  text-align: center;
+  color: #94a3b8;
+  margin-top: 20px;
+}
+
+/* ===== 파일 항목 (카드) ===== */
+.file-item {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.file-info-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.file-icon-wrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: #f3e9ff; /* 연한 보라색 배경 */
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-icon {
+  font-size: 24px;
+  color: #6a40da; /* 보라색 아이콘 */
+}
+
+.file-check-icon {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 18px;
+  color: #6a40da; /* 보라색 체크 아이콘 */
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.file-date {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.download-button {
+  background-color: #f1eefd; /* 연한 보라색 배경 */
+  color: #6a40da; /* 보라색 텍스트 */
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.download-button:hover {
+  background-color: #e5d8ff;
+}
+
+/* ===== 플로팅 버튼 (업로드) ===== */
+.add-file-button {
+  position: fixed;
+  bottom: 90px;
+  right: calc(50% - 225px); /* 부모 컨테이너 중앙에 위치 */
+  width: auto;
+  padding: 12px 20px;
+  border-radius: 24px;
+  background-color: #6a40da;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.add-file-button:hover {
+  background-color: #5e35b1;
+}
+
+.loading-message, .error-message, .no-documents {
+  text-align: center;
+  color: #94a3b8;
+  padding: 20px;
+}
+
+.error-message {
+  color: #ef4444;
+}

@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaTimes, FaRegClock } from 'react-icons/fa';
-
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/SearchPage.css';
 
@@ -91,7 +90,7 @@ const SearchPage = () => {
   return (
     <div className="search-page">
       <div className="search-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        <button className="back-btn" onClick={() => navigate('/mainpage')}>
           <FaArrowLeft size={20} />
         </button>
         <div className="search-input-wrapper">
@@ -112,6 +111,7 @@ const SearchPage = () => {
       </div>
 
       <div className="recommend-section">
+        <strong>추천 검색</strong>
         <div className="recommend-keywords">
           {popularKeywords.map((item, i) => (
             <div key={i} onClick={() => handleSearch(item.title)} className="keyword-item">
@@ -125,7 +125,6 @@ const SearchPage = () => {
       </div>
 
       <div className="recent-section">
-        <strong>추천 검색</strong>
         <div className="tags">
           {['키워드1', '노인 키워드2', '키워드3', '키워드4'].map((kw, i) => (
             <button key={i} onClick={() => handleSearch(kw)}>
@@ -158,7 +157,6 @@ const SearchPage = () => {
           )}
         </ul>
       </div>
-
       <BottomNav activePath="/" />
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaSyncAlt } from 'react-icons/fa';
 import '../styles/CategoryPage.css';
 
 // API 용어와 한국어 라벨을 매칭
@@ -38,11 +38,9 @@ const SIGUNGU_MAP = {
 };
 
 const CategoryPage = ({ onClose, onApply, initialFilters }) => {
-  const [selected, setSelected] = useState(initialFilters);
-  const [age, setAge] = useState(initialFilters.age);
-  const [sido, setSido] = useState(initialFilters.sido);
-  const [sigungu, setSigungu] = useState(initialFilters.sigungu);
+  const [filters, setFilters] = useState(initialFilters);
 
+  // 모달이 열릴 때 스크롤 잠금
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -50,11 +48,11 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
     };
   }, []);
 
-  const sigunguOptions = useMemo(() => (sido ? SIGUNGU_MAP[sido] || [] : []), [sido]);
+  const sigunguOptions = useMemo(() => (filters.sido ? SIGUNGU_MAP[filters.sido] || [] : []), [filters.sido]);
 
-  // 선택된 항목의 순서를 유지하고 중복을 방지하는 로직
+  // 선택된 항목 토글
   const toggle = (group, item) => {
-    setSelected(prev => {
+    setFilters(prev => {
       const current = new Set(prev[group]);
       if (current.has(item)) {
         current.delete(item);
@@ -65,36 +63,18 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
     });
   };
 
-  const removeChip = (group, label) => {
-    // 한국어 라벨을 API 키로 변환
-    const map = group === 'household' ? HOUSEHOLD_MAP : TOPICS_MAP;
-    const keyToRemove = Object.keys(map).find(key => map[key] === label);
-
-    if (keyToRemove) {
-      setSelected(prev => ({
-        ...prev,
-        [group]: prev[group].filter(v => v !== keyToRemove)
-      }));
-    }
+  const handleReset = () => {
+    setFilters({
+      household: [],
+      topics: [],
+      age: '',
+      sido: '',
+      sigungu: '',
+    });
   };
 
-  // selected 배열의 순서를 그대로 사용하여 칩을 생성
-  const chips = useMemo(() => {
-    const chipList = [];
-    chipList.push(
-      ...selected.household.map(v => ({ group: 'household', label: HOUSEHOLD_MAP[v] || v })),
-      ...selected.topics.map(v => ({ group: 'topics', label: TOPICS_MAP[v] || v }))
-    );
-    return chipList;
-  }, [selected]);
-
-  const doApply = () => {
-    onApply({
-      ...selected,
-      age: age,
-      sido: sido,
-      sigungu: sigungu,
-    });
+  const handleApply = () => {
+    onApply(filters);
   };
 
   return (
@@ -102,26 +82,15 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
       <div className="category-page slide-up">
         <div className="cat-top">
           <button className="icon-btn" onClick={onClose} aria-label="닫기">
-            <FaTimes />
+            <FaArrowLeft />
           </button>
-          <div className="cat-title">상세 필터</div>
-          <div style={{ width: 28 }} />
+          <div className="cat-title">필터</div>
+          <button className="reset-btn" onClick={handleReset}>
+            재설정 <FaSyncAlt />
+          </button>
         </div>
 
-        <div className="chip-row">
-          {chips.map((c, idx) => (
-            <span key={idx} className="chip-selected">
-              {c.label}
-              <button
-                className="chip-x"
-                onClick={() => removeChip(c.group, c.label)}
-                aria-label="삭제"
-              >
-                <FaTimes size={10} />
-              </button>
-            </span>
-          ))}
-        </div>
+        {/* 선택된 칩 영역은 삭제 */}
 
         <div className="cat-content-scroll">
           <div className="cat-section">
@@ -130,7 +99,7 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
               {Object.entries(HOUSEHOLD_MAP).map(([key, value]) => (
                 <button
                   key={key}
-                  className={`pill ${selected.household.includes(key) ? 'active' : ''}`}
+                  className={`pill ${filters.household.includes(key) ? 'active' : ''}`}
                   onClick={() => toggle('household', key)}
                 >
                   {value}
@@ -147,7 +116,7 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
               {Object.entries(TOPICS_MAP).map(([key, value]) => (
                 <button
                   key={key}
-                  className={`pill ${selected.topics.includes(key) ? 'active' : ''}`}
+                  className={`pill ${filters.topics.includes(key) ? 'active' : ''}`}
                   onClick={() => toggle('topics', key)}
                 >
                   {value}
@@ -164,8 +133,8 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
               <input
                 type="number"
                 className="age-input"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
+                value={filters.age}
+                onChange={(e) => setFilters(prev => ({ ...prev, age: e.target.value }))}
                 min="0"
                 placeholder="나이"
               />
@@ -178,12 +147,21 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
           <div className="cat-section">
             <div className="sec-title">거주지</div>
             <div className="addr-row">
-              <select className="addr-select" value={sido} onChange={(e) => { setSido(e.target.value); setSigungu(''); }}>
+              <select
+                className="addr-select"
+                value={filters.sido}
+                onChange={(e) => setFilters(prev => ({ ...prev, sido: e.target.value, sigungu: '' }))}
+              >
                 <option value="">시/도 선택</option>
                 {SIDO.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
-              <select className="addr-select" value={sigungu} onChange={(e) => setSigungu(e.target.value)} disabled={!sido}>
-                <option value="">{sido ? '시/군/구 선택' : '시/도 먼저 선택'}</option>
+              <select
+                className="addr-select"
+                value={filters.sigungu}
+                onChange={(e) => setFilters(prev => ({ ...prev, sigungu: e.target.value }))}
+                disabled={!filters.sido}
+              >
+                <option value="">{filters.sido ? '시/군/구 선택' : '시/도 먼저 선택'}</option>
                 {sigunguOptions.map(g => <option key={g} value={g}>{g}</option>)}
               </select>
             </div>
@@ -191,7 +169,7 @@ const CategoryPage = ({ onClose, onApply, initialFilters }) => {
         </div>
 
         <div className="cat-footer">
-          <button className="search-btn" onClick={doApply}>적용하기</button>
+          <button className="search-btn" onClick={handleApply}>적용하기</button>
         </div>
       </div>
     </div>

@@ -19,9 +19,9 @@ const BottomNav = ({ activePath }) => {
         <FaHeart />
         <span>신청내역</span>
       </button>
-      <button onClick={() => navigate('/chat')} className={isActive('/chat') ? 'active' : ''}>
+      <button onClick={() => navigate('/file')} className={isActive('/file') ? 'active' : ''}>
         <FaCommentDots />
-        <span>챗봇</span>
+        <span>서류함</span>
       </button>
       <button onClick={() => navigate('/my')} className={isActive('/my') ? 'active' : ''}>
         <FaUser />

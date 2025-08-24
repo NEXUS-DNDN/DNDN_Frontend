@@ -1,9 +1,11 @@
+// src/pages/FavoritePage.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // ✅ useNavigate 훅 추가
 import { FaArrowLeft, FaSearch, FaBell, FaList } from 'react-icons/fa';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import FavoriteServiceCard from '../components/FavoriteServiceCardForm/FavoriteServiceCard';
 import '../styles/FavoritePage.css';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const getUserId = () => {
   let userId = localStorage.getItem('currentUserId');
@@ -16,20 +18,15 @@ const getUserId = () => {
 
 const FavoritePage = () => {
   const navigate = useNavigate();
+  const { accessToken } = useAuth();
   const [favoriteServices, setFavoriteServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
-    // ✅ 개발용: JWT 토큰을 localStorage에 자동으로 추가
-    const devToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzU1ODY3NDEyLCJleHAiOjE3NTU5NTM4MTJ9.jKMavCgQnfD6ANnRfl97zCzSv9IdPqUbsl6NFbSPJSo';
-    localStorage.setItem('accessToken', devToken);
-
     const fetchFavoriteServices = async () => {
       setLoading(true);
       setError(null);
-      
-      const accessToken = localStorage.getItem('accessToken');
       
       if (!accessToken) {
         setLoading(false);
@@ -51,10 +48,8 @@ const FavoritePage = () => {
         }
 
         const data = await response.json();
-        // API 응답의 interestList 배열에서 welfareId만 추출
         const favoriteIds = data.result.interestList.map(item => item.welfareId);
         
-        // 각 ID에 대해 서비스 상세 정보를 가져오는 비동기 요청을 병렬로 실행
         const fetchPromises = favoriteIds.map(id => 
           fetch(`https://nexusdndn.duckdns.org/welfare/${id}`, { 
             method: 'GET', 
@@ -83,7 +78,7 @@ const FavoritePage = () => {
       }
     };
     fetchFavoriteServices();
-  }, []); // 의존성 배열을 빈 배열로 두어 컴포넌트 마운트 시 한 번만 실행되도록 변경
+  }, [accessToken]);
 
   return (
     <div className="favorite-page">
@@ -93,14 +88,11 @@ const FavoritePage = () => {
         </button>
         <h1 className="header-title">좋아요 목록</h1>
         <div className="header-icons">
-          <button className="icon-button" aria-label="검색">
+          <button className="icon-button" onClick={() => navigate('/search')} aria-label="검색">
             <FaSearch />
           </button>
-          <button className="icon-button" aria-label="알림">
+          <button className="icon-button" onClick={() => navigate('/alarms')} aria-label="알림">
             <FaBell />
-          </button>
-          <button className="icon-button" aria-label="목록">
-            <FaList />
           </button>
         </div>
       </header>

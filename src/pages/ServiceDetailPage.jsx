@@ -1,3 +1,5 @@
+// src/pages/ServiceDetailPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
@@ -6,29 +8,32 @@ import { ko } from 'date-fns/locale';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/ServiceDetailPage.css';
-
-// ✅ 로컬 이미지 파일을 불러옵니다.
+import { useAuth } from '../context/AuthContext.jsx'; 
 import picture from '../assets/picture.png';
 
 const ServiceDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { accessToken } = useAuth();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showDateSheet, setShowDateSheet] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
-  const [showDuplicateModal, setShowDuplicateModal] = useState(false); // ✅ 중복 신청 모달 상태 추가
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showActionButtons, setShowActionButtons] = useState(false);
   const [downloadLink, setDownloadLink] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // ✅ 개발용: JWT 토큰을 localStorage에 자동으로 추가 (로그인 기능 구현 전까지 사용)
-    const devToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzU1ODY3NDEyLCJleHAiOjE3NTU5NTM4MTJ9.jKMavCgQnfD6ANnRfl97zCzSv9IdPqUbsl6NFbSPJSo';
-    localStorage.setItem('accessToken', devToken);
-
+    // ✅ 최근 본 서비스 ID를 localStorage에 저장하는 로직
+    if (id) {
+      const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+      const newRecentlyViewed = [id, ...recentlyViewed.filter(viewedId => viewedId !== id)];
+      localStorage.setItem('recentlyViewed', JSON.stringify(newRecentlyViewed.slice(0, 3)));
+    }
+    
     const fetchServiceData = async () => {
       if (!id || id === 'undefined') {
         setLoading(false);
@@ -37,7 +42,13 @@ const ServiceDetailPage = () => {
       }
       try {
         const url = `https://nexusdndn.duckdns.org/welfare/${id}`;
-        const response = await fetch(url, { method: 'GET', headers: { 'accept': '*/*' } });
+        const response = await fetch(url, { 
+          method: 'GET', 
+          headers: { 
+            'accept': '*/*',
+            'Authorization': accessToken ? `Bearer ${accessToken}` : ''
+          } 
+        });
         if (!response.ok) throw new Error('서비스 데이터를 불러오는 데 실패했습니다.');
         const data = await response.json();
         setService(data.result);
@@ -47,7 +58,6 @@ const ServiceDetailPage = () => {
         } else {
           setDownloadLink(null);
         }
-
         await checkFavoriteStatus(data.result.welfareId);
 
       } catch (err) {
@@ -59,10 +69,9 @@ const ServiceDetailPage = () => {
     fetchServiceData();
     const timer = setTimeout(() => setShowActionButtons(true), 50);
     return () => clearTimeout(timer);
-  }, [id]);
-  
+  }, [id, accessToken]);
+
   const checkFavoriteStatus = async (welfareId) => {
-    const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) return;
     try {
       const response = await fetch('https://nexusdndn.duckdns.org/interest', {
@@ -87,7 +96,6 @@ const ServiceDetailPage = () => {
   if (!service) return <div className="service-detail-page"><p>서비스를 찾을 수 없습니다.</p></div>;
   
   const toggleFavorite = async () => {
-    const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
         alert("로그인이 필요합니다.");
         return;
@@ -127,7 +135,6 @@ const ServiceDetailPage = () => {
   };
 
   const completeWithDate = async () => {
-    const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
         alert("로그인이 필요합니다.");
         return;
@@ -148,10 +155,10 @@ const ServiceDetailPage = () => {
             body: JSON.stringify(postData),
         });
 
-        if (response.status === 409) { // ✅ 409 Conflict 상태 코드 확인
+        if (response.status === 409) {
             setShowDateSheet(false);
-            setShowDuplicateModal(true); // ✅ 중복 신청 모달 표시
-            return; // 중복이면 여기서 함수 종료
+            setShowDuplicateModal(true);
+            return;
         }
 
         if (!response.ok) {
@@ -171,7 +178,7 @@ const ServiceDetailPage = () => {
   };
 
   const handleCompleteClose = () => setShowCompleteModal(false);
-  const handleDuplicateClose = () => setShowDuplicateModal(false); // ✅ 중복 신청 모달 닫기 함수
+  const handleDuplicateClose = () => setShowDuplicateModal(false);
   
   const handleApplyClick = () => {
     if (service.servLink) {

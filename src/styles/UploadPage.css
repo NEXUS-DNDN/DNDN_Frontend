@@ -1,0 +1,183 @@
+/* src/styles/UploadPage.css */
+
+.upload-page-container {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 500px; /* ✅ 고정 너비 */
+  margin: 0 auto; /* ✅ 중앙 정렬 */
+}
+
+.upload-page-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+}
+
+.upload-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.upload-page-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.back-button, .save-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.back-button {
+  color: #333;
+}
+
+.save-button {
+  color: #6a40da;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-title {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* 제목 입력 섹션 */
+.title-input-container {
+  margin-bottom: 24px;
+}
+.title-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 16px;
+  padding: 8px 0;
+  outline: none;
+}
+
+/* 파일 업로드 섹션 */
+.file-upload-section {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.file-icon {
+  font-size: 32px;
+  color: #6b7280;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-placeholder {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.file-instruction {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 날짜 섹션 (캘린더) */
+.date-section {
+  margin-top: 24px;
+}
+
+.calendar-icon {
+  margin-right: 8px;
+}
+
+.calendar-placeholder {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.calendar-nav-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  font-size: 14px;
+}
+
+.calendar-grid span {
+  text-align: center;
+  color: #333;
+}
+
+/* 체크박스 섹션 */
+.checkbox-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.status-message {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.status-message.error {
+  color: #ef4444;
+}

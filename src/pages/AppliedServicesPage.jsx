@@ -163,7 +163,6 @@ const AppliedServicesPage = () => {
     }
   };
   
-  // ✅ 로딩 중일 때 스피너를 보여주는 JSX 추가
   if (loading) {
     return (
       <div className="applied-services-page">

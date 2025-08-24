@@ -60,155 +60,13 @@ body {
   justify-content: center;
 }
 
-/* ===== 히어로 카드 ===== */
-.hero-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f1f5f9;
-  margin: 16px;
-  padding: 24px;
-  border-radius: 16px;
-}
-.hero-left {
-  flex-grow: 1;
-}
-.hero-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #1a202c;
-  line-height: 1.3;
-  margin-bottom: 16px;
-}
-.hero-bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px;
-  font-size: 14px;
-  color: #4a5568;
-}
-.hero-bullets li {
-  margin-bottom: 4px;
-}
-.hero-bullets .num {
-  font-weight: 800;
-  margin-right: 8px;
-  color: #2b6cb0;
-}
-.hero-more {
-  background: none;
-  border: none;
-  color: #2b6cb0;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 700;
-}
-.hero-illus {
-  width: 120px;
-  height: 120px;
-  background-image: url('https://user-images.githubusercontent.com/49258284/232490799-a8c6a0b9-8e12-4c2e-9d2a-4318d1f7c0a9.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* ===== 카테고리 탭 ===== */
-.category-tabs {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 16px;
-  border-bottom: 1px solid #e2e8f0;
-  margin-top: 8px;
-  margin-bottom: 16px; /* 추가: 탭과 필터 줄 사이 간격 */
-}
-.category-tab {
-  flex: 1;
-  text-align: center;
-  padding: 12px 0;
-  font-size: 15px;
-  font-weight: 600;
-  color: #718096;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-}
-.category-tab.active {
-  color: #1a202c;
-  font-weight: 800;
-}
-.category-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #1a202c;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-/* ===== 칩 + 정렬 줄 ===== */
-.chip-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 16px 24px; /* 수정: 아래쪽 패딩을 늘려서 간격 확대 */
-  border-bottom: 1px solid #e2e8f0;
-}
-.chip-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.filter-btn {
-  background: none;
-  border: 1px solid #cbd5e1;
-  color: #4a5568;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.sort-btn {
-  background: none;
-  border: none;
-  font-size: 13px;
-  color: #718096;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.filter-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #1a202c;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-}
-.chip-x {
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
-
 /* ===== 서비스 그리드 ===== */
-.service-grid {
+.service-card-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  padding: 16px;
+  padding: 0 16px;
+  margin-top: 12px;
 }
 .service-card {
   background-color: #f7fafc;
@@ -262,4 +120,187 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.search-icon {
+  width: 24px;   
+  height: 24px; 
+}
+.alarm-icon {
+  width: 24px;   
+  height: 24px;  
+}
+.DNDN {
+  margin-left: 15px;
+  width: 40px;   
+  height: 24px;  
+}
+
+/* ===== 광고 배너 ===== */
+.ad-banner-container {
+  padding: 0 16px;
+  margin-top: 10px;
+  
+}
+.ad-banner {
+  width: 100%;
+  border-radius: 12px;
+  height: 200px; /* 임의의 높이 설정 */
+  object-fit: cover;
+}
+
+/* ===== 새로운 섹션 헤더 (추천/최근 본) ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a202c;
+  margin: 0;
+}
+.section-more {
+  background: none;
+  border: none;
+  color: #2b6cb0;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===== 추천 복지 서비스 회색 박스 디자인 ===== */
+.recommendation-section {
+  padding: 0 16px;
+  margin-top: 24px;
+}
+
+.recommendation-box {
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.recommendation-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 16px;
+}
+
+.recommendation-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.recommendation-tab {
+  background-color: #e5e5e5;
+  color: #555;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.recommendation-tab.active {
+  background-color: #2b6cb0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.recommended-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommended-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.list-number {
+  background-color: #d1d5db;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.list-content {
+  flex-grow: 1;
+}
+
+.list-title {
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.list-description {
+  font-size: 14px;
+  color: #718096;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.recommendation-view-all {
+  width: 100%;
+  background-color: #e0e7ff;
+  color: #2b6cb0;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* 최근 본 서비스 그리드 (HomeServiceGrid) */
+.recently-viewed-section .service-grid {
+    padding: 0 16px;
+    grid-template-columns: 1fr 1fr;
+}
+.recently-viewed-section .service-card {
+    background-color: #f7fafc;
+    border-radius: 12px;
+    padding: 16px;
+    height: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.recently-viewed-section .service-card .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.recently-viewed-section .service-card .description {
+    font-size: 13px;
+    color: #4a5568;
+}
+
+/* 추천 및 최근 본 서비스 섹션 (HomeServiceGrid를 사용하지 않는 경우) */
+.no-services-message {
+    text-align: center;
+    color: #94a3b8;
+    padding: 16px;
+    font-size: 14px;
 }
