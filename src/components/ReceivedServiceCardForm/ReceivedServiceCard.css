@@ -1,0 +1,73 @@
+/* src/components/ReceivedServiceCardForm/ReceivedServiceCard.css */
+
+.received-service-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.received-service-card .service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.received-service-card .service-category {
+  color: #8b5cf6;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.received-service-card .service-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.received-service-card .service-info {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.received-service-card .service-content {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.received-service-card .button-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.received-service-card .status-button {
+  flex: 9;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.received-service-card .option-button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: #e5e7eb;
+  color: #6b7280;
+}

@@ -1,0 +1,71 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+}
+
+.highlight{
+    font-weight: 700;
+}
+
+.inputGroup {
+  margin-top: 70px;
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+}
+
+.dateInput {
+  width: 95%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 17px;
+  color: #808080;
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.authBtn {
+  width: 60%;
+  height: 65px;
+  padding: 12px;
+  background-color: rgba(102, 112, 128, 1);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

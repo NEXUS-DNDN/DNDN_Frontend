@@ -1,0 +1,92 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+  margin-bottom: 40px;
+}
+
+.highlight{
+    font-weight: 700;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 30%;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.optionButton {
+  width: 30%;
+  height: 55px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.optionButton:hover {
+  background-color: #919191;
+}
+
+.selected {
+  background-color: #919191;
+  font-weight: bold;
+}
+
+.authBtn {
+  width: 50%;
+  height: 65px;
+  padding: 12px;
+  background-color: rgba(102, 112, 128, 1);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skipButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,0 +1,125 @@
+/* 페이지 래퍼 (메인과 동일 폭) */
+.alarm-page {
+  width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 상단바 */
+.alarm-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px; /* SearchPage와 동일 패딩 */
+}
+
+.alarm-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 공용 아이콘 버튼 (SearchPage와 동일 톤) */
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 빈 상태 */
+.alarm-empty {
+  margin: 40px 16px 0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  color: #374151;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+.alarm-empty-sub {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* 리스트 */
+.alarm-list {
+  padding: 12px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 카드 */
+.alarm-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+.alarm-card.is-new {
+  border: 2px solid #e5f0ff; /* 새 알림 강조 */
+}
+
+/* 카드 상단 라인 */
+.alarm-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* 배지 */
+.alarm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.alarm-badge .emoji { font-size: 16px; }
+.badge-custom { background: #eef2ff; color: #1e3a8a; }
+.badge-bookmark { background: #ecfeff; color: #155e75; }
+.badge-favorite { background: #fef3c7; color: #92400e; }
+.badge-app { background: #f3f4f6; color: #111827; }
+
+.alarm-when {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* 본문 */
+.alarm-title-line {
+  font-weight: 700;
+  color: #111827;
+  margin: 4px 0 6px;
+}
+
+.alarm-desc {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+/* CTA */
+.alarm-cta {
+  margin-top: 10px;
+  border: none;
+  background: #111827;
+  color: #fff;
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.alarm-cta:hover {
+  opacity: 0.95;
+}

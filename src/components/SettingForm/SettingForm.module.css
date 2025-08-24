@@ -1,0 +1,112 @@
+.backbutton {
+  position: fixed;
+  top: 20px;
+  left: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.switchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+
+  margin: 0 auto;           /* 좌우 중앙 정렬 */
+  padding: 10px 16px;
+  border-radius: 12px;
+
+}
+
+.label {
+    display: flex;
+    margin-bottom: 6px;
+    color: grey
+}
+
+.section {
+  margin-bottom: 16px;
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #3d3d3d;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* 옵션: 스위치 옆 텍스트 스타일 */
+.switch span {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.cardContainer {
+  margin: 10px auto;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 카드 내부 요소 간 간격 */
+}
+
+/* 구분선 */
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  width: 100%;
+}
+
+.boldSwitchContainer {
+  display: flex;
+  justify-content: space-between; /* 좌우 끝 정렬 */
+  align-items: center;
+}

@@ -1,0 +1,7 @@
+.my {
+  position: fixed;
+  top: 20px;
+  right: calc(15vw / 2);
+  z-index: 1000;
+  cursor: pointer;
+}

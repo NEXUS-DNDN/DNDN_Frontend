@@ -1,0 +1,277 @@
+/* ChangeMyInfoForm.module.css */
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 90vw;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 20px; 
+}
+
+.backbutton {
+  margin-left: 600px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.minititle {
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  color: rgba(57, 63, 72, 1);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.profileSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageEditButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #007bff;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.imageEditButton img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+}
+
+.infoList {
+  width: 90%;
+  margin: 30px auto 0;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.infoLabel {
+  font-size: 16px;
+  color: #333;
+}
+
+.infoValue {
+  font-size: 16px;
+  color: #666;
+  text-align: right;
+  font-weight: bold;
+}
+
+.line {
+  height: 8px;
+  background-color: #f0f0f0;
+  margin: 20px 0;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+  position: relative; 
+}
+
+.label {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.residenceInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.residenceInput input {
+  border: none;
+  background: none;
+  width: 100%;
+}
+
+.familyInput,
+.salaryInput,
+.hireInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.familyDropdown,
+.salaryDropdown,
+.hireDropdown {
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.familyText,
+.salaryText,
+.hireText {
+  font-size: 18px;
+  color: #999999;
+}
+
+.familyText.selected,
+.salaryText.selected,
+.hireText.selected {
+  color: #000000;
+}
+
+.familyItem,
+.salaryItem,
+.hireItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.familyItem:hover,
+.salaryItem:hover,
+.hireItem:hover {
+  background-color: #b9b9b9;
+}
+
+.familyItem span,
+.salaryItem span,
+.hireItem span {
+  padding: 8px 0;
+}
+
+.menuList {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.menuText {
+  flex-grow: 1;
+}
+
+/* 모달 스타일 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.modal {
+  width: 80%;
+  max-width: 300px;
+  background-color: white;
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modalMessage {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.modalButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #6646e7;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modalButton:hover {
+  background-color: #5239b9;
+}
