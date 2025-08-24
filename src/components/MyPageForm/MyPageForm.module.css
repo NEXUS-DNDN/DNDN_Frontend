@@ -1,56 +1,79 @@
-.backbutton {
-  position: fixed;
-  top: 20px;
-  left: calc(15vw / 2);
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.backbutton img {
-  width: 24px;
-  height: 24px;
-}
-
 .container {
-  width: 100%;
+  width: 500px;
   margin: 0 auto;
-  margin-top: -300px;
+  min-height: 100vh;
+  background-color: white;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header h2 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.emptySpace {
+  width: 20px;
 }
 
 .profileSection {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 15px;
-    border-radius: 10px;
-
+  display: flex;
+  align-items: center;
+  padding: 24px 16px;
+  background-color: #fff;
+  margin-top: 1px;
 }
 
-.username{
-    margin-bottom: 3px;
-}
-
-.profileImage {
+.profileImageWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  margin-right: 16px;
+}
+
+.profileImage {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
 .userInfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .username {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 4px;
 }
 
 .email {
@@ -60,53 +83,61 @@
 
 .menuList {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 16px 16px;
   background-color: white;
   border-radius: 12px;
-  margin-top: 3px;
-  width: 90%
 }
 
 .menuItem {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 16px;
-  height: 35px;
   border-bottom: 1px solid #eee;
   font-size: 16px;
+  cursor: pointer;
+  gap: 12px;
 }
 
-.myapply {
-    border-radius: 12px 12px 0px 0px;
+.menuItem:last-child {
+  border-bottom: none;
 }
 
-.faq {
-    border-radius: 0px 0px 12px 12px;
+.menuItem:hover {
+  background-color: #f7f7f7;
 }
 
-.myapply:hover{
-    cursor: pointer;
-    background-color: #d8d8d8;
+.menuItem:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
-.myinfo:hover{
-    cursor: pointer;
-    background-color: #d8d8d8;
+.menuItem:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
-.settings:hover{
-    cursor: pointer;
-    background-color: #d8d8d8;
+.imageIconWrapper {
+  height: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 8px;
+  width: auto;
 }
 
-.faq:hover{
-    cursor: pointer;
-    background-color: #d8d8d8;
+.menuImageIcon {
+  width: 32px;
+  height: auto;
+  object-fit: contain;
 }
 
+.menuText {
+  flex-grow: 1;
+}
+
+/* nextButton.PNG 스타일 */
 .arrow {
-  color: #bbb;
-
+  margin-left: auto;
+  width: 20px; /* 이미지의 적절한 크기로 조정 */
+  height: auto;
 }

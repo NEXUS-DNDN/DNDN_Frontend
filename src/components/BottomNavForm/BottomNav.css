@@ -1,0 +1,78 @@
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 60px;
+  padding: 0 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.bottom-nav button {
+  flex: 1;
+  height: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: #9ca3af;
+  font-size: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bottom-nav img {
+  width: 20px;
+  height: 20px;
+}
+
+.bottom-nav button.active {
+  color: #6d28d9;
+  font-weight: 700;
+}
+
+/* 활성 슬릿(작은 바) */
+.bottom-nav button.active::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  width: 18px;
+  height: 2px;
+  border-radius: 9999px;
+  background: #6d28d9;
+}
+
+/* 작은 화면에서도 안전하게 */
+@media (max-width: 520px) {
+  .bottom-nav {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+    height: 50px;
+  }
+  .bottom-nav img {
+    width: 18px;
+    height: 18px;
+  }
+  .bottom-nav button {
+    font-size: 9px;
+    gap: 2px;
+  }
+  .bottom-nav button.active::after {
+    top: 3px;
+    width: 16px;
+    height: 2px;
+  }
+}

@@ -1,0 +1,67 @@
+/* src/styles/CommonStyles.module.css */
+
+.header {
+  position: fixed;
+  top: 5px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: white; /* 내용물이 가려지는 것을 방지 */
+  z-index: 10;
+}
+
+.headerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.backbutton {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.authBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 460px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  z-index: 10;
+}
+
+.authBtn img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.authBtn:disabled {
+  cursor: not-allowed;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  padding-top: 80px; /* 고정된 헤더 높이만큼 여백 추가 */
+  padding-bottom: 80px; /* 고정된 버튼 높이만큼 여백 추가 */
+}

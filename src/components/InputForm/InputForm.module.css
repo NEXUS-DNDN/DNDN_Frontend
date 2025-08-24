@@ -1,0 +1,486 @@
+/* GenderInputForm.module.css */
+
+.mainContainer {
+  width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background-color: white;
+}
+
+.header {
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 10;
+}
+
+.headerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.backbutton {
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+}
+
+.backbutton img {
+  width: 24px;
+  height: 24px;
+}
+
+.content {
+  padding: 0 20px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+}
+
+.mainTitle {
+  margin-top: 15px;
+  margin-bottom: 40px;
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.genderButton {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 18px;
+  font-weight: 600;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.genderButton.active {
+  background-color: #6d28d9;
+  color: #fff;
+  border-color: #6d28d9;
+}
+
+.inputField {
+  width: 100%;
+  height: 50px;
+  padding: 10px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.inputField::placeholder {
+  color: #a0aec0;
+}
+
+.residenceContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.residenceInput {
+  flex: 1;
+}
+
+.searchButton {
+  width: 80px;
+  height: 50px;
+  background-color: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* FamilyInputForm-specific styles */
+.memberGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.memberInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.iconButton {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.counterValue {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* SalaryInputForm-specific styles */
+.title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.subTitle {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 40px;
+}
+
+.highlight {
+  font-weight: 700;
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+  font-size: 17px;
+}
+
+.salaryText {
+  color: #999999;
+  font-size: 18px;
+}
+
+.salaryText.selected {
+  color: #000000;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.salaryInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+}
+
+.salaryDropdown {
+  margin-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  position: absolute;
+  width: calc(100% - 40px);
+  max-width: 460px;
+  z-index: 1;
+}
+
+.salaryItem {
+  display: flex;
+  padding-left: 12px;
+  height: 45px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.salaryItem:hover {
+  background-color: #f3f4f6;
+}
+
+.salaryItem.selectedItem {
+  background-color: #d1d5db;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.salaryPersentage {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  height: 70px;
+  font-size: 17px;
+}
+
+.salaryPersentage span {
+  text-align: center;
+  display: block;
+}
+
+/* HireInputForm-specific styles */
+.hireImageButton {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hireImageButton img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* AdditionalInputForm-specific styles */
+.section {
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.buttonContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.25; /* 이미지 비율에 맞춰 조정 */
+}
+
+.grayButton {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.buttonText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  z-index: 1;
+}
+
+/* DisabilityForm-specific styles */
+.disabilityButtonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.disabilityImageButton {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.disabilityImageButton img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Common Next button style */
+.authBtn {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 460px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  z-index: 10;
+}
+
+.authBtn img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.authBtn:disabled {
+  cursor: not-allowed;
+}
+
+/* Disability Type Selection Screen styles */
+.disabilitytypeInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  border-radius: 9999px; /* Pill shape */
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 55px;
+  width: 100%; /* Ensures it fills the container */
+  box-sizing: border-box;
+}
+
+.disabilitytypeText {
+  font-size: 18px;
+  color: #999999;
+}
+
+.disabilitytypeText.selected {
+  color: #000000;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.disabilitytypeDropdown {
+  position: fixed; /* Fixed to the viewport */
+  bottom: 0;
+  left: 50%; /* New: Centers the element */
+  transform: translateX(-50%); /* Centers the element */
+  width: 100%;
+  max-width: 500px; /* Aligns with main container */
+  background-color: white;
+  z-index: 20;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.disabilitytypeItem {
+  display: flex;
+  justify-content: center; /* Centers the text horizontally */
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.disabilitytypeItem:hover {
+  background-color: #f3f4f6;
+}
+
+.disabilitytypeItem.selected {
+  background-color: #f3f4f6; /* Highlight selected item */
+  font-weight: 700;
+}
+
+/* AgedForm specific styles */
+.agedButtonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.agedImageButton {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.agedImageButton img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* AgedAdditionalForm specific styles */
+.agedAdditionalGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* 한 줄에 하나씩 */
+  
+  gap: 15px; /* 간격 넓힘 */
+  margin-top: 40px;
+}
+
+.plural {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  margin-top: 8px;
+}
+.agedAdditionalGrid .grayButton {
+    padding: 8px 20px; /* 상하 패딩을 줄여 높이를 낮춥니다 */
+}

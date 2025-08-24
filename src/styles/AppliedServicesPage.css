@@ -1,0 +1,211 @@
+/* ✅ 최상위 컨테이너 */
+.applied-services-page {
+  background-color: #f1f5f9;
+  height: 100vh;
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow-y: auto; /* 스크롤 가능하게 변경 */
+  font-family: 'Arial', sans-serif;
+}
+
+/* 상단 바 */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f1f5f9; /* 배경색 통일 */
+}
+.icon-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #333;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-bar h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111827;
+}
+
+/* ⭐⭐ 탭 컨테이너 추가 ⭐⭐ */
+.tab-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 16px;
+  margin-top: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+.tab-button {
+  flex: 1;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #94a3b8;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+.tab-button.active {
+  color: #6d28d9;
+}
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #6d28d9;
+}
+
+/* 필터 버튼 */
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+}
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 14px;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+/* 서비스 목록 */
+.services-list {
+  padding: 0 16px 40px;
+}
+.no-data-text {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
+}
+
+/* --- 기존 카드 컴포넌트 스타일 유지 (필요 시) --- */
+/* AppliedServiceCard.css 내용 */
+.service-box {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.service-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.service-date {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+.benefit-btn {
+  width: 100%;
+  height: 40px;
+  background-color: #6d28d9;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.status-btn {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* ReceivedServiceCard.css 내용 */
+.received-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+.status-in-use {
+  background-color: #6366f1;
+}
+.status-received {
+  background-color: #6d28d9;
+}
+.status-expired {
+  background-color: #94a3b8;
+}
+.card-body {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.card-body p {
+  margin: 0;
+  padding: 0;
+}
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* 화면의 80%를 차지하도록 설정 */
+  color: #6b7280;
+}
+
+/* ✅ 스피너 자체 스타일 */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid #6d28d9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ✅ 스피너 애니메이션 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ✅ 로딩 텍스트 스타일 */
+.loading-container p {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #4b5563;
+}

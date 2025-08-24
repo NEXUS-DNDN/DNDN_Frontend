@@ -47,7 +47,7 @@ const AuthForm = () => {
     if (userInfo.name && userInfo.phoneNumber && userInfo.birth && userInfo.employment) {
       navigate('/main');
     } else {
-      navigate('/nameinput');
+      navigate('/register');
     }
   };
 
@@ -215,6 +215,3 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
-
-
-

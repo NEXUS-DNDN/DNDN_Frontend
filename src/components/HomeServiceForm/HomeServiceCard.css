@@ -1,0 +1,38 @@
+.home-service-card {
+  background-color: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+  min-height: 120px; /* 카드의 최소 높이를 지정하여 통일성 유지 */
+}
+
+.card-content {
+  width: 100%;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  word-break: keep-all; /* 단어가 잘리지 않도록 함 */
+}
+
+.card-description {
+  font-size: 13px;
+  color: #718096;
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 최대 3줄까지만 표시 */
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}

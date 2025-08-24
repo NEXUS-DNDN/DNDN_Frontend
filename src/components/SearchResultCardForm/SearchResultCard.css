@@ -1,0 +1,89 @@
+/* src/styles/SearchResultCard.css */
+
+.search-result-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  margin-bottom: 12px;
+}
+
+.card-top-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px; /* 제목 아래 여백 추가 */
+  color: #333;
+}
+
+/* 태그들을 감싸는 컨테이너 */
+.card-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 10px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* 아래쪽 콘텐츠 컨테이너 */
+.card-bottom-content {
+  flex-grow: 1;
+}
+
+.card-dept {
+  font-size: 13px;
+  color: #969499;
+  margin: 0 0 4px;
+}
+
+.card-summary {
+  font-size: 14px;
+  color: #4e3b6c;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+/* 카드 하단 섹션 (조회수, 좋아요 버튼) */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+.stat-count {
+  margin-left: 4px;
+}
+
+.heart-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
