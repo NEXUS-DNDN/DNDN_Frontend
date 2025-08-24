@@ -34,7 +34,7 @@ const ChangeMyInfoForm = () => {
 
   // 🔹 컴포넌트 마운트 시 localStorage에서 불러오기
   useEffect(() => {
-    const savedName = localStorage.getItem('authName') || '';
+    const savedName = localStorage.getItem('name') || '';
     const savedGender = localStorage.getItem('gender') || '';
     const savedBirthday = localStorage.getItem('birthday') || '';
     const savedResidence = localStorage.getItem('residence') || '';

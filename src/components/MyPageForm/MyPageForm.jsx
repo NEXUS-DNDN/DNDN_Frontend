@@ -13,12 +13,13 @@ const MyPageForm = () => {
 
   // localStorage에서 authName 로드
   useEffect(() => {
-    const savedAuthName = localStorage.getItem('authName');
-    if (savedAuthName) {
-      setUserName(savedAuthName);
-    } else {
-      setUserName('사용자 이름'); // 기본값 설정
-    }
+    const savedName = localStorage.getItem('name');
+      if (savedName) {
+        setUserName(savedName);
+      } else {
+        setUserName('사용자 이름');
+      }
+
   }, []);
 
   return (

@@ -6,58 +6,90 @@ import Kakaoicon from '../../assets/kakaotalk.svg';
 import Googleicon from '../../assets/google.svg';
 import Backicon from '../../assets/back.svg';
 import Input from '../common/Input';
+import axios from 'axios';
 
 const AuthForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 돌아감
-  };
+  const handleBackClick = () => navigate(-1);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const handleNameChange = (e) => setName(e.target.value);
 
   const handlePhoneChange = (e) => {
-    let value = e.target.value.replace(/[^0-9]/g, ''); // 숫자만 추출
-    if (value.length > 11) value = value.slice(0, 11); // 최대 11자리 제한
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
 
-    // 자동 하이픈 삽입 (010-XXXX-XXXX 형식)
-    if (value.length > 6) {
-      value = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-    } else if (value.length > 3) {
-      value = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
-    }
+    if (value.length > 6) value = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    else if (value.length > 3) value = value.replace(/(\d{3})(\d{0,4})/, '$1-$2');
+
     setPhoneNumber(value);
   };
 
-  const handleAuthClick = () => {
-    if (!name.trim()) {
-      alert('이름을 적어주세요.');
-      return;
+  const handleAuthClick = async () => {
+    if (!name.trim()) return alert('이름을 적어주세요.');
+    if (!phoneNumber.replace(/-/g, '').trim()) return alert('전화번호를 적어주세요.');
+
+    const userData = {
+      name: name,
+      phoneNumber: phoneNumber.replace(/-/g, ""),
+      birthday: "2000-01-01",
+      address: "서울시 강남구",
+      householdNumber: 1,
+      monthlyIncome: "UNDER_100",
+      gender: "MALE",
+      family: "GENERAL",
+      employment: "EMPLOYED",
+      lifeCycle: "YOUTH",
+      householdTypes: ["GENERAL"]
+    };
+
+    try {
+      const response = await axios.post(
+        'https://nexusdndn.duckdns.org/api/user',
+        userData,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      console.log("회원가입 성공:", response.data);
+      alert("회원가입 완료!");
+      navigate('/verify');
+    } catch (error) {
+      if (error.response) {
+        console.error("응답 에러:", error.response.status, error.response.data);
+        alert(`회원가입 실패: ${error.response.status}`);
+      } else if (error.request) {
+        console.error("요청 에러:", error.request);
+        alert("서버 응답이 없습니다.");
+      } else {
+        console.error("기타 에러:", error.message);
+        alert("알 수 없는 에러 발생");
+      }
     }
-    if (!phoneNumber.replace(/-/g, '').trim()) {
-      alert('전화번호를 적어주세요.');
-      return;
+  };
+
+  // 🔹 소셜 로그인 처리
+  const handleSocialLogin = (provider) => {
+    let authUrl = "";
+
+    switch(provider) {
+      case "naver":
+        authUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.REACT_APP_NAVER_REDIRECT_URI)}&state=STATE_STRING`;
+        break;
+      case "kakao":
+        authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.REACT_APP_KAKAO_REDIRECT_URI)}&response_type=code`;
+        break;
+      case "google":
+        authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.REACT_APP_GOOGLE_REDIRECT_URI)}&response_type=code&scope=profile email`;
+        break;
+      default:
+        return;
     }
 
-    // 인증 코드 생성
-    const authCode = Math.floor(1000 + Math.random() * 9000).toString(); // 4자리 랜덤 코드
-
-    // localStorage에 저장
-    localStorage.setItem('authName', name);
-    localStorage.setItem('authPhone', phoneNumber);
-    localStorage.setItem('authCode', authCode);
-
-    // 콘솔창에 인증번호 찍기
-    console.log(`이름: ${name}`);
-    console.log(`전화번호: ${phoneNumber}`);
-    console.log(`인증번호: ${authCode}`);
-
-    // 인증 코드 입력 페이지로 이동
-    navigate('/verify');
+    window.location.href = authUrl; // 소셜 로그인 페이지로 이동
   };
 
   return (
@@ -85,13 +117,13 @@ const AuthForm = () => {
         </div>
 
         <div className={styles.socialButtons}>
-          <button className={styles.naver}>
+          <button className={styles.naver} onClick={() => handleSocialLogin("naver")}>
             <img src={Navericon} alt="Naver 로그인" />
           </button>
-          <button className={styles.kakao}>
+          <button className={styles.kakao} onClick={() => handleSocialLogin("kakao")}>
             <img src={Kakaoicon} alt="Kakao 로그인" />
           </button>
-          <button className={styles.google}>
+          <button className={styles.google} onClick={() => handleSocialLogin("google")}>
             <img src={Googleicon} alt="Google 로그인" />
           </button>
         </div>
