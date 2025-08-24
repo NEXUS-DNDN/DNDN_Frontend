@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/RegisterPage.css'; // RegisterPage.css 파일 직접 import
 import BackIcon from '../assets/back.svg'; // assets 폴더 경로 확인 (pages 기준)
-import SendButton from '../assets/send.PNG';
+import SendButton from '../assets/send.png';
 import ActiveSendButton from '../assets/Activesend.PNG';
 import NextButton from '../assets/다음.PNG';
 import ActiveNextButton from '../assets/Active다음.PNG';
