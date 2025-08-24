@@ -8,7 +8,7 @@ const SearchResultCard = ({ item, onCardClick, viewCount, isInterested }) => {
 };
 
   const purpleHeartColor = '#800080'; // 보라색
-  const greenHeartColor = '#008000'; // 초록색
+  const grayHeartColor = '#a9a9a9ff'; 
 
   return (
     <div className="search-result-card" onClick={onCardClick}>
@@ -49,12 +49,12 @@ const SearchResultCard = ({ item, onCardClick, viewCount, isInterested }) => {
             </span>
             {/* 좋아요 상태에 따라 하트 색상 변경 */}
             <span className="stat-item">
-              <FaHeart size={12} color={isInterested ? purpleHeartColor : greenHeartColor} />
+              <FaHeart size={12} color={isInterested ? purpleHeartColor : grayHeartColor} />
               <span className="stat-count">{item.interestCount || 0}</span>
             </span>
           </div>
           <button className="heart-btn" aria-label="좋아요">
-            <FaHeart color={isInterested ? purpleHeartColor : greenHeartColor} size={20} />
+            <FaHeart color={isInterested ? purpleHeartColor : grayHeartColor} size={20} />
           </button>
         </div>
       </div>

@@ -1,8 +1,6 @@
-// src/pages/ServiceDetailPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import BottomNav from '../components/BottomNavForm/BottomNav';
@@ -10,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/ServiceDetailPage.css';
 import { useAuth } from '../context/AuthContext.jsx'; 
 import picture from '../assets/picture.png';
+import Backicon from '../assets/back.svg'; // ✅ back.svg 이미지 import
 
 const ServiceDetailPage = () => {
   const { id } = useParams();
@@ -191,7 +190,9 @@ const ServiceDetailPage = () => {
   return (
     <div className="service-detail-page">
       <div className="top-bar">
-        <button className="icon-button" onClick={() => navigate(-1)}><FaArrowLeft size={20} /></button>
+        <button className="icon-button" onClick={() => navigate(-1)}>
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
+        </button>
         <div className="right-icons">
           <button className="icon-button" onClick={toggleFavorite} aria-label="즐겨찾기">{isFavorite ? <FaHeart color="red" size={20} /> : <FaRegHeart size={20} />}</button>
           <button className="icon-button" onClick={handleShare} aria-label="공유"><FaShareAlt size={20} /></button>

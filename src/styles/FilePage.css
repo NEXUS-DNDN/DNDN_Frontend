@@ -1,6 +1,6 @@
 /* src/styles/FilePage.css */
 
-/* ===== 공통 레이아웃 ===== */
+/* ===== Common Layout ===== */
 .file-page {
   background-color: #f1f5f9;
   min-height: 100vh;
@@ -8,10 +8,10 @@
   margin: 0 auto;
   position: relative;
   font-family: 'Arial', sans-serif;
-  padding-bottom: 80px; /* 하단 내비게이션 바 공간 확보 */
+  padding-bottom: 80px; /* Space for bottom navigation bar */
 }
 
-/* ===== 헤더 ===== */
+/* ===== Header ===== */
 .file-header {
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   color: #333;
 }
 
-/* ===== 파일 목록 컨테이너 ===== */
+/* ===== File List Container ===== */
 .file-list-container {
   padding: 24px 16px;
 }
@@ -47,7 +47,7 @@
   margin-top: 20px;
 }
 
-/* ===== 파일 항목 (카드) ===== */
+/* ===== File Item (Card) ===== */
 .file-item {
   background-color: #fff;
   border-radius: 12px;
@@ -70,7 +70,7 @@
   position: relative;
   width: 48px;
   height: 48px;
-  background-color: #f3e9ff; /* 연한 보라색 배경 */
+  background-color: #f3e9ff; /* Light purple background */
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -79,7 +79,7 @@
 
 .file-icon {
   font-size: 24px;
-  color: #6a40da; /* 보라색 아이콘 */
+  color: #6a40da; /* Purple icon */
 }
 
 .file-check-icon {
@@ -87,7 +87,7 @@
   bottom: -4px;
   right: -4px;
   font-size: 18px;
-  color: #6a40da; /* 보라색 체크 아이콘 */
+  color: #6a40da; /* Purple check icon */
   background-color: #fff;
   border-radius: 50%;
   border: 2px solid #fff;
@@ -112,13 +112,13 @@
 }
 
 .download-button {
-  background-color: #f1eefd; /* 연한 보라색 배경 */
-  color: #6a40da; /* 보라색 텍스트 */
+  background-color: #f1eefd; /* Light purple background */
+  color: #6a40da; /* Purple text */
   border: none;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px; /* Reduced padding */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px; /* Reduced font size */
   font-weight: bold;
   white-space: nowrap;
   transition: background-color 0.2s;
@@ -128,11 +128,11 @@
   background-color: #e5d8ff;
 }
 
-/* ===== 플로팅 버튼 (업로드) ===== */
+/* ===== Floating Button (Upload) ===== */
 .add-file-button {
   position: fixed;
   bottom: 90px;
-  right: calc(50% - 225px); /* 부모 컨테이너 중앙에 위치 */
+  right: calc(50% - 225px); /* Position in the center of the parent container */
   width: auto;
   padding: 12px 20px;
   border-radius: 24px;

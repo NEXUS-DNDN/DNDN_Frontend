@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaFileAlt, FaPlus, FaCheckCircle } from 'react-icons/fa';
 import axios from 'axios';
 import '../styles/FilePage.css';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import { useAuth } from '../context/AuthContext.jsx';
+import { FaFileAlt, FaPlus, FaCheckCircle } from 'react-icons/fa';
+import Backicon from '../assets/back.svg'; // ✅ back.svg import
 
 const FilePage = () => {
   const navigate = useNavigate();
@@ -39,42 +40,33 @@ const FilePage = () => {
   }, [accessToken]);
 
   const handleDownload = async (documentId) => {
-    if (!accessToken) return;
+    if (!accessToken) {
+      alert('로그인이 만료되었거나 권한이 없습니다.');
+      return;
+    }
+
     try {
       const response = await axios.get(`https://nexusdndn.duckdns.org/user/documents/${documentId}/download`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`
-        },
-        responseType: 'blob'
+        }
       });
       
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const downloadUrl = response.data.result.downloadUrl;
+      const fileName = response.data.result.originalName;
+
+      if (!downloadUrl) {
+        alert('다운로드 URL을 받을 수 없습니다.');
+        return;
+      }
+
+      const fileResponse = await axios.get(downloadUrl, {
+        responseType: 'blob'
+      });
+
+      const url = window.URL.createObjectURL(new Blob([fileResponse.data]));
       const link = document.createElement('a');
       link.href = url;
-      
-      const contentDisposition = response.headers['content-disposition'];
-      let fileName = 'download';
-      
-      if (contentDisposition) {
-        const filenameStarMatch = /filename\*=(?:['"]*[^'"]*['"]*|[^;]*)(['"]?)(.*?)\1(?:;|$)/i.exec(contentDisposition);
-        if (filenameStarMatch && filenameStarMatch.length >= 3) {
-          try {
-            fileName = decodeURIComponent(filenameStarMatch[2].replace(/^UTF-8''/i, ''));
-          } catch (e) {
-            console.error('Failed to decode filename:', e);
-            const filenameMatch = contentDisposition.match(/filename="(.+)"/);
-            if (filenameMatch && filenameMatch.length === 2) {
-              fileName = decodeURIComponent(filenameMatch[1]);
-            }
-          }
-        } else {
-          const filenameMatch = contentDisposition.match(/filename="(.+)"/);
-          if (filenameMatch && filenameMatch.length === 2) {
-            fileName = decodeURIComponent(filenameMatch[1]);
-          }
-        }
-      }
-      
       link.setAttribute('download', fileName);
       document.body.appendChild(link);
       link.click();
@@ -110,7 +102,7 @@ const FilePage = () => {
     <div className="file-page">
       <header className="file-header">
         <button className="back-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
         </button>
         <h2>서류함</h2>
       </header>

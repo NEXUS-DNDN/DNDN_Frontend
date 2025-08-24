@@ -1,8 +1,9 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaTimes, FaRegClock } from 'react-icons/fa';
+import { FaTimes, FaRegClock } from 'react-icons/fa';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import '../styles/SearchPage.css';
+import Backicon from '../assets/back.svg';
 
 const STORAGE_PREFIX = 'recentSearches';
 
@@ -19,19 +20,24 @@ const SearchPage = () => {
     { title: '청년 일자리', icon: '💼' },
   ];
 
+  // ✅ 1. 사용자 ID를 로컬 스토리지에서 가져오기
   const userId = useMemo(() => {
     try {
+      // 로컬 스토리지에서 'currentUserId'라는 키로 사용자 ID를 가져옵니다.
+      // 실제 앱에서는 JWT 토큰 등을 디코딩하여 ID를 가져오는 것이 더 안전합니다.
       return localStorage.getItem('currentUserId') || '';
     } catch {
       return '';
     }
   }, []);
 
+  // ✅ 2. 사용자 ID를 포함한 고유한 로컬 스토리지 키 생성
   const storageKey = useMemo(
     () => (userId ? `${STORAGE_PREFIX}:${userId}` : STORAGE_PREFIX),
     [userId]
   );
 
+  // ✅ 3. 컴포넌트 로딩 시 사용자별 최근 검색어 불러오기
   useEffect(() => {
     try {
       const raw = localStorage.getItem(storageKey);
@@ -41,6 +47,7 @@ const SearchPage = () => {
     } catch {}
   }, [storageKey]);
 
+  // ✅ 4. 사용자별 로컬 스토리지에 저장하는 함수
   const saveRecent = (list) => {
     try {
       localStorage.setItem(storageKey, JSON.stringify(list));
@@ -91,7 +98,7 @@ const SearchPage = () => {
     <div className="search-page">
       <div className="search-header">
         <button className="back-btn" onClick={() => navigate('/mainpage')}>
-          <FaArrowLeft size={20} />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" />
         </button>
         <div className="search-input-wrapper">
           <input

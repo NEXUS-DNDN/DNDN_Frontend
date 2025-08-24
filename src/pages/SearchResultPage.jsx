@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import SearchResultCard from '../components/SearchResultCardForm/SearchResultCard';
 import CategoryPage from './CategoryPage';
 import '../styles/SearchResultPage.css';
 import { useAuth } from '../context/AuthContext.jsx';
+import Backicon from '../assets/back.svg';
 
 const CATEGORY_TABS = {
   '영유아': 'INFANT', '아동': 'CHILD', '청소년': 'TEENAGER',
@@ -247,7 +248,7 @@ const SearchResultPage = () => {
       {/* 제거된 헤더 영역 */}
       <div className="search-input-row">
         <button className="back-btn" onClick={() => navigate('/search')}>
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" />
         </button>
         <input
           className="search-input"

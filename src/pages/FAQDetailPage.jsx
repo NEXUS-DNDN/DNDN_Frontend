@@ -1,11 +1,9 @@
-// src/pages/FAQDetailPage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/FAQ.css';
+import Backicon from '../assets/back.svg'; // ✅ back.svg import
 
 const faqs = [
-  // 위 FAQPage.jsx에 있는 faqs 배열을 그대로 복사해서 사용합니다.
   {
     id: 1,
     category: '필터 설정',
@@ -42,7 +40,7 @@ const FAQDetailPage = () => {
       <div className="faq-detail-page">
         <header className="faq-header">
           <button onClick={() => navigate(-1)} className="back-button">
-            <FaArrowLeft />
+            <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
           </button>
           <h1>질문</h1>
         </header>
@@ -57,7 +55,7 @@ const FAQDetailPage = () => {
     <div className="faq-detail-page">
       <header className="faq-header">
         <button onClick={() => navigate(-1)} className="back-button">
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
         </button>
         <h1>{faq.question}</h1>
       </header>

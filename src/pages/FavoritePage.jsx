@@ -1,11 +1,12 @@
-// src/pages/FavoritePage.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ useNavigate 훅 추가
-import { FaArrowLeft, FaSearch, FaBell, FaList } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // ✅ axios import
+import { FaSearch, FaBell } from 'react-icons/fa';
 import BottomNav from '../components/BottomNavForm/BottomNav';
 import FavoriteServiceCard from '../components/FavoriteServiceCardForm/FavoriteServiceCard';
 import '../styles/FavoritePage.css';
 import { useAuth } from '../context/AuthContext.jsx';
+import Backicon from '../assets/back.svg'; // ✅ back.svg import
 
 const getUserId = () => {
   let userId = localStorage.getItem('currentUserId');
@@ -35,44 +36,28 @@ const FavoritePage = () => {
       }
       
       try {
-        const response = await fetch('https://nexusdndn.duckdns.org/interest', { 
-            method: 'GET', 
+        const response = await axios.get('https://nexusdndn.duckdns.org/interest', { 
             headers: { 
-              'accept': '*/*',
               'Authorization': `Bearer ${accessToken}`
             } 
           });
 
-        if (!response.ok) {
-            throw new Error('좋아요 목록을 불러오는 데 실패했습니다.');
-        }
-
-        const data = await response.json();
-        const favoriteIds = data.result.interestList.map(item => item.welfareId);
+        const favoriteIds = response.data.result.interestList.map(item => item.welfareId);
         
         const fetchPromises = favoriteIds.map(id => 
-          fetch(`https://nexusdndn.duckdns.org/welfare/${id}`, { 
-            method: 'GET', 
+          axios.get(`https://nexusdndn.duckdns.org/welfare/${id}`, { 
             headers: { 
-              'accept': '*/*',
               'Authorization': `Bearer ${accessToken}`
             } 
           })
         );
 
         const responses = await Promise.all(fetchPromises);
-        const fetchedServices = [];
-        for (const response of responses) {
-          if (!response.ok) {
-            throw new Error('하나 이상의 서비스 데이터를 불러오는 데 실패했습니다.');
-          }
-          const serviceData = await response.json();
-          fetchedServices.push(serviceData.result);
-        }
+        const fetchedServices = responses.map(res => res.data.result);
         setFavoriteServices(fetchedServices);
 
       } catch (err) {
-        setError(err.message);
+        setError(err.message || '데이터를 가져오는 데 실패했습니다.');
       } finally {
         setLoading(false);
       }
@@ -84,7 +69,7 @@ const FavoritePage = () => {
     <div className="favorite-page">
       <header className="favorite-header">
         <button className="icon-button" onClick={() => navigate(-1)} aria-label="뒤로가기">
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
         </button>
         <h1 className="header-title">좋아요 목록</h1>
         <div className="header-icons">

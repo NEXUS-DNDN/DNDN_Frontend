@@ -3,7 +3,7 @@ import styles from './SettingForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import Backicon from '../../assets/back.svg';
 import My from '../common/My';
-import BottomNav from '../common/BottomNav';
+import BottomNav from '../BottomNavForm/BottomNav';
 
 const SettingForm = () => {
   const navigate = useNavigate();

@@ -1,8 +1,9 @@
 // src/pages/FAQPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaSearch, FaChevronRight } from 'react-icons/fa';
+import { FaSearch, FaChevronRight } from 'react-icons/fa';
 import '../styles/FAQ.css';
+import Backicon from '../assets/back.svg'; // ✅ back.svg 이미지 import
 
 const faqs = [
   {
@@ -45,7 +46,7 @@ const FAQPage = () => {
     <div className="faq-page">
       <header className="faq-header">
         <button onClick={() => navigate(-1)} className="back-button">
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
         </button>
         <h1>자주 묻는 질문</h1>
       </header>

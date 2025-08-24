@@ -1,9 +1,8 @@
-// src/pages/FontSizePage.jsx
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
 import { useSettings } from '../context/SettingsContext';
 import '../styles/FontSizePage.css';
+import Backicon from '../assets/back.svg'; // ✅ back.svg import
 
 const FontSizePage = () => {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const FontSizePage = () => {
     <div className="font-size-page">
       <header className="font-header">
         <button onClick={() => navigate(-1)} className="font-back-button">
-          <FaArrowLeft />
+          <img src={Backicon} alt="뒤로가기" className="back-icon" /> {/* ✅ 이미지로 변경 */}
         </button>
         <h2>텍스트 크기</h2>
       </header>
@@ -49,7 +48,6 @@ const FontSizePage = () => {
               onChange={handleFontSizeChange}
               className="font-slider"
             />
-            {/* ✅ 7개의 점을 나타내는 요소들 */}
             <div className="dot-group">
               <div className="dot"></div>
               <div className="dot"></div>

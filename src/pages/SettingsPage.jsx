@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from "react-icons/io";
-import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/SettingsPage.css';
+import Backicon from '../assets/back.svg'; // ✅ back.svg 이미지 import
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -20,7 +20,9 @@ const SettingsPage = () => {
   return (
     <div className="settings-page">
       <header className="settings-header">
-        <button className="settings-back-button" onClick={() => navigate(-1)}><FaArrowLeft /></button>
+        <button className="settings-back-button" onClick={() => navigate(-1)}>
+          <img src={Backicon} alt="뒤로가기" className="settings-back-icon" /> {/* ✅ 이미지로 변경 */}
+        </button>
         <h2>설정</h2>
       </header>
 

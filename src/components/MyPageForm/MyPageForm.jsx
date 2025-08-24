@@ -1,113 +1,90 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ 추가
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './MyPageForm.module.css';
 import BottomNav from '../BottomNavForm/BottomNav';
-=======
-import React, { useState, useEffect } from 'react';
-import styles from './MyPageForm.module.css';
-import { useNavigate } from 'react-router-dom';
-import BottomNav from '../common/BottomNav';
->>>>>>> origin/loginpage_etc
-import My from '../common/My';
-import Backicon from '../../assets/back.svg';
 import Profileicon from '../../assets/baseprofile.svg';
+import myApplyIcon from '../../assets/MyPage(1).PNG';
+import myInfoIcon from '../../assets/MyPage(2).PNG';
+import faqIcon from '../../assets/MyPage(3).PNG';
+import settingsIcon from '../../assets/MyPage(4).PNG';
+import nextButtonIcon from '../../assets/nextButton.PNG';
+import Backicon from '../../assets/back.svg'; // ✅ back.svg 이미지 import
 
 const MyPageForm = () => {
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-<<<<<<< HEAD
-  const navigate = useNavigate(); // ✅ 추가
-=======
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(''); // 로컬 상태로 사용자 이름 관리
+  const [userName, setUserName] = useState('');
 
-  // localStorage에서 authName 로드
   useEffect(() => {
     const savedAuthName = localStorage.getItem('authName');
     if (savedAuthName) {
       setUserName(savedAuthName);
     } else {
-      setUserName('사용자 이름'); // 기본값 설정
+      setUserName('사용자 이름');
     }
   }, []);
->>>>>>> origin/loginpage_etc
 
   return (
-    <>
-      <div className={styles.backbutton}>
-        <img src={Backicon} alt="뒤로가기" />
-      </div>
-<<<<<<< HEAD
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <button className={styles.backButton} onClick={() => navigate(-1)}>
+          <img src={Backicon} alt="뒤로가기" /> {/* ✅ FaArrowLeft를 이미지로 대체 */}
+        </button>
+        <h2>마이페이지</h2>
+        <div className={styles.emptySpace}></div>
+      </header>
 
-      <My />
-
-=======
-      <My />
->>>>>>> origin/loginpage_etc
-      <div className={styles.container}>
-        <div className={styles.profileSection}>
+      <div className={styles.profileSection}>
+        <div className={styles.profileImageWrapper}>
           <img src={Profileicon} alt="프로필 사진" className={styles.profileImage} />
-          <div className={styles.userInfo}>
-<<<<<<< HEAD
-            <div className={styles.username}>사용자 이름</div>
-            <div className={styles.email}>example@gmail.com</div>
-          </div>
         </div>
-
-        <div className={styles.menuList}>
-          {/* ✅ 내 신청 내역 → /applied 이동 */}
-          <div
-            className={`${styles.menuItem} ${styles.myapply}`}
-            role="button"
-            tabIndex={0}
-            onClick={() => navigate('/applied')}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/applied')}
-          >
-            <span>내 신청 내역</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
-
-          <div className={`${styles.menuItem} ${styles.myinfo}`}>
-            <span>내 정보</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
-
-          <div className={`${styles.menuItem} ${styles.settings}`}>
-            <span>설정</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
-
-=======
-            <div className={styles.username}>{userName}</div>
-            <div className={styles.email}>example@gmail.com</div>
-          </div>
-        </div>
-        <div className={styles.menuList}>
-          <div className={`${styles.menuItem} ${styles.myapply}`}>
-            <span>내 신청 내역</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
-          <div className={`${styles.menuItem} ${styles.myinfo}`} onClick={() => navigate('/changemyinfo')}>
-            <span>내 정보</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
-          <div className={`${styles.menuItem} ${styles.settings}`} onClick={() => navigate('/setting')}>
-            <span>설정</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
->>>>>>> origin/loginpage_etc
-          <div className={`${styles.menuItem} ${styles.faq}`}>
-            <span>자주 묻는 질문(FAQ)</span>
-            <span className={styles.arrow}>&gt;</span>
-          </div>
+        <div className={styles.userInfo}>
+          <div className={styles.username}>{userName}</div>
+          <div className={styles.email}>example@gmail.com</div>
         </div>
       </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/loginpage_etc
+      <div className={styles.menuList}>
+        <div
+          className={`${styles.menuItem} ${styles.myapply}`}
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/applied')}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/applied')}
+        >
+          <div className={styles.imageIconWrapper}>
+            <img src={myApplyIcon} alt="내 신청 내역 아이콘" className={styles.menuImageIcon} />
+          </div>
+          <span className={styles.menuText}>내 신청 내역</span>
+          <img src={nextButtonIcon} alt="다음 버튼" className={styles.arrow} />
+        </div>
+
+        <div className={`${styles.menuItem} ${styles.myinfo}`} onClick={() => navigate('/changemyinfo')}>
+          <div className={styles.imageIconWrapper}>
+            <img src={myInfoIcon} alt="내 정보 아이콘" className={styles.menuImageIcon} />
+          </div>
+          <span className={styles.menuText}>내 정보</span>
+          <img src={nextButtonIcon} alt="다음 버튼" className={styles.arrow} />
+        </div>
+
+        <div className={`${styles.menuItem} ${styles.faq}`} onClick={() => navigate('/faq')}>
+          <div className={styles.imageIconWrapper}>
+            <img src={faqIcon} alt="자주 묻는 질문 아이콘" className={styles.menuImageIcon} />
+          </div>
+          <span className={styles.menuText}>자주 묻는 질문(FAQ)</span>
+          <img src={nextButtonIcon} alt="다음 버튼" className={styles.arrow} />
+        </div>
+
+        <div className={`${styles.menuItem} ${styles.settings}`} onClick={() => navigate('/settings')}>
+          <div className={styles.imageIconWrapper}>
+            <img src={settingsIcon} alt="설정 아이콘" className={styles.menuImageIcon} />
+          </div>
+          <span className={styles.menuText}>설정</span>
+          <img src={nextButtonIcon} alt="다음 버튼" className={styles.arrow} />
+        </div>
+      </div>
+
       <BottomNav />
-    </>
+    </div>
   );
 };
 

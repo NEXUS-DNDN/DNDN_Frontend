@@ -1,3 +1,5 @@
+/* src/styles/SearchPage.css */
+
 /* ===== 공통 레이아웃 ===== */
 body {
   background: #fff;
@@ -24,10 +26,16 @@ body {
   align-items: center; /* 버튼과 입력창을 수직 중앙 정렬 */
   padding: 16px;
   gap: 12px;
+  /* 아래 코드를 추가하여 헤더를 화면 상단에 고정하고 스타일을 적용합니다. */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff; /* 스크롤 시 뒤 배경이 비치는 것을 방지합니다. */
+  border-bottom: 1px solid #e2e8f0; /* 헤더 아래에 구분선을 추가합니다. */
 }
 
 .back-btn {
-  margin-top:10px;
+  /* margin-top:10px; 이 속성은 삭제했습니다. */
   margin-right: 10px;
   background: none;
   border: none;
@@ -35,6 +43,11 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+/* back-icon 이미지에 대한 스타일을 추가했습니다. */
+.back-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .search-input-wrapper {
@@ -44,11 +57,11 @@ body {
 
 .search-input {
   width: 100%;
-  padding: 10px 12px; /* 두 번째 코드와 동일한 패딩 */
+  padding: 10px 12px;
   border: 1px solid #F9F9F9;
   border-radius: 12px;
   font-size: 14px;
-  background-color: #F9F9F9; /* 두 번째 코드와 동일한 배경색 */
+  background-color: #F9F9F9;
 }
 
 .clear-input-icon {
