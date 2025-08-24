@@ -4,7 +4,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  height: 770px;
   background-color: #ffffff;
   position: relative;
   font-family: 'Arial', sans-serif;
@@ -137,10 +138,10 @@
 .bottom-actions {
   position: fixed;
   left: 50%;
-  bottom: 96px; /* BottomNav의 높이를 고려 */
+  bottom: 62px; /* BottomNav의 높이를 고려 */
   transform: translateX(-50%) translateY(100%);
   opacity: 0;
-  width: 500px;
+  width: 472px;
   max-width: 100vw;
   margin: 0 auto;
   padding: 16px;
