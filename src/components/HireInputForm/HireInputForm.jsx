@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './HireInputForm.module.css';
 import Backicon from '../../assets/back.svg';
@@ -12,18 +12,32 @@ const HireInputForm = () => {
 
   const navigate = useNavigate();
   const handleNextClick = () => {
-     navigate('/additionalinput');
-   };
+    navigate('/additionalinput');
+  };
 
   const [hire, setHire] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // localStorage에서 hire 불러오기
+  useEffect(() => {
+    const savedHire = localStorage.getItem('hire');
+    if (savedHire) {
+      setHire(savedHire);
+    }
+  }, []);
+
+  // hire 변경 시 localStorage에 저장
+  useEffect(() => {
+    if (hire) {
+      localStorage.setItem('hire', hire);
+    }
+  }, [hire]);
 
   const handleHireSelect = (selectedHire) => {
     setHire(selectedHire);
     setIsDropdownOpen(false);
   };
 
-  
   return (
     <>
       <div className={styles.backbutton} onClick={handleBackClick}>
@@ -40,20 +54,20 @@ const HireInputForm = () => {
           </div>
           {isDropdownOpen && (
             <div className={styles.hireDropdown}>
-              <div className={styles.hireItem}>
-                <span onClick={() => handleHireSelect('재직 중')}>재직 중</span>
+              <div className={`${styles.hireItem} ${hire === '재직 중' ? styles.selectedItem : ''}`} onClick={() => handleHireSelect('재직 중')}>
+                재직 중
               </div>
               <div className={styles.divider} />
-              <div className={styles.hireItem}>
-                <span onClick={() => handleHireSelect('프리랜서')}>프리랜서</span>
+              <div className={`${styles.hireItem} ${hire === '프리랜서' ? styles.selectedItem : ''}`} onClick={() => handleHireSelect('프리랜서')}>
+                프리랜서
               </div>
               <div className={styles.divider} />
-              <div className={styles.hireItem}>
-                <span onClick={() => handleHireSelect('구직 중')}>구직 중</span>
+              <div className={`${styles.hireItem} ${hire === '구직 중' ? styles.selectedItem : ''}`} onClick={() => handleHireSelect('구직 중')}>
+                구직 중
               </div>
               <div className={styles.divider} />
-              <div className={styles.hireItem}>
-                <span onClick={() => handleHireSelect('무직')}>무직</span>
+              <div className={`${styles.hireItem} ${hire === '무직' ? styles.selectedItem : ''}`} onClick={() => handleHireSelect('무직')}>
+                무직
               </div>
             </div>
           )}

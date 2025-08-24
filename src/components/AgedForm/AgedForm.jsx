@@ -6,7 +6,7 @@ import Backicon from '../../assets/back.svg';
 const AgedForm = () => {
   const handleBackClick = () => {
     console.log('뒤로가기 클릭');
-    navigate('/agedalone');
+    navigate('/additionalinput');
   };
 
   const navigate = useNavigate();
@@ -26,11 +26,12 @@ const AgedForm = () => {
   const handleSkipClick = () => {
     console.log('건너뛰기 클릭');
     setIsRegistered(null);
+    navigate('/agedalone');
   };
   
   return (
     <>
-      <div className={styles.backbutton}>
+      <div className={styles.backbutton} onClick={handleBackClick}>
         <img src={Backicon} alt="뒤로가기" />
       </div>
       <div className={styles.container}>

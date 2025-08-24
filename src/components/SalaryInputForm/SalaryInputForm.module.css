@@ -88,7 +88,7 @@
 }
 
 .salaryItem:hover{
-    background-color: #f0f4ff !important;
+    background-color: #b9b9b9 !important;
 }
 
 .salaryItem span {
@@ -100,6 +100,26 @@
   background-color: #ccc;
 }
 
+.salaryPersentage {
+  width: 84%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  height: 70px;
+  font-size: 17px;
+}
+
+.salaryPersentage span {
+  text-align: center;
+}
 .authBtn {
   width: 60%;
   height: 65px;

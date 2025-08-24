@@ -44,7 +44,7 @@
   font-size: 17px;
 }
 
-.additionalText {
+.agedadditionalText {
   color: #333;
 }
 
@@ -53,7 +53,7 @@
   height: 16px;
 }
 
-.additionalInput {
+.agedadditionalInput {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,7 +66,7 @@
   height: 55px;
 }
 
-.additionalDropdown {
+.agedadditionalDropdown {
   margin-top: 0px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -76,32 +76,32 @@
   z-index: 1;
 }
 
-.additionalText {
+.agedadditionalText {
   font-size: 18px;
   color: #999999; /* 기본 회색 */
 }
 
-.additionalText.selected {
+.agedadditionalText.selected {
   color: #000000; /* 선택되었을 때 검정 */
 }
 
-.additionalItem {
+.agedadditionalItem {
   display: flex;
   padding-left: 12px;
   height: 45px;
   cursor: pointer;
 }
 
-.additionalItem:hover {
-  background-color: #f0f4ff; /* 호버 시 배경색 */
+.agedadditionalItem:hover {
+  background-color: #b9b9b9; /* 호버 시 배경색 */
 }
 
-.additionalItem span {
+.agedadditionalItem span {
   padding: 8px 0;
 }
 
 .selectedItem {
-  background-color: #e0e7ff; /* 선택된 항목 배경색 */
+  background-color: #b9b9b9; /* 선택된 항목 배경색 */
   font-weight: bold;
   cursor: pointer;
 }

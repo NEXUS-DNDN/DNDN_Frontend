@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './DisabilityTypeForm.module.css';
 import Backicon from '../../assets/back.svg';
@@ -6,23 +6,38 @@ import Arrowicon from '../../assets/arrow.svg';
 
 const DisabilityTypeForm = () => {
   const navigate = useNavigate();
+
   const handleBackClick = () => {
     console.log('뒤로가기 클릭');
-    navigate('/disailitygrade');
+    navigate('/disabilitygrade');
+  };
+
+  const handleNextClick = () => {
+    navigate('/find');
   };
 
   const [disabilitytype, setDisabilityType] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    const savedDisabilityType = localStorage.getItem('disabilityType');
+    if (savedDisabilityType) setDisabilityType(savedDisabilityType);
+  }, []);
+
   const handleDisabilityTypeSelect = (selectedDisabilityType) => {
     setDisabilityType(selectedDisabilityType);
     setIsDropdownOpen(false);
+    localStorage.setItem('disabilityType', selectedDisabilityType);
   };
 
   const handleSkipClick = () => {
     console.log('건너뛰기 클릭');
     setDisabilityType(null);
+    localStorage.removeItem('disabilityType');
+    navigate('/find');
   };
+
+  const disabilityOptions = ['지체', '시각', '청각', '언어', '정신', '자폐'];
 
   return (
     <>
@@ -35,41 +50,31 @@ const DisabilityTypeForm = () => {
         </div>
         <div className={styles.inputGroup}>
           <div className={styles.disabilitytypeInput} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <span className={`${styles.disabilitytypeText} ${disabilitytype ? styles.selected : ''}`}>{disabilitytype || '장애 유형'}</span>
+            <span className={`${styles.disabilitytypeText} ${disabilitytype ? styles.selected : ''}`}>
+              {disabilitytype || '장애 유형'}
+            </span>
             <img src={Arrowicon} alt="화살표" className={styles.arrow} />
           </div>
           {isDropdownOpen && (
             <div className={styles.disabilitytypeDropdown}>
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '지체' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('지체')}>
-                지체
-              </div>
-              <div className={styles.divider} />
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '시각' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('시각')}>
-                시각
-              </div>
-              <div className={styles.divider} />
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '청각' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('청각')}>
-                청각
-              </div>
-              <div className={styles.divider} />
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '언어' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('언어')}>
-                언어
-              </div>
-              <div className={styles.divider} />
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '정신' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('정신')}>
-                정신
-              </div>
-              <div className={styles.divider} />
-              <div className={`${styles.disabilitytypeItem} ${disabilitytype === '자폐' ? styles.selectedItem : ''}`} onClick={() => handleDisabilityTypeSelect('자폐')}>
-                자폐
-              </div>
+              {disabilityOptions.map((type, index) => (
+                <React.Fragment key={type}>
+                  <div
+                    className={`${styles.disabilitytypeItem} ${disabilitytype === type ? styles.selectedItem : ''}`}
+                    onClick={() => handleDisabilityTypeSelect(type)}
+                  >
+                    {type}
+                  </div>
+                  {index < disabilityOptions.length - 1 && <div className={styles.divider} />}
+                </React.Fragment>
+              ))}
             </div>
           )}
         </div>
         <button className={styles.skipButton} onClick={handleSkipClick}>
-            건너뛰기
+          건너뛰기
         </button>
-        <button className={styles.authBtn}>다음</button>
+        <button className={styles.authBtn} onClick={handleNextClick}>다음</button>
       </div>
     </>
   );

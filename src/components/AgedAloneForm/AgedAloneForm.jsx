@@ -27,6 +27,7 @@ const AgedAloneForm = () => {
   const handleSkipClick = () => {
     console.log('건너뛰기 클릭');
     setIsRegistered(null);
+    navigate('/agedadditional');
   };
   
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './GenderInputForm.module.css';
 import Backicon from '../../assets/back.svg';
@@ -18,8 +18,16 @@ const GenderInputForm = () => {
   const [gender, setGender] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    const savedGender = localStorage.getItem('gender');
+    if (savedGender) {
+      setGender(savedGender);
+    }
+  }, []);
+
   const handleGenderSelect = (selectedGender) => {
     setGender(selectedGender);
+    localStorage.setItem('gender', selectedGender);
     setIsDropdownOpen(false);
   };
 

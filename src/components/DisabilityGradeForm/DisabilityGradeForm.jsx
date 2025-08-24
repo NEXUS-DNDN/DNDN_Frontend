@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './DisabilityGradeForm.module.css';
 import Backicon from '../../assets/back.svg';
@@ -18,14 +18,22 @@ const DisabilityGradeForm = () => {
   const [disabilitygrade, setDisabilityGrade] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    const savedDisabilityGrade = localStorage.getItem('disabilityGrade');
+    if (savedDisabilityGrade) setDisabilityGrade(savedDisabilityGrade);
+  }, []);
+
   const handleDisabilityGradeSelect = (selectedDisabilityGrade) => {
     setDisabilityGrade(selectedDisabilityGrade);
     setIsDropdownOpen(false);
+    localStorage.setItem('disabilityGrade', selectedDisabilityGrade); // 선택한 등급 저장
   };
 
   const handleSkipClick = () => {
     console.log('건너뛰기 클릭');
     setDisabilityGrade(null);
+    localStorage.removeItem('disabilityGrade'); // 건너뛰면 삭제
+    navigate('/disabilitytype');
   };
 
   return (

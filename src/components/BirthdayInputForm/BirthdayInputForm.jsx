@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './BirthdayInputForm.module.css';
 import Backicon from '../../assets/back.svg';
@@ -12,9 +12,17 @@ const BirthdayInputForm = () => {
   const navigate = useNavigate();
   
   const handleNextClick = () => {
+    localStorage.setItem('birthday', date);
     navigate('/genderinput');
   };
   const [date, setDate] = useState('1990-01-01');
+
+  useEffect(() => {
+    const savedDate = localStorage.getItem('birthday');
+    if (savedDate) {
+      setDate(savedDate);
+    }
+  }, []);
 
   const handleDateChange = (e) => {
     setDate(e.target.value);
