@@ -23,6 +23,8 @@ import ChangeMyInfoPage from './pages/ChangeMyInfoPage';
 import { AdditionalProvider } from './context/AdditionalContext';
 import FindPage from './pages/FindPage';
 import SettingPage from './pages/SettingPage';
+import NaverCallback from './pages/NaverCallback';
+
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
         <Route path="/changemyinfo" element={<ChangeMyInfoPage />} />
         <Route path="/find" element={<FindPage />} />
         <Route path="/setting" element={<SettingPage />} />
+        <Route path="/naver/callback" element={<NaverCallback />} />
       </Routes>
       </AdditionalProvider>
     </Router>

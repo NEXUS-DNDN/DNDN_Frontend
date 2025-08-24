@@ -16,7 +16,7 @@ const AuthForm = () => {
   // Kakao SDK 초기화
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init('58d78f68d5e7fc7acab9d3dff9ccd0c4'); // 본인 앱 키 입력
+      window.Kakao.init('702029eab029f8924b63da1102e7f810');
     }
     if (window.Kakao) setIsKakaoReady(true);
     else {
@@ -24,7 +24,7 @@ const AuthForm = () => {
       script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
       script.onload = () => {
         if (window.Kakao && !window.Kakao.isInitialized()) {
-          window.Kakao.init('58d78f68d5e7fc7acab9d3dff9ccd0c4');
+          window.Kakao.init('702029eab029f8924b63da1102e7f810');
         }
         setIsKakaoReady(true);
       };
@@ -63,7 +63,7 @@ const AuthForm = () => {
     navigateBasedOnUserInfo(updatedUser);
   };
 
-  // 카카오 로그인
+  // 🔹 카카오 로그인
   const handleKakaoLogin = () => {
     if (!isKakaoReady || !window.Kakao.Auth) {
       console.error('Kakao SDK 로딩 안됨');
@@ -74,36 +74,20 @@ const AuthForm = () => {
       scope: 'profile_nickname, account_email',
       success: async function(authObj) {
         const accessToken = authObj.access_token;
-        console.log('Kakao accessToken:', accessToken);
-
         try {
-          const response = await fetch(
-            'https://nexusdndn.duckdns.org/auth/login/social',
-            {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ loginType: 'KAKAO', accessToken })
-            }
-          );
-
+          const response = await fetch('https://nexusdndn.duckdns.org/auth/login/social', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ loginType: 'KAKAO', accessToken })
+          });
           if (!response.ok) throw new Error('소셜 로그인 API 실패');
           const data = await response.json();
-
-          // JWT 토큰 저장
           if (data.result?.token) localStorage.setItem('token', data.result.token);
-
-          // 사용자 정보
           const currentUser = data.result?.user || {};
           localStorage.setItem('userInfo', JSON.stringify(currentUser));
-
-          // 사용자 정보가 없으면 /nameinput으로 이동
-          if (currentUser.name && currentUser.phoneNumber) {
-            navigateBasedOnUserInfo(currentUser);
-          } else {
-            navigate('/nameinput');
-          }
+          navigateBasedOnUserInfo(currentUser);
         } catch (err) {
-          console.error('백엔드 소셜 로그인 연동 실패', err);
+          console.error('카카오 로그인 backend 연동 실패', err);
           alert('로그인 중 오류가 발생했습니다.');
         }
       },
@@ -112,6 +96,72 @@ const AuthForm = () => {
         alert('카카오 로그인 실패');
       }
     });
+  };
+
+  // 🔹 Google 로그인
+  const handleGoogleLogin = async () => {
+    try {
+      const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+      const redirectUri = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
+      const scope = 'profile email';
+      const responseType = 'token';
+      const state = 'GOOGLE';
+
+      const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(
+        redirectUri
+      )}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&state=${state}`;
+
+      const googleWindow = window.open(authUrl, '_blank', 'width=500,height=600');
+
+      const pollTimer = setInterval(() => {
+        try {
+          if (googleWindow.location.href.startsWith(redirectUri)) {
+            const urlParams = new URLSearchParams(googleWindow.location.hash.substring(1));
+            const accessToken = urlParams.get('access_token');
+            googleWindow.close();
+            clearInterval(pollTimer);
+
+            if (!accessToken) {
+              alert('Google 로그인 실패');
+              return;
+            }
+
+            fetch('https://nexusdndn.duckdns.org/auth/login/social', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ loginType: 'GOOGLE', accessToken })
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.result?.token) localStorage.setItem('token', data.result.token);
+                const currentUser = data.result?.user || {};
+                localStorage.setItem('userInfo', JSON.stringify(currentUser));
+                navigateBasedOnUserInfo(currentUser);
+              })
+              .catch((err) => {
+                console.error('Google 로그인 backend 연동 실패', err);
+                alert('로그인 중 오류가 발생했습니다.');
+              });
+          }
+        } catch (err) {}
+      }, 500);
+    } catch (err) {
+      console.error('Google 로그인 실패', err);
+      alert('Google 로그인 실패');
+    }
+  };
+
+  // 🔹 Naver 로그인
+  const handleNaverLogin = () => {
+    const clientId = process.env.REACT_APP_NAVER_CLIENT_ID;
+    const redirectUri = process.env.REACT_APP_NAVER_REDIRECT_URI;
+    const state = Math.random().toString(36).substring(2); // CSRF 방지
+
+    const authUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}&state=${state}`;
+
+    window.location.href = authUrl; // redirect 방식
   };
 
   return (
@@ -137,13 +187,13 @@ const AuthForm = () => {
         </div>
 
         <div className={styles.socialButtons}>
-          <button className={styles.naver}>
+          <button className={styles.naver} onClick={handleNaverLogin}>
             <img src={Navericon} alt="Naver 로그인" />
           </button>
           <button className={styles.kakao} onClick={handleKakaoLogin}>
             <img src={Kakaoicon} alt="Kakao 로그인" />
           </button>
-          <button className={styles.google}>
+          <button className={styles.google} onClick={handleGoogleLogin}>
             <img src={Googleicon} alt="Google 로그인" />
           </button>
         </div>
@@ -153,3 +203,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+

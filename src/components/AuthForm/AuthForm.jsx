@@ -31,6 +31,13 @@ const AuthForm = () => {
     if (!name.trim()) return alert('이름을 적어주세요.');
     if (!phoneNumber.replace(/-/g, '').trim()) return alert('전화번호를 적어주세요.');
 
+    const token = localStorage.getItem('token'); // 로그인 후 JWT 토큰
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+      return;
+    }
+
     const userData = {
       name: name,
       phoneNumber: phoneNumber.replace(/-/g, ""),
@@ -46,27 +53,30 @@ const AuthForm = () => {
     };
 
     try {
-      const response = await axios.post(
-        'https://nexusdndn.duckdns.org/api/user',
+      const response = await axios.put(
+        'https://nexusdndn.duckdns.org/user', // 회원 정보 업데이트 API
         userData,
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}` // ✅ JWT 포함
+          }
         }
       );
 
-      console.log("회원가입 성공:", response.data);
-      alert("회원가입 완료!");
-      navigate('/verify');
+      // 업데이트 성공 시
+      const updatedUser = response.data.result || response.data;
+      localStorage.setItem('userInfo', JSON.stringify(updatedUser));
+
+      alert('회원 정보가 저장되었습니다!');
+      navigate('/birthdayinput');
     } catch (error) {
-      if (error.response) {
-        console.error("응답 에러:", error.response.status, error.response.data);
-        alert(`회원가입 실패: ${error.response.status}`);
-      } else if (error.request) {
-        console.error("요청 에러:", error.request);
-        alert("서버 응답이 없습니다.");
+      console.error('사용자 정보 업데이트 실패', error.response || error);
+      if (error.response?.status === 403) {
+        alert('권한이 없습니다. 다시 로그인 해주세요.');
+        navigate('/login');
       } else {
-        console.error("기타 에러:", error.message);
-        alert("알 수 없는 에러 발생");
+        alert('회원 정보 업데이트 중 오류가 발생했습니다.');
       }
     }
   };
@@ -105,7 +115,7 @@ const AuthForm = () => {
 
         <div className={styles.inputGroup}>
           <label className={styles.label}>전화번호</label>
-          <Input type="text" placeholder="010 - **** - 1234" value={phoneNumber} onChange={handlePhoneChange} />
+          <Input type="text" placeholder="010-****-1234" value={phoneNumber} onChange={handlePhoneChange} />
         </div>
 
         <button className={styles.authBtn} onClick={handleAuthClick}>인증하기</button>
@@ -133,3 +143,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+

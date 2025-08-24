@@ -5,59 +5,67 @@ import styles from './NameInputForm.module.css';
 import Backicon from '../../assets/back.svg';
 import Input from '../common/Input';
 
-// 사용자 정보 업데이트 함수
-const updateUserInfo = async (newInfo) => {
-  try {
-    const token = localStorage.getItem('token'); // 로그인 후 JWT
-    const response = await axios.post(
-      '/user',
-      newInfo,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const updatedUser = response.data;
-    localStorage.setItem('userInfo', JSON.stringify(updatedUser));
-    return updatedUser;
-  } catch (err) {
-    console.error('사용자 정보 업데이트 실패', err);
-    return null;
-  }
-};
-
 const NameInputForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
 
+  // 페이지 로드 시 로컬스토리지에서 기존 사용자 정보 불러오기
   useEffect(() => {
-    const savedName = localStorage.getItem('name');
-    if (savedName) {
-      setName(savedName);
-    }
+    const savedUser = JSON.parse(localStorage.getItem('userInfo'));
+    if (savedUser?.name) setName(savedUser.name);
   }, []);
 
   const handleNextClick = async () => {
-    // 서버로 사용자 정보 업데이트
-    const updatedUser = await updateUserInfo({ name });
+    const token = localStorage.getItem('token'); // JWT 토큰 불러오기
+    console.log('token:', token);
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+      return;
+    }
 
-    if (updatedUser) {
-      // 로컬스토리지에도 이름 저장 (선택적)
-      localStorage.setItem('name', name);
+    if (!name.trim()) {
+      alert('이름을 입력해주세요.');
+      return;
+    }
 
-      // 다음 화면으로 이동
-      navigate('/birthdayinput');
-    } else {
-      alert('사용자 정보 업데이트에 실패했습니다.');
+    try {
+      const response = await axios.put(
+        'https://nexusdndn.duckdns.org/user',
+        { name },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`, // 토큰 필수
+          },
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        // 백엔드에서 반환된 사용자 정보를 localStorage에 저장
+        const updatedUser = response.data.result || response.data;
+        localStorage.setItem('userInfo', JSON.stringify(updatedUser));
+
+        alert('사용자 정보가 저장되었습니다!');
+        navigate('/birthdayinput');
+      } else {
+        alert('사용자 정보 업데이트에 실패했습니다.');
+      }
+    } catch (err) {
+      console.error('사용자 이름 업데이트 실패', err.response || err);
+      const status = err.response?.status;
+      if (status === 403) {
+        alert('권한이 없습니다. 다시 로그인 해주세요.');
+        navigate('/login');
+      } else {
+        alert('사용자 정보 업데이트 중 오류가 발생했습니다.');
+      }
     }
   };
 
   return (
     <>
-      <div className={styles.backbutton}>
+      <div className={styles.backbutton} onClick={() => navigate(-1)}>
         <img src={Backicon} alt="뒤로가기" />
       </div>
       <div className={styles.container}>
@@ -81,3 +89,4 @@ const NameInputForm = () => {
 };
 
 export default NameInputForm;
+
