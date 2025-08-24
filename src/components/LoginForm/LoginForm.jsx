@@ -1,3 +1,4 @@
+// AuthForm.jsx (카카오/구글/네이버 로그인용)
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
@@ -13,7 +14,6 @@ const AuthForm = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isKakaoReady, setIsKakaoReady] = useState(false);
 
-  // Kakao SDK 초기화
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init('702029eab029f8924b63da1102e7f810');
@@ -80,11 +80,18 @@ const AuthForm = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ loginType: 'KAKAO', accessToken })
           });
-          if (!response.ok) throw new Error('소셜 로그인 API 실패');
           const data = await response.json();
-          if (data.result?.token) localStorage.setItem('token', data.result.token);
-          const currentUser = data.result?.user || {};
+          console.log('backend response:', data);
+
+          // 🔹 JWT 토큰 저장
+          if (data.result?.accessToken) {
+            localStorage.setItem('token', data.result.accessToken);
+          }
+
+          // 🔹 사용자 정보 저장
+          const currentUser = data.result || {};
           localStorage.setItem('userInfo', JSON.stringify(currentUser));
+
           navigateBasedOnUserInfo(currentUser);
         } catch (err) {
           console.error('카카오 로그인 backend 연동 실패', err);
@@ -133,8 +140,13 @@ const AuthForm = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                if (data.result?.token) localStorage.setItem('token', data.result.token);
-                const currentUser = data.result?.user || {};
+                console.log('backend response:', data);
+
+                if (data.result?.accessToken) {
+                  localStorage.setItem('token', data.result.accessToken);
+                }
+
+                const currentUser = data.result || {};
                 localStorage.setItem('userInfo', JSON.stringify(currentUser));
                 navigateBasedOnUserInfo(currentUser);
               })
@@ -161,7 +173,7 @@ const AuthForm = () => {
       redirectUri
     )}&state=${state}`;
 
-    window.location.href = authUrl; // redirect 방식
+    window.location.href = authUrl;
   };
 
   return (
@@ -203,4 +215,6 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
+
 
