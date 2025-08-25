@@ -27,7 +27,9 @@ body {
   padding: 16px;
   gap: 12px;
   position: sticky;
-  top: 0;
+  /* top: 0; */
+  margin-top : -15px;
+  margin-right : 50px;
   z-index: 100;
   background-color: #ffffff; /* 스크롤 시 뒤 배경이 비치는 것을 방지합니다. */
   border-bottom: 1px solid #e2e8f0; /* 헤더 아래에 구분선을 추가합니다. */
@@ -46,6 +48,7 @@ body {
 .back-icon {
   width: 20px;
   height: 20px;
+  margin-top : -2px;
 }
 
 .search-input-wrapper {
