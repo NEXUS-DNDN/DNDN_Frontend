@@ -36,7 +36,7 @@ const BottomNav = ({ activePath }) => {
       </button>
       <button onClick={() => navigate('/favorite')} className={isActive('/favorite') ? 'active' : ''}>
         <img src={isActive('/favorite') ? iconMap['/favorite'].active : iconMap['/favorite'].default} alt="신청내역" />
-        <span>신청내역</span>
+        <span>좋아요</span>
       </button>
       <button onClick={() => navigate('/file')} className={isActive('/file') ? 'active' : ''}>
         <img src={isActive('/file') ? iconMap['/file'].active : iconMap['/file'].default} alt="서류함" />

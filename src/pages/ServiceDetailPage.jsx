@@ -9,6 +9,7 @@ import '../styles/ServiceDetailPage.css';
 import { useAuth } from '../context/AuthContext.jsx'; 
 import picture from '../assets/picture.png';
 import Backicon from '../assets/back.svg'; // ✅ back.svg 이미지 import
+import YellowCheckIcon from '../assets/yellowcheck.png'; // ✅ yellowcheck.png 이미지 import
 
 const ServiceDetailPage = () => {
   const { id } = useParams();
@@ -260,7 +261,9 @@ const ServiceDetailPage = () => {
       {showCompleteModal && (
         <div className="record-overlay" onClick={handleCompleteClose}>
           <div className={`complete-modal ${showCompleteModal ? 'active' : ''}`} onClick={(e) => e.stopPropagation()}>
-            <h3 className="complete-title">신청 정보 저장 완료</h3>
+            {/* ⭐ yellowcheck.png 이미지 추가 */}
+            <img src={YellowCheckIcon} alt="신청 완료" className="complete-modal-icon" />
+            <h3 className="complete-title">신청이 완료되었어요!</h3> {/* 문구 수정 */}
             <p className="complete-date">{formatKoreanDate(date)}</p>
             <p className="complete-service">{service?.title}</p>
             <button className="complete-btn" onClick={() => { handleCompleteClose(); navigate('/mainpage'); }}>완료</button>
@@ -280,7 +283,9 @@ const ServiceDetailPage = () => {
       )}
 
       <BottomNav activePath="/" />
+      
     </div>
+    
   );
 };
 export default ServiceDetailPage;

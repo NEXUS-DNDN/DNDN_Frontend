@@ -12,19 +12,20 @@ const SearchPage = () => {
   const [keyword, setKeyword] = useState('');
   const [recentKeywords, setRecentKeywords] = useState([]);
 
-  // 백엔드에서 받아올 추천 검색어(임시 데이터)
-  const popularKeywords = [
-    { title: '의료비 신청', icon: '💰' },
-    { title: '노인 복지', icon: '👴' },
-    { title: '임산부', icon: '🤰' },
-    { title: '청년 일자리', icon: '💼' },
-  ];
+  // 백엔드에서 받아올 추천 검색어(임시 데이터) - ⭐ 제거됨
+  // const popularKeywords = [
+  //   { title: '의료비 신청', icon: '💰' },
+  //   { title: '노인 복지', icon: '👴' },
+  //   { title: '임산부', icon: '🤰' },
+  //   { title: '청년 일자리', icon: '💼' },
+  // ];
 
   // ✅ 1. 사용자 ID를 로컬 스토리지에서 가져오기
+  // 실제 앱에서는 JWT 토큰 등을 디코딩하여 ID를 가져오는 것이 더 안전합니다.
   const userId = useMemo(() => {
     try {
       // 로컬 스토리지에서 'currentUserId'라는 키로 사용자 ID를 가져옵니다.
-      // 실제 앱에서는 JWT 토큰 등을 디코딩하여 ID를 가져오는 것이 더 안전합니다.
+      // 이 부분은 JWT를 사용할 경우 토큰을 디코딩하여 userID를 추출하는 로직으로 변경되어야 합니다.
       return localStorage.getItem('currentUserId') || '';
     } catch {
       return '';
@@ -117,6 +118,8 @@ const SearchPage = () => {
         </div>
       </div>
 
+      {/* ⭐ 추천 검색 섹션 제거됨 */}
+      {/*
       <div className="recommend-section">
         <strong>추천 검색</strong>
         <div className="recommend-keywords">
@@ -130,7 +133,10 @@ const SearchPage = () => {
           ))}
         </div>
       </div>
+      */}
 
+      {/* ⭐ 추천 검색 (태그) 섹션 제거됨 */}
+      {/*
       <div className="recent-section">
         <div className="tags">
           {['키워드1', '노인 키워드2', '키워드3', '키워드4'].map((kw, i) => (
@@ -140,6 +146,7 @@ const SearchPage = () => {
           ))}
         </div>
       </div>
+      */}
 
       <div className="recent-section">
         <div className="section-header">

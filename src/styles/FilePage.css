@@ -2,13 +2,14 @@
 
 /* ===== Common Layout ===== */
 .file-page {
-  background-color: #f1f5f9;
+  background-color: #f1f5f9; /* Tailwind gray-100 */
   min-height: 100vh;
-  width: 500px;
-  margin: 0 auto;
+  width: 500px; /* 고정 너비 */
+  margin: 0 auto; /* 중앙 정렬 */
   position: relative;
-  font-family: 'Arial', sans-serif;
-  padding-bottom: 80px; /* Space for bottom navigation bar */
+  font-family: "Inter", sans-serif; /* 폰트 설정 */
+  padding-bottom: 80px; /* 하단 내비게이션 바 공간 */
+  box-sizing: border-box; /* 패딩 포함 너비 계산 */
 }
 
 /* ===== Header ===== */
@@ -17,15 +18,25 @@
   align-items: center;
   padding: 16px;
   background-color: #fff;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0; /* gray-200 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 약간의 그림자 */
 }
 
 .back-button {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 20px; /* 아이콘 크기 조정 */
   cursor: pointer;
-  color: #333;
+  color: #333; /* gray-800 */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button img { /* 이미지 크기 조정을 위해 추가 */
+  width: 24px;
+  height: 24px;
 }
 
 .file-header h2 {
@@ -33,133 +44,303 @@
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: #333; /* gray-800 */
 }
 
 /* ===== File List Container ===== */
 .file-list-container {
-  padding: 24px 16px;
+  padding: 24px 16px; /* py-6 px-4 */
+}
+
+.file-list-header { /* 내 증명서 00 부분 */
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px; /* pb-4 */
 }
 
 .file-list-container p {
   text-align: center;
-  color: #94a3b8;
+  color: #94a3b8; /* gray-400 */
   margin-top: 20px;
 }
 
 /* ===== File Item (Card) ===== */
 .file-item {
   background-color: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px; /* rounded-lg */
+  padding: 16px; /* p-4 */
+  margin-bottom: 12px; /* mb-3 */
+  /* Grid 사용 - 파일 정보가 유동적으로, 버튼 그룹이 오른쪽 */
+  display: grid;
+  grid-template-columns: 1fr auto; 
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 16px; /* 항목 간 간격 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* shadow-sm */
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer; /* 클릭 가능하도록 커서 변경 */
+}
+
+.file-item:hover {
+  transform: translateY(-2px); /* 호버 시 약간 위로 */
 }
 
 .file-info-section {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-grow: 1;
+  gap: 16px; /* space-x-4 */
+  min-width: 0; /* 파일 이름이 길어도 섹션이 너무 커지지 않게 방지 */
 }
 
 .file-icon-wrapper {
   position: relative;
-  width: 48px;
-  height: 48px;
-  background-color: #f3e9ff; /* Light purple background */
-  border-radius: 12px;
+  width: 48px; /* w-12 */
+  height: 48px; /* h-12 */
+  background-color: #f3eefd; /* Light purple background */
+  border-radius: 12px; /* rounded-lg */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 크기 고정 */
 }
 
 .file-icon {
-  font-size: 24px;
+  font-size: 24px; /* text-2xl */
   color: #6a40da; /* Purple icon */
 }
 
 .file-check-icon {
   position: absolute;
-  bottom: -4px;
-  right: -4px;
-  font-size: 18px;
+  bottom: -4px; /* 위치 조정 */
+  right: -4px; /* 위치 조정 */
+  font-size: 18px; /* 아이콘 크기 */
   color: #6a40da; /* Purple check icon */
-  background-color: #fff;
-  border-radius: 50%;
-  border: 2px solid #fff;
+  background-color: #fff; /* 흰색 배경 */
+  border-radius: 50%; /* 원형 */
+  border: 2px solid #fff; /* 흰색 테두리 */
 }
 
 .file-details {
   display: flex;
   flex-direction: column;
+  min-width: 0; /* 텍스트 오버플로우 방지 */
 }
 
 .file-name {
-  font-size: 16px;
+  font-size: 16px; /* text-base */
   font-weight: 500;
-  color: #333;
-  margin: 0 0 4px 0;
+  color: #333; /* gray-800 */
+  margin: 0 0 4px 0; /* mb-1 */
+  white-space: nowrap; /* 한 줄로 표시 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* ...으로 표시 */
 }
 
 .file-date {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 12px; /* text-xs */
+  color: #6b7280; /* gray-600 */
   margin: 0;
+}
+
+/* ⭐ 파일 항목 내 버튼 그룹 */
+.file-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 버튼들 사이 간격 */
 }
 
 .download-button {
   background-color: #f1eefd; /* Light purple background */
   color: #6a40da; /* Purple text */
   border: none;
-  border-radius: 8px;
+  border-radius: 8px; /* rounded-lg */
   padding: 6px 10px; /* Reduced padding */
+  width: 80px; /* 너비 고정 */
   cursor: pointer;
   font-size: 12px; /* Reduced font size */
   font-weight: bold;
   white-space: nowrap;
   transition: background-color 0.2s;
+  flex-shrink: 0; /* 크기 고정 */
+  justify-self: center; /* Grid 셀 내에서 수평 가운데 정렬 */
 }
 
 .download-button:hover {
-  background-color: #e5d8ff;
+  background-color: #e5d8ff; /* 약간 진한 보라색 */
 }
+
+/* ⭐ 새로운 삭제 버튼 스타일 (목록에 추가) */
+.delete-item-button {
+  background: none; /* 배경색 없음 */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px; /* 아이콘 크기에 맞춤 */
+  height: 24px; /* 아이콘 크기에 맞춤 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.delete-item-button .delete-item-icon {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(-20deg) saturate(500%) !important; /* 빨간색으로 만들기 (wastebutton.png가 회색이라고 가정) */
+  /* 또는 직접 빨간색 PNG/SVG를 사용하거나 FaTrashAlt 아이콘 사용 */
+  transition: transform 0.2s;
+}
+
+.delete-item-button:hover .delete-item-icon {
+  transform: scale(1.1);
+}
+
 
 /* ===== Floating Button (Upload) ===== */
 .add-file-button {
   position: fixed;
-  bottom: 90px;
-  right: calc(50% - 225px); /* Position in the center of the parent container */
+  bottom: 90px; /* 하단 내비게이션 바 위 */
+  left: 50%; /* 중앙 정렬을 위해 */
+  transform: translateX(-50%); /* 중앙 정렬 */
   width: auto;
   padding: 12px 20px;
-  border-radius: 24px;
-  background-color: #6a40da;
+  border-radius: 24px; /* rounded-full */
+  background-color: #6a40da; /* 보라색 */
   color: #fff;
   border: none;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* shadow-lg */
   z-index: 1000;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px; /* space-x-2 */
   white-space: nowrap;
+  transition: background-color 0.2s;
 }
 
 .add-file-button:hover {
-  background-color: #5e35b1;
+  background-color: #5e35b1; /* 약간 어두운 보라색 */
+}
+
+.add-file-button .fa-plus { /* 아이콘 간격 조정 */
+    margin-right: 4px;
 }
 
 .loading-message, .error-message, .no-documents {
   text-align: center;
-  color: #94a3b8;
+  color: #94a3b8; /* gray-400 */
   padding: 20px;
 }
 
 .error-message {
-  color: #ef4444;
+  color: #ef4444; /* red-500 */
+}
+
+/* ===== FileDetailPage Styles (모두 제거됨) ===== */
+/*
+.file-detail-page { ... }
+.detail-header { ... }
+.detail-header h2 { ... }
+.detail-header-button { ... }
+.detail-header-button .header-icon { ... }
+.detail-actions { ... }
+.detail-content { ... }
+.detail-title { ... }
+.detail-date { ... }
+.section-divider { ... }
+.detail-section-title { ... }
+.image-preview-grid { ... }
+.image-placeholder { ... }
+.section-description { ... }
+.file-preview-item { ... }
+.file-preview-icon { ... }
+.file-preview-name { ... }
+.detail-download-button { ... }
+*/
+
+
+/* ===== Modal Styles ===== */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 32px 24px 24px 24px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.modal-message {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-cancel-button, .modal-delete-button {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-cancel-button {
+  background-color: #e5e7eb;
+  color: #4b5563;
+  border: none;
+}
+
+.modal-cancel-button:hover {
+  background-color: #d1d5db;
+}
+
+.modal-delete-button {
+  background-color: #6a40da;
+  color: #fff;
+  border: none;
+}
+
+.modal-delete-button:hover {
+  background-color: #5a34b2;
+}
+
+/* ⭐ 업로드 성공 모달 스타일 추가 */
+.upload-success-modal .modal-content {
+    /* 다운로드 모달과 동일한 스타일 유지 */
+}
+
+/* ⭐ 업로드 성공 모달 버튼 스타일 (다운로드 모달과 동일하게 재활용) */
+.upload-success-modal .modal-delete-button {
+    /* 다운로드 모달과 동일한 스타일 유지 */
 }
