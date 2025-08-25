@@ -61,7 +61,7 @@ function App() {
             <AdditionalProvider>
               <Routes>
                 {/* 메인/서비스/마이페이지 라우트 */}
-                <Route path="/" element={<JoinPage/>} />
+                <Route path="/" element={<LoginPage/>} />
                 <Route path="/mainpage" element={<MainPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
                 <Route path="/favorite" element={<FavoritePage favorites={favorites} toggleFavorite={toggleFavorite} services={services} />} />
                 <Route path="/profile" element={<ProfilePage />} />
