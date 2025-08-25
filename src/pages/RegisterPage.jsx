@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/RegisterPage.css'; // RegisterPage.css 파일 직접 import
 import BackIcon from '../assets/back.svg'; // assets 폴더 경로 확인 (pages 기준)
 import SendButton from '../assets/send.png';
-import ActiveSendButton from '../assets/Activesend.PNG';
+import ActiveSendButton from '../assets/Activesend.png';
 import NextButton from '../assets/다음.PNG';
-import ActiveNextButton from '../assets/Active다음.PNG';
-import CertButton from '../assets/certification.PNG';
+import ActiveNextButton from '../assets/Active다음.png';
+import CertButton from '../assets/certification.png';
 import ActiveCertButton from '../assets/Activecertification.PNG';
 import { useAuth } from '../context/AuthContext.jsx'; // useAuth 훅 import
 
