@@ -3,24 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './InputForm.module.css'; // InputForm.module.css로 변경했다고 가정 (CSS Module 사용)
 import Backicon from '../../assets/back.svg';
-import NextButton from '../../assets/다음.PNG';
-import ActiveNextButton from '../../assets/Active다음.PNG';
+import NextButton from '../../assets/다음.png';
+import ActiveNextButton from '../../assets/Active다음.png';
 import Minusicon from '../../assets/minus.svg';
 import Plusicon from '../../assets/plus.svg';
 import Arrowicon from '../../assets/arrow.svg';
-import HireOButton from '../../assets/hireO.PNG';
-import ActiveHireOButton from '../../assets/ActivehireO.PNG';
-import HireXButton from '../../assets/hireX.PNG';
-import ActiveHireXButton from '../../assets/ActivehireX.PNG';
+import HireOButton from '../../assets/hireO.png';
+import ActiveHireOButton from '../../assets/ActivehireO.png';
+import HireXButton from '../../assets/hireX.png';
+import ActiveHireXButton from '../../assets/ActivehireX.png';
 import GrayButton from '../../components/GrayButton'; // GrayButton 경로 확인
-import DisabilityOButton from '../../assets/disabilityO.PNG';
-import ActiveDisabilityOButton from '../../assets/ActiveDisabilityO.PNG';
-import DisabilityXButton from '../../assets/disabilityX.PNG';
-import ActiveDisabilityXButton from '../../assets/ActiveDisabilityX.PNG';
-import YesOButton from '../../assets/yesO.PNG';
-import ActiveYesOButton from '../../assets/ActiveyesO.PNG';
-import NoXButton from '../../assets/noX.PNG';
-import ActiveNoXButton from '../../assets/ActivenoX.PNG';
+import DisabilityOButton from '../../assets/disabilityO.png';
+import ActiveDisabilityOButton from '../../assets/ActiveDisabilityO.png';
+import DisabilityXButton from '../../assets/disabilityX.png';
+import ActiveDisabilityXButton from '../../assets/ActiveDisabilityX.png';
+import YesOButton from '../../assets/yesO.png';
+import ActiveYesOButton from '../../assets/ActiveyesO.png';
+import NoXButton from '../../assets/noX.png';
+import ActiveNoXButton from '../../assets/ActivenoX.png';
 import { useAuth } from '../../context/AuthContext.jsx'; // useAuth 훅 import
 
 const lifeCycles = ['영유아', '아동', '청소년', '청년', '중장년', '노년', '임신·출산'];
