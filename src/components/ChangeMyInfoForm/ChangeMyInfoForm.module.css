@@ -3,17 +3,19 @@
 .wrapper {
   max-width: 600px;
   margin: 0 auto;
+  /* background-color: red; */
 }
 
 .container {
   width: 90vw;
+  /* background-color: green; */
   max-width: 410px;
   margin: 0 auto;
   margin-top: 20px; 
 }
 
 .backbutton {
-  margin-left: 700px;
+  margin-left: 650px;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -27,7 +29,8 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
-  color: rgba(57, 63, 72, 1);
+  /* color: rgba(57, 63, 72, 1); */
+  /* background-color: red; */
   font-size: 18px;
   font-weight: bold;
   text-align: center;
@@ -120,6 +123,7 @@
 .label {
     display: flex;
     margin-bottom: 6px;
+    
 }
 
 .arrow {

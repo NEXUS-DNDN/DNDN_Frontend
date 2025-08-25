@@ -39,7 +39,7 @@ const MyPageForm = () => {
         </div>
         <div className={styles.userInfo}>
           <div className={styles.username}>{userName}</div>
-          <div className={styles.email}>example@gmail.com</div>
+          
         </div>
       </div>
 

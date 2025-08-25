@@ -1,9 +1,35 @@
+/* src/components/LoginForm.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+  justify-content: flex-start; /* 상단에서 시작 */
+  min-height: 100vh; /* 뷰포트 전체 높이 사용 */
+  width: 500px; /* 고정 너비 */
+  margin: 0 auto; /* 중앙 정렬 */
+  background-color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  padding: 20px; /* 내부 여백 */
+  padding-top: 60px; /* 상단바 공간 확보 및 내용 시작 위치 조정 */
+  box-sizing: border-box; /* 패딩 포함 너비 계산 */
+  position: relative; /* backbutton을 위한 기준점 */
+}
+
 .backbutton {
-  position: fixed;
-  top: 20px;
-  left: calc(15vw / 2);
+  position: absolute; /* container 내부에서 절대 위치 */
+  top: 20px; /* 상단에서 20px */
+  left: 20px; /* 왼쪽에서 20px */
   z-index: 1000;
   cursor: pointer;
+  display: flex; /* 이미지를 중앙에 정렬하기 위함 */
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* 클릭 영역 확보 */
+  height: 24px; /* 클릭 영역 확보 */
+  padding: 0; /* 기본 패딩 제거 */
+  background: none; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
 }
 
 .backbutton img {
@@ -11,14 +37,20 @@
   height: 24px;
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto;
+.loginTitle { /* 새롭게 추가된 로그인 제목 스타일 */
+  font-size: 24px; /* 글자 크기 */
+  font-weight: bold; /* 굵게 */
+  color: #333; /* 어두운 회색 */
+  margin-bottom: 40px; /* 아래 요소와의 간격 */
+  width: 100%; /* 너비 100% */
+  text-align: center; /* 중앙 정렬 */
 }
+
 
 .inputGroup {
   margin-bottom: 16px;
-  width: 85%;
+  width: 85%; /* 너비 조정 */
+  max-width: 380px; /* 최대 너비 제한 */
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -33,26 +65,57 @@
   font-weight: 500;
 }
 
-.authBtn {
-  width: 60%;
-  height: 65px;
+.inputField { /* Input 컴포넌트 내부의 input 태그에 적용될 클래스 */
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0; /* 옅은 회색 테두리 */
+  border-radius: 8px; /* 둥근 모서리 */
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputField::placeholder {
+  color: #a0aec0; /* 플레이스홀더 색상 */
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #7424D6; /* 포커스 시 보라색 테두리 */
+  box-shadow: 0 0 0 2px rgba(116, 36, 214, 0.2); /* 포커스 시 그림자 */
+}
+
+
+.loginBtn { /* authBtn -> loginBtn으로 클래스명 변경 및 스타일 조정 */
+  width: 85%; /* 너비 조정 */
+  max-width: 380px; /* 최대 너비 제한 */
+  height: 55px; /* 높이 조정 */
   padding: 12px;
-  background-color: rgba(102, 112, 128, 1);
+  background-color: #7424D6; /* 보라색 배경 */
   color: white;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px; /* 글자 크기 */
+  font-weight: bold; /* 굵게 */
   border: none;
-  border-radius: 9999px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  border-radius: 9999px; /* 완전한 라운드 */
+  margin-top: 30px; /* 위쪽 간격 */
+  margin-bottom: 40px; /* 아래쪽 간격 */
   cursor: pointer;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(116, 36, 214, 0.3); /* 그림자 효과 */
 }
 
-.checkboxContainer {
-  display: flex;
+.loginBtn:hover {
+  background-color: #5d1ca3; /* 호버 시 약간 어둡게 */
+  box-shadow: 0 6px 15px rgba(116, 36, 214, 0.4);
+}
+
+
+.checkboxContainer { /* 이 디자인에서는 사용되지 않으므로 주석 처리 */
+  /* display: flex;
   margin-bottom: 6px;
   font-size: 14px;
   color: #555;
@@ -60,66 +123,51 @@
   align-items: center;
   font-weight: 500;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 }
 
 .divider {
-  width: 100%;
+  width: 85%; /* 너비 조정 */
+  max-width: 380px; /* 최대 너비 제한 */
   display: flex;
   align-items: center;
   justify-content: center;
   color: #aaa;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  margin-top: 0px; /* 위쪽 간격 */
+  margin-bottom: 40px; /* 아래쪽 간격 */
 }
 
-.line1 {
-  width: 42%;
+.line1, .line2 { /* line1과 line2를 하나의 클래스로 묶어 스타일 적용 */
+  flex-grow: 1; /* 남은 공간을 채움 */
   height: 1px;
-  background-color: #ccc;
-  margin-left: 0 auto;
-}
-
-.line2 {
-  width: 42%;
-  height: 1px;
-  background-color: #ccc;
-  margin-right: 0 auto;
+  background-color: #e2e8f0; /* 옅은 회색 라인 */
 }
 
 .text {
-  font-size: 16px;
-  color: #666;
-  padding: 0 10px;
+  font-size: 14px; /* 글자 크기 */
+  color: #a0aec0; /* 옅은 회색 텍스트 */
+  padding: 0 15px; /* 양옆 패딩 */
   white-space: nowrap;
 }
 
 .socialButtons {
   display: flex;
   justify-content: center;
-  font-size: 24px;
+  gap: 20px; /* 아이콘 간 간격 */
+  width: 100%; /* 중앙 정렬을 위해 너비 100% */
 }
 
-.naver {
-  color: #03c75a;
+.socialButtons button {
   background: none;
   border: none;
   cursor: pointer;
-
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.kakao {
-  color: #fee500;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.google {
-  color: #4285f4;
-  background: none;
-  border: none;
-  cursor: pointer;
+.socialButtons img {
+  width: 50px; /* 아이콘 크기 */
+  height: 50px;
 }

@@ -3,24 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './InputForm.module.css'; // InputForm.module.css로 변경했다고 가정 (CSS Module 사용)
 import Backicon from '../../assets/back.svg';
-import NextButton from '../../assets/다음.png';
-import ActiveNextButton from '../../assets/Active다음.png';
-import Minusicon from '../../assets/minus.svg'; 
+import NextButton from '../../assets/다음.PNG';
+import ActiveNextButton from '../../assets/Active다음.PNG';
+import Minusicon from '../../assets/minus.svg';
 import Plusicon from '../../assets/plus.svg';
 import Arrowicon from '../../assets/arrow.svg';
-import HireOButton from '../../assets/hireO.png';
-import ActiveHireOButton from '../../assets/ActivehireO.png';
-import HireXButton from '../../assets/hireX.png';
-import ActiveHireXButton from '../../assets/ActivehireX.png';
+import HireOButton from '../../assets/hireO.PNG';
+import ActiveHireOButton from '../../assets/ActivehireO.PNG';
+import HireXButton from '../../assets/hireX.PNG';
+import ActiveHireXButton from '../../assets/ActivehireX.PNG';
 import GrayButton from '../../components/GrayButton'; // GrayButton 경로 확인
-import DisabilityOButton from '../../assets/disabilityO.png';
-import ActiveDisabilityOButton from '../../assets/ActivedisabilityO.png';
-import DisabilityXButton from '../../assets/disabilityX.png';
-import ActiveDisabilityXButton from '../../assets/ActivedisabilityX.png';
-import YesOButton from '../../assets/yesO.png';
-import ActiveYesOButton from '../../assets/ActiveyesO.png';
-import NoXButton from '../../assets/noX.png';
-import ActiveNoXButton from '../../assets/ActivenoX.png';
+import DisabilityOButton from '../../assets/disabilityO.PNG';
+import ActiveDisabilityOButton from '../../assets/ActiveDisabilityO.PNG';
+import DisabilityXButton from '../../assets/disabilityX.PNG';
+import ActiveDisabilityXButton from '../../assets/ActiveDisabilityX.PNG';
+import YesOButton from '../../assets/yesO.PNG';
+import ActiveYesOButton from '../../assets/ActiveyesO.PNG';
+import NoXButton from '../../assets/noX.PNG';
+import ActiveNoXButton from '../../assets/ActivenoX.PNG';
 import { useAuth } from '../../context/AuthContext.jsx'; // useAuth 훅 import
 
 const lifeCycles = ['영유아', '아동', '청소년', '청년', '중장년', '노년', '임신·출산'];
@@ -599,6 +599,29 @@ const InputPage = () => { // 컴포넌트 이름 GenderInputForm에서 InputPage
     return `${minPercentage.toFixed(0)}%~${maxPercentage.toFixed(0)}%`;
   };
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  // 주소검색 팝업 실행
+  const handleResidenceSearch = () => {
+    if (window.daum && window.daum.Postcode) {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          setResidence(data.roadAddress || data.jibunAddress);
+        },
+      }).open();
+    } else {
+      alert('주소 서비스를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+    }
+  };
+
   const renderContent = () => {
     if (currentPage === 'gender') {
       const isFormValid = gender && birthday.length === 10 && residence;
@@ -639,9 +662,9 @@ const InputPage = () => { // 컴포넌트 이름 GenderInputForm에서 InputPage
                 className={`${styles.inputField} ${styles.residenceInput}`}
                 placeholder="거주지를 입력해주세요"
                 value={residence}
-                onChange={handleResidenceChange}
+                readOnly
               />
-              <button className={styles.searchButton}>찾기</button>
+              <button className={styles.searchButton} onClick={handleResidenceSearch}>찾기</button>
             </div>
             <input
               type="text"

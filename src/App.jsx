@@ -29,25 +29,12 @@ import ChangeMyInfoPage from './pages/ChangeMyInfoPage';
 
 // --- 로그인/회원가입 플로우 ---
 import JoinPage from './pages/JoinPage';
+import NaverCallback from './pages/NaverCallback';
 import VerifyPage from './pages/VerifyPage';
 import LoginPage from './pages/LoginPage';
 import NameInputPage from './pages/NameInputPage';
 import RegisterPage from './pages/RegisterPage';
-// import BirthdayInputPage from './pages/BirthdayInputPage';
 import InputPage from './pages/InputPage';
-// import GenderInputPage from './pages/InputPage.jsx';
-// import AddressInputPage from './pages/AddressInputPage';
-// import FamilyInputPage from './pages/FamilyInputPage';
-// import SalaryInputPage from './pages/SalaryInputPage';
-// import HireInputPage from './pages/HireInputPage';
-// import AdditionalInputPage from './pages/AdditionalInputPage';
-// import AdditionalTypeInputPage from './pages/AdditionalTypeInputPage';
-// import DisabilityPage from './pages/DisabilityPage';
-// import DisabilityGradePage from './pages/DisabilityGradePage';
-// import DisabilityTypePage from './pages/DisabilityTypePage';
-// import AgedPage from './pages/AgedPage';
-// import AgedAlonePage from './pages/AgedAlonePage';
-// import AgedAdditionalPage from './pages/AgedAdditionalPage';
 import FindPage from './pages/FindPage';
 import SettingPage from './pages/SettingPage';
 
@@ -74,7 +61,7 @@ function App() {
             <AdditionalProvider>
               <Routes>
                 {/* 메인/서비스/마이페이지 라우트 */}
-                <Route path="/" element={<MainPage/>} />
+                <Route path="/" element={<JoinPage/>} />
                 <Route path="/mainpage" element={<MainPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
                 <Route path="/favorite" element={<FavoritePage favorites={favorites} toggleFavorite={toggleFavorite} services={services} />} />
                 <Route path="/profile" element={<ProfilePage />} />
@@ -118,6 +105,7 @@ function App() {
                 <Route path="/agedalone" element={<AgedAlonePage />} />
                 <Route path="/agedadditional" element={<AgedAdditionalPage />} /> */}
                 <Route path="/find" element={<FindPage />} />
+                <Route path="/naver/callback" element={<NaverCallback />} />
               </Routes>
             </AdditionalProvider>
           </SettingsProvider>
