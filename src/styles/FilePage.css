@@ -187,7 +187,7 @@
   width: 24px;
   height: 24px;
   filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(-20deg) saturate(500%) !important; /* 빨간색으로 만들기 (wastebutton.png가 회색이라고 가정) */
-  /* 또는 직접 빨간색 PNG/SVG를 사용하거나 FaTrashAlt 아이콘 사용 */
+  /* 또는 직접 빨간색 png/SVG를 사용하거나 FaTrashAlt 아이콘 사용 */
   transition: transform 0.2s;
 }
 

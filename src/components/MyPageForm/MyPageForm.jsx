@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './MyPageForm.module.css';
 import BottomNav from '../BottomNavForm/BottomNav';
 import Profileicon from '../../assets/baseprofile.svg';
-import myApplyIcon from '../../assets/MyPage(1).PNG';
-import myInfoIcon from '../../assets/MyPage(2).PNG';
-import faqIcon from '../../assets/MyPage(3).PNG';
-import settingsIcon from '../../assets/MyPage(4).PNG';
-import nextButtonIcon from '../../assets/nextButton.PNG';
+import myApplyIcon from '../../assets/MyPage(1).png';
+import myInfoIcon from '../../assets/MyPage(2).png';
+import faqIcon from '../../assets/MyPage(3).png';
+import settingsIcon from '../../assets/MyPage(4).png';
+import nextButtonIcon from '../../assets/nextButton.png';
 import Backicon from '../../assets/back.svg'; // ✅ back.svg 이미지 import
 
 const MyPageForm = () => {

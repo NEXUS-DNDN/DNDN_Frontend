@@ -3,16 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './BottomNav.css';
 
 // Default icons
-import HomeIcon from '../../assets/Home.PNG';
-import FavoriteIcon from '../../assets/Favorite.PNG';
-import FileIcon from '../../assets/File.PNG';
-import MyIcon from '../../assets/My.PNG';
+import HomeIcon from '../../assets/Home.png';
+import FavoriteIcon from '../../assets/Favorite.png';
+import FileIcon from '../../assets/File.png';
+import MyIcon from '../../assets/My.png';
 
 // Active icons
-import ActiveHomeIcon from '../../assets/ActiveHome.PNG';
-import ActiveFavoriteIcon from '../../assets/ActiveFavorite.PNG';
-import ActiveFileIcon from '../../assets/ActiveFile.PNG';
-import ActiveMyIcon from '../../assets/ActiveMy.PNG';
+import ActiveHomeIcon from '../../assets/ActiveHome.png';
+import ActiveFavoriteIcon from '../../assets/ActiveFavorite.png';
+import ActiveFileIcon from '../../assets/ActiveFile.png';
+import ActiveMyIcon from '../../assets/ActiveMy.png';
 
 const BottomNav = ({ activePath }) => {
   const location = useLocation();

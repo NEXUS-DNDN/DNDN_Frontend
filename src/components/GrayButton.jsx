@@ -3,8 +3,8 @@
 import React from 'react';
 // Correct way to import a regular CSS file
 import './GrayButton.css';
-import GrayButtonImage from '../assets/graybutton.PNG';
-import PurpleButtonImage from '../assets/purplebutton.PNG';
+import GrayButtonImage from '../assets/graybutton.png';
+import PurpleButtonImage from '../assets/purplebutton.png';
 
 const GrayButton = ({ children, isActive, onClick }) => {
   // Use a conditional string to add the 'active' class
