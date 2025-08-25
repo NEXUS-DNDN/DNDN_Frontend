@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start; /* 상단 정렬 */
-  width: 500px; /* 고정 너비 */
+  width: 410px; /* 고정 너비 */
   margin: 0 auto; /* 중앙 정렬 */
   font-family: "Inter", sans-serif; /* 폰트 설정 */
 }

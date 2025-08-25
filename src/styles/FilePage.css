@@ -4,7 +4,7 @@
 .file-page {
   background-color: #f1f5f9; /* Tailwind gray-100 */
   min-height: 100vh;
-  width: 500px; /* 고정 너비 */
+  width: 410px; /* 고정 너비 */
   margin: 0 auto; /* 중앙 정렬 */
   position: relative;
   font-family: "Inter", sans-serif; /* 폰트 설정 */

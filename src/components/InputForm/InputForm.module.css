@@ -1,7 +1,7 @@
 /* GenderInputForm.module.css */
 
 .mainContainer {
-  width: 500px;
+  width: 410px;
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
@@ -12,7 +12,7 @@
   position: fixed;
   top: 10px;
   width: 100%;
-  max-width: 500px;
+  max-width: 410px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -410,7 +410,7 @@
   left: 50%; /* New: Centers the element */
   transform: translateX(-50%); /* Centers the element */
   width: 100%;
-  max-width: 500px; /* Aligns with main container */
+  max-width: 410px; /* Aligns with main container */
   background-color: white;
   z-index: 20;
   border-top-left-radius: 20px;

@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-250px); /* main-container가 500px인 경우 */
-  width: 500px;
+  transform: translateX(-250px); /* main-container가 410px인 경우 */
+  width: 410px;
   height: 100vh;
   z-index: 1000;
 }
