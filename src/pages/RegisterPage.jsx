@@ -9,7 +9,7 @@ import ActiveSendButton from '../assets/Activesend.png';
 import NextButton from '../assets/다음.png';
 import ActiveNextButton from '../assets/Active다음.png';
 import CertButton from '../assets/certification.png';
-import ActiveCertButton from '../assets/Activecertification.png';
+import ActiveCertButton from '../assets/Activecertification.png';  //이미지 충돌
 import { useAuth } from '../context/AuthContext.jsx'; // useAuth 훅 import
 
 const RegisterPage = () => {
