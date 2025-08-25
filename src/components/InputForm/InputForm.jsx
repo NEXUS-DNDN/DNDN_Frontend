@@ -14,9 +14,9 @@ import HireXButton from '../../assets/hireX.png';
 import ActiveHireXButton from '../../assets/ActivehireX.png';
 import GrayButton from '../../components/GrayButton'; // GrayButton 경로 확인
 import DisabilityOButton from '../../assets/disabilityO.png';
-import ActiveDisabilityOButton from '../../assets/ActiveDisabilityO.png';
+import ActiveDisabilityOButton from '../../assets/ActivedisabilityO.png';
 import DisabilityXButton from '../../assets/disabilityX.png';
-import ActiveDisabilityXButton from '../../assets/ActiveDisabilityX.png';
+import ActiveDisabilityXButton from '../../assets/ActivedisabilityX.png';
 import YesOButton from '../../assets/yesO.png';
 import ActiveYesOButton from '../../assets/ActiveyesO.png';
 import NoXButton from '../../assets/noX.png';
