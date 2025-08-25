@@ -5,7 +5,7 @@ import styles from './InputForm.module.css'; // InputForm.module.css로 변경�
 import Backicon from '../../assets/back.svg';
 import NextButton from '../../assets/다음.png';
 import ActiveNextButton from '../../assets/Active다음.png';
-import Minusicon from '../../assets/minus.svg';
+import Minusicon from '../../assets/minus.svg'; 
 import Plusicon from '../../assets/plus.svg';
 import Arrowicon from '../../assets/arrow.svg';
 import HireOButton from '../../assets/hireO.png';

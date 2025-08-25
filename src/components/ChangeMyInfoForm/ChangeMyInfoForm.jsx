@@ -232,11 +232,11 @@ const ChangeMyInfoForm = () => {
         <div className={styles.minititle}>내 정보</div>
         {/* 수정된 프로필 섹션 */}
         <div className={styles.profileSection}>
-          <div className={styles.profileImageWrapper}>
-            <img src={profileImage} alt="프로필 이미지" className={styles.profileImage} />
-            <button className={styles.imageEditButton} onClick={handleImageChange}>
+          <div className={styles.profileImageWrapper}> //
+            {/* <img src={profileImage} alt="프로필 이미지" className={styles.profileImage} /> */}
+            {/* <button className={styles.imageEditButton} onClick={handleImageChange}>
               <img src={Plusicon} alt="이미지 수정" />
-            </button>
+            </button> */}
           </div>
         </div>
         <div className={styles.infoList}>
