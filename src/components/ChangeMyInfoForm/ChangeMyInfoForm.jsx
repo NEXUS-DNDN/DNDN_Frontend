@@ -41,7 +41,7 @@ const ChangeMyInfoForm = () => {
 
   // 모달 상태 추가 (정보 수정 완료 모달)
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // ⭐ 로그아웃 확인 모달 상태 추가
+  // ⭐ 로그아웃 확인 모달 상태는 유지 (사용자가 실수로 로그아웃하지 않도록)
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); 
 
   // 이미지 수정 버튼 클릭 핸들러
@@ -321,9 +321,9 @@ const ChangeMyInfoForm = () => {
     navigate('/my');
   };
 
-  // ⭐ 로그아웃 처리 함수
+  // ⭐ 로그아웃 처리 함수 (알림 팝업 제거)
   const handleLogout = async () => {
-    setIsLogoutModalOpen(false); // 모달 닫기
+    setIsLogoutModalOpen(false); // 로그아웃 확인 모달은 닫기
     if (!accessToken) {
       console.error("로그인 토큰이 없어 로그아웃을 진행할 수 없습니다.");
       localStorage.clear(); // 혹시 모를 잔여 토큰 제거
@@ -342,14 +342,13 @@ const ChangeMyInfoForm = () => {
         throw new Error(`로그아웃 실패: ${errorData.message || response.status}`);
       }
 
-      console.log('로그아웃 성공:', await response.json());
+      console.log('로그아웃 성공'); // 성공 알림 팝업 제거, 콘솔 로그만 남김
       localStorage.clear(); // 모든 로컬 스토리지 정보 삭제
-      alert('로그아웃되었습니다.'); // 사용자에게 알림
-      navigate('/login'); // 로그인 페이지로 이동
+      navigate('/login'); // 로그인 페이지로 즉시 이동
 
     } catch (error) {
       console.error('로그아웃 처리 중 오류 발생:', error);
-      alert(`로그아웃 실패: ${error.message}`);
+      alert(`로그아웃 실패: ${error.message}`); // 오류 발생 시에만 알림
       // 오류 발생 시에도 최소한 로컬 스토리지를 비워주는 것이 안전
       localStorage.clear(); 
       navigate('/login');
@@ -490,7 +489,7 @@ const ChangeMyInfoForm = () => {
           </div>
           <div
             className={styles.menuItem}
-            onClick={() => setIsLogoutModalOpen(true)} // ⭐ 로그아웃 모달 띄우기
+            onClick={() => setIsLogoutModalOpen(true)} // ⭐ 로그아웃 확인 모달 띄우기
           >
             <span className={styles.menuText}>로그아웃</span>
             <img src={Arrowicon} alt="화살표" className={styles.arrow} />

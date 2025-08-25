@@ -148,7 +148,7 @@ const LoginForm = () => {
 
     window.Kakao.Auth.login({
       scope: 'profile_nickname, account_email',
-      prompt: 'login', // 자동 로그인 방지
+     // prompt: 'login', // 자동 로그인 방지
       success: async function (authObj) {
         const socialAccessToken = authObj.access_token; // 카카오에서 받은 토큰
         try {
