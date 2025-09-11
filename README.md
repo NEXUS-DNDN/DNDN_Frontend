@@ -1,90 +1,112 @@
+# 든든 (DNDN)
 
-# React + Vite
+당신에게 필요한 복지, 든든하게 챙기세요
+맞춤형 복지 안내 플랫폼
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="7680" height="4320" alt="든든compression" src="https://github.com/user-attachments/assets/cf0901e9-8b97-4ac7-928f-d96e4e362250" />
 
-Currently, two official plugins are available:
+---
+## 📌 프로젝트 개요
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+든든(DNDN) 은 복지 제도의 문턱을 낮추어, 누구나 놓치지 않고 혜택을 누릴 수 있도록 돕는 맞춤형 복지 안내 플랫폼입니다.
 
-## Expanding the ESLint configuration
+복잡하고 흩어진 복지 정보를 한 곳에 모으고, 개인 맞춤형 추천과 간단한 신청 프로세스를 제공합니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
+---
+## 👨‍👩‍👧‍👦 팀 구성
 
-# DNDN-FrontEnd-Repository
+- PM: 이한별
 
-든든팀의 프론트엔드 레포지토리입니다.
-=======
-# Getting Started with Create React App
+- DE: 이시원
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- FE: 송다혁, 유지훈
 
-## Available Scripts
+- BE: 김지원, 김채민, 박연지
 
-In the project directory, you can run:
+---
+## 🚨 문제 정의
 
-### `npm start`
+- 복지 서비스 신청 과정에서 다수의 이용자가 불편을 겪고 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 탐색 어려움: 내가 받을 수 있는 복지 서비스가 무엇인지 알기 힘듦
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 정보 접근성 부족: 정보가 여러 곳에 흩어져 있음
 
-### `npm test`
+- 신청 절차 복잡: 절차가 어렵고 번거로움
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 서류 부담: 제출해야 하는 서류가 많음
 
-### `npm run build`
+- 설문조사 결과: 복지 서비스 신청 경험자 중 **69.1%**가 불편함을 경험
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+## 🎯 서비스 목표
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 누구나 쉽게 이해하고 신청할 수 있는 복지 서비스 안내
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 개인 조건(나이, 소득, 가족 유형 등)에 따른 맞춤형 복지 추천
 
-### `npm run eject`
+- 흩어진 정보를 통합 검색 및 요약 제공
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 서류 관리 및 알림 기능을 통해 신청 절차 간소화
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
+## 👥 대상 사용자
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 복지 서비스는 많지만 어디서, 어떻게 신청해야 하는지 모르는 사람
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 디지털 소외 계층 (노인, 저소득층 등)
 
-## Learn More
+- 복잡한 제도와 절차 때문에 복지를 놓치는 사람들
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
+## 🛠 주요 기능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 맞춤형 복지 추천: 나이, 소득, 가족 유형 기반 추천
 
-### Code Splitting
+- 간편 탐색: 생애주기·가구유형·관심주제별 분류
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 복지 서비스 상세 안내: 지원 대상, 지원 내용, 담당 부처, 신청 바로가기
 
-### Analyzing the Bundle Size
+- 서류함: 제출 서류 업로드/보관/만료 알림
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 마이페이지: 신청 내역 및 혜택 수령 상태 관리
 
-### Making a Progressive Web App
+- 알림 서비스: 맞춤형 혜택 알림, 신청 리마인더, 서류 만료 안내
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
+## 🎨 디자인 시스템
 
-### Advanced Configuration
+- 컬러: 시니어 가시성 강화 보라색 (#7424D6), 대비비율 4.5:1 이상
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- 폰트: Pretendard, 본문 16pt 이상 / 제목 18pt 이상
 
-### Deployment
+- UI 원칙: 버튼 크기 ≥ 24x24dp, 터치 간격 8~16dp, 단순·직관적 구조
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
+## 📱 UX 플로우
 
-### `npm run build` fails to minify
+- 회원가입 & 로그인: 휴대폰 번호, 소셜 로그인 지원
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 정보 입력: 소득·가족·장애/노인 조건 등
 
+- 서비스 탐색: 조건 기반 검색 및 태그 필터링
+
+- 신청 프로세스: 서류 안내 + 신청 바로가기
+
+- 서류 관리: 업로드, 다운로드, 자동 만료 처리
+
+- 신청 내역 관리: 혜택 수령 여부 표시, 필터링
+
+---
+## 🌟 기대 효과
+
+- 복잡한 복지 제도를 쉽게 탐색 가능
+
+- 신청 절차 단순화로 소외계층 접근성 향상
+
+- 맞춤형 추천으로 복지 서비스 누락 최소화
+
+- 디지털 접근성을 고려한 포용적 플랫폼 구현
+
+---
